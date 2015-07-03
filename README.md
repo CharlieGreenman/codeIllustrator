@@ -1,2 +1,2 @@
 # pixelatorV2_with_angular
-Creating pixelator using angular 
+Creating pixelator using react
