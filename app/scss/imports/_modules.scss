@@ -1,0 +1,67 @@
+/*
+####################
+##### Modules ###### //any re-usable elements in your page
+####################
+*/
+
+// 1. Choose Size Form
+// 2. Grid illustrator
+//
+//
+//
+//
+
+//1. CHOOSE SIZE CONTAINER
+#choose_size_container{
+  margin: 0 auto;
+  margin-top: 40px;
+  text-align: center;
+  background: $medium-background-color;
+}
+
+#choose_size_header{
+  background: $dark-background-color;
+  color: $light-color;
+}
+
+
+#choose_size_form {
+
+
+  label{
+    height: 50px;
+    line-height: 50px;
+    color: $medium-color;
+  }
+
+  input{
+    width: 8.33333%;
+    margin-top: 14px;
+    height: 20px;
+    background: $light-background-color;
+    border: none;
+  }
+}
+
+#create_grid{
+  margin: 0;
+}
+
+#need_help{
+  height: 40px;
+  line-height: 40px;
+  color: $dark-color;
+}
+
+//2. CHOOSE SIZE CONTAINER
+#canvasGrid{
+  background: black;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -250px;
+}
+
