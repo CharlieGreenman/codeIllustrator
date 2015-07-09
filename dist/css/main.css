@@ -6303,7 +6303,7 @@ th.hide-for-touch {
 ####################
 */
 body {
-  background: rgba(255, 255, 255, 0.8); }
+  background: #3e4649; }
 
 /*
 ####################
@@ -6346,7 +6346,7 @@ body {
   color: rgba(255, 255, 255, 0.3); }
 
 #canvasGrid {
-  background: black;
+  background: #333333;
   position: absolute;
   width: 500px;
   height: 500px;

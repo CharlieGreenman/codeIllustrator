@@ -3,18 +3,19 @@ document.addEventListener("DOMContentLoaded", domLoaded, false);
 function domLoaded(){
 
 
-  function createGridIllustrator(){
+function createGridIllustrator(){
 
     var c = document.getElementById("canvasGrid");
     var ctx = c.getContext("2d");
     //module for creating a grid
-   var pixSize = 20, pixCount = 50;
+   var pixSize = 20, pixCount = 25;
       for(var r = 0; r < pixCount; r++) {
         for(var i = 0; i < pixCount; i++) {
 
           //random color function
-          ctx.fillStyle = "hsl(" + 360 * Math.random() + ", 50%, 50%)";
-          ctx.fillRect(r * pixSize + 1, i * pixSize, pixSize, pixSize);
+
+          ctx.strokeStyle = "hsl(" + 360 * Math.random() + ", 50%, 50%)";
+          ctx.strokeRect(r * pixSize, i * pixSize, pixSize, pixSize);
           }
       }
   }
