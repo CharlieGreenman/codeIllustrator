@@ -16,7 +16,7 @@ function domLoaded() {
 
         //random color function
 
-        ctx.strokeStyle = "hsl(" + 360 * Math.random() + ", 50%, 50%)";
+        ctx.strokeStyle = "#3e4649";
         ctx.strokeRect(r * pixSize, i * pixSize, pixSize, pixSize);
       }
     }
