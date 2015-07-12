@@ -17,25 +17,29 @@
     <h6 id="choose_size_header" class="row">Choose size of grid</h6>
     <form id="choose_size_form" class="row large-12 medium-12 small-12">
       <label class="column large-3">columns</label>
-      <input type="text" value="20" class="column large-1">
+      <input type="text" value="20" id="input-for-columns" class="column large-1">
       <label class="column large-2">rows</label>
-      <input type="text" value="20" class="column large-1">
+      <input type="text" value="20" id="input-for-rows" class="column large-1">
       <label class="column large-3">Pixel Size</label>
-      <input type="text" value="5" class="column large-1 end">
+      <input type="text" value="20" id="input-for-pixel-size" class="column large-1 end">
       <button id="create_grid" type="button" class="column large-12 tiny">Create Grid</button>
     </form>
-    <div id="need_help" class="row"><span>Need Help?</span>
-      <p>With this simple tool you could generate pixelArt one-element css box-shadow following these few steps:</p>
-      <ol>
-        <li>Simply create a grid depending on your needs and set the pixel size for the output. Then toggle the panels (left, right and bottom).</li>
-        <li>On the left side, set some color presets. You could add up to 13 and manage it just clicking on the number or triggering the numbero on the keyboard (only from 1 to 9).</li>
-        <li>On the right side, preview your one-element box-shadow generated.</li>
-        <li>On the bottom you could copy the CSS generated code.</li>
-        <p>This is a beta release. Hope you enjoy it and appreciate your comments to improve this tool.</p>
-      </ol>
+    <div id="need_help" class="row">
+      <!--span-->
+      <!--  | Need Help?-->
+      <!--p-->
+      <!--  | With this simple tool you could generate pixelArt one-element css box-shadow following these few steps:-->
+      <!--ol-->
+      <!--  li-->
+      <!--    | Simply create a grid depending on your needs and set the pixel size for the output. Then toggle the panels (left, right and bottom).-->
+      <!--  li-->
+      <!--    | On the left side, set some color presets. You could add up to 13 and manage it just clicking on the number or triggering the numbero on the keyboard (only from 1 to 9).-->
+      <!--  li On the right side, preview your one-element box-shadow generated.-->
+      <!--  li On the bottom you could copy the CSS generated code.-->
+      <!--  p-->
+      <!--    | This is a beta release. Hope you enjoy it and appreciate your comments to improve this tool.-->
     </div>
   </div>
   <canvas width="500" height="500" id="canvasGrid"></canvas>
-  <canvas id="8_bit_grid"></canvas>
 </body>
 <footer></footer>
