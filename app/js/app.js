@@ -2,12 +2,23 @@ document.addEventListener("DOMContentLoaded", domLoaded, false);
 
 function domLoaded(){
 
+ var bitIllustrator = {
+
+    settings: {
+      createGrid: document.getElementById("create_grid"),
+      rowCount: document.getElementById("input-for-rows").value,
+      columnCount: document.getElementById("input-for-columns").value,
+      pixSize: document.getElementById("input-for-pixel-size").value
+    }
+
+  };
+
  var c = document.getElementById("canvasGrid");
  var ctx = c.getContext("2d");
  var createGrid = document.getElementById("create_grid");
  var rowCount = document.getElementById("input-for-rows").value;
-  var columnCount = document.getElementById("input-for-columns").value;
-  var pixSize = document.getElementById("input-for-pixel-size").value;
+ var columnCount = document.getElementById("input-for-columns").value;
+ var pixSize = document.getElementById("input-for-pixel-size").value;
 
 
 function createGridIllustrator(){
