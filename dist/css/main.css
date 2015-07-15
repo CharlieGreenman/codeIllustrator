@@ -6315,6 +6315,17 @@ body {
 ##### Modules ###### //any re-usable elements in your page
 ####################
 */
+#reset-button {
+  display: none;
+  position: fixed;
+  width: 150px;
+  height: 30px;
+  background: #333333;
+  text-align: center;
+  left: 50%;
+  margin-left: -75px;
+  cursor: pointer; }
+
 #choose_size_container {
   margin: 0 auto;
   margin-top: 40px;
@@ -6346,10 +6357,9 @@ body {
   color: rgba(255, 255, 255, 0.3); }
 
 #canvasGrid {
+  display: none;
   background: rgba(0, 0, 0, 0.1);
   position: absolute;
-  width: 500px;
-  height: 500px;
   top: 50%;
   left: 50%;
   margin-top: -250px;

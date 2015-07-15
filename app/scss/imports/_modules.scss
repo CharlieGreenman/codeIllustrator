@@ -4,14 +4,29 @@
 ####################
 */
 
-// 1. Choose Size Form
-// 2. Grid illustrator
+// 1. Reset Button
+// 2. Choose Size Form
+// 3. Grid illustrator
 //
 //
 //
 //
 
-//1. CHOOSE SIZE CONTAINER
+
+//1. Reset Button
+#reset-button{
+  display: none;
+  position: fixed;
+  width: 150px;
+  height: 30px;
+  background: $medium-background-color;
+  text-align: center;
+  left: 50%;
+  margin-left: (-150px/2);
+  cursor: pointer;
+}
+
+//2. CHOOSE SIZE CONTAINER
 #choose_size_container{
   margin: 0 auto;
   margin-top: 40px;
@@ -53,12 +68,11 @@
   color: $dark-color;
 }
 
-//2. CHOOSE SIZE CONTAINER
+//3. Grid & canvas
 #canvasGrid{
+  display: none;
   background: rgba(0, 0, 0, 0.1);
   position: absolute;
-  width: 500px;
-  height: 500px;
   top: 50%;
   left: 50%;
   margin-top: -250px;
