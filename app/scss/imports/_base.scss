@@ -4,7 +4,8 @@
 ####################
 */
 
-body{
+html, body{
+  overflow: hidden;
   background: $light-background-color;
 }
 

@@ -7,7 +7,7 @@
 // 1. Reset Button
 // 2. Choose Size Form
 // 3. Grid illustrator
-//
+// 4. Code Box
 //
 //
 //
@@ -77,5 +77,43 @@
   left: 50%;
   margin-top: -250px;
   margin-left: -250px;
+}
+
+//4. Code Box
+#code_box_toggle{
+  position: absolute;
+
+  margin: 0 auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: .7s;
+  height:24px;
+  width: 26px;
+  background: black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover{
+
+    margin-bottom: 5px;
+
+    + #code_box{
+    margin-bottom: -195px;
+
+  }
+  }
+
+}
+
+#code_box{
+  width: 100%;
+  transition: .7s;
+  height: 200px;
+  margin-bottom: -200px;
+  position: absolute;
+  background: yellow;
+  bottom: 0;
 }
 

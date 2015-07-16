@@ -15,7 +15,9 @@ function domLoaded() {
       createGrid: document.getElementById("create_grid"),
       rowCount: document.getElementById("input-for-rows").value,
       columnCount: document.getElementById("input-for-columns").value,
-      pixSize: document.getElementById("input-for-pixel-size").value
+      pixSize: document.getElementById("input-for-pixel-size").value,
+      codeBox: document.getElementById("code_box"),
+      codeBoxToggle: document.getElementById("code_box_toggle")
     },
 
     init: function init() {
@@ -32,6 +34,7 @@ function domLoaded() {
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", bitIllustrator.handleClick, false);
+      s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
     resetButton: function resetButton() {
@@ -78,23 +81,24 @@ function domLoaded() {
 
       var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
       if (imgData.data[0] === 0) {
+        ctx.fillStyle = "#333333";
+        ctx.strokeStyle = "#3e4649";
+        ctx.lineWidth = 2;
+        // each individual blank piece is now removed and added using canvas
+        // as opposed to how it is/was originally used, which is through
+        //
         ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
+        ctx.strokeRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
+
         return false;
       }
 
       ctx.fillRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
-      //var ctxImgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-      //             Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-      //             s.pixSize, s.pixSize);
-      //var colorVal = ctxImgData.data[0];
-      /*eslint-disable */
+    },
 
-      /*eslint-enable */
-      //if(hex !== "#000000"){
-      //  ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-      //             Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-      //             s.pixSize, s.pixSize);
-      //}
+    codeBoxToggle: function codeBoxToggle() {
+      s.codeBox.style.marginBottom = "0";
+      s.codeBoxToggle.style.bottom = "200px";
     }
 
     //if color already exists, then change it back to default
