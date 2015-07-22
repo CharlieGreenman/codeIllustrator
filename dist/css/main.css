@@ -6311,15 +6311,12 @@ html, body {
 ##### Modules ###### //any re-usable elements in your page
 ####################
 */
-#reset-button {
+#reset-button, #view-button {
   display: none;
-  position: fixed;
   width: 150px;
   height: 30px;
   background: #333333;
   text-align: center;
-  left: 50%;
-  margin-left: -75px;
   cursor: pointer; }
 
 #choose_size_container {

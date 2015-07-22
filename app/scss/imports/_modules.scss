@@ -14,15 +14,15 @@
 
 
 //1. Reset Button
-#reset-button{
+#reset-button, #view-button{
   display: none;
-  position: fixed;
+//  position: fixed;
   width: 150px;
   height: 30px;
   background: $medium-background-color;
   text-align: center;
-  left: 50%;
-  margin-left: (-150px/2);
+//  left: 50%;
+//  margin-left: (-150px/2);
   cursor: pointer;
 }
 
