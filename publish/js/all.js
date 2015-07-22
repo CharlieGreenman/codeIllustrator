@@ -11,7 +11,6 @@ function domLoaded() {
       bitIllustrator = {
     elements: {
       codeBoxContainer: document.getElementById("code_box_container"),
-      codeBox: document.getElementById("code_box"),
       cssToggle: document.getElementById("css_toggle"),
       sassToggle: document.getElementById("sass_toggle"),
       jsToggle: document.getElementById("js_toggle")
@@ -44,7 +43,6 @@ function domLoaded() {
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", bitIllustrator.handleClick, false);
-      c.addEventListener("click", bitIllustrator.convertToCode, false);
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
@@ -83,9 +81,13 @@ function domLoaded() {
     },
 
     //allow individual boxes to be clicked
-    // handleClick is still in prototyping phase
     handleClick: function handleClick(e) {
       ctx.fillStyle = "black";
+      //remove color behind it, to save memory leaks
+      //ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
+      //             Math.floor(e.offsetY / s.pixSize) * s.pixSize,
+      //             s.pixSize, s.pixSize);
+
       var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
       if (imgData.data[0] === 0) {
         ctx.fillStyle = "#333333";
@@ -108,16 +110,7 @@ function domLoaded() {
     },
 
     //convert 8 bit illustrater into code when one clicks
-    //1. x value
-    //2. y value
-    //3. 0 blur value
-    //4. color
-    convertToCode: function convertToCode(e) {
-      var xCode = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
-      var yCode = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
-      var codeColor = "black";
-      elem.codeBox.innerHTML += " " + xCode + "px " + yCode + "px " + "0 " + codeColor + ",";
-    }
+    convertToCode: function convertToCode() {}
 
     //if color already exists, then change it back to default
 

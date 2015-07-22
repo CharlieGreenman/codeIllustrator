@@ -1,0 +1,16 @@
+// specific scss file, for monkey patching zurb foundation
+
+
+
+//1. full-width for foundation
+
+
+//full-width for foundation
+//i.e. a reset for row, or an alternative
+
+.full-width{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial;
+}

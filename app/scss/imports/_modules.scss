@@ -8,7 +8,7 @@
 // 2. Choose Size Form
 // 3. Grid illustrator
 // 4. Code Box
-//
+// 5. Code Toggle
 //
 //
 
@@ -80,18 +80,27 @@
 }
 
 //4. Code Box
+#code_box_container{
+  position: fixed;
+  width: 100%;
+  height: 230px;
+  bottom: -200px;
+  left: 0;
+  right: 0;
+  transition: 1s;
+}
+
+
 #code_box_toggle{
   position: absolute;
-
   margin: 0 auto;
-  bottom: 0;
   left: 0;
   right: 0;
   transition: .7s;
-  height:24px;
-  width: 26px;
-  background: black;
-  color: white;
+  height: $code-height;
+  width: 40px;
+  background: #f8f8ff;
+  color: black;
   text-align: center;
   cursor: pointer;
 
@@ -104,16 +113,38 @@
 
   }
   }
+}
 
+//toggle box when the time is proper
+.code_toggle{
+height: $code-height;
 }
 
 #code_box{
-  width: 100%;
   transition: .7s;
   height: 200px;
-  margin-bottom: -200px;
-  position: absolute;
-  background: yellow;
-  bottom: 0;
+  background: black;
+  color: white;
+  box-shadow: 0 0 0 10px #f8f8ff inset;
+  padding-top: 0.9375rem;
+  padding-bottom: 0.9375rem;
 }
+
+//5. Code Toggle
+.code_toggle{
+  height: $code-height;
+//  width: $code-width;
+//  position: absolute;
+//  bottom: -($code-height);
+  background: white;
+  text-align: center;
+  line-height: $code-height;
+  border-right: 1px solid black;
+  transition: 1s;
+  cursor: pointer;
+  border-bottom: 1px solid #3e4649 ;
+}
+
+
+
 

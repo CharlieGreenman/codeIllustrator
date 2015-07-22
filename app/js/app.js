@@ -2,10 +2,18 @@ document.addEventListener("DOMContentLoaded", domLoaded, false);
 
 function domLoaded(){
 
-var s,
+var s, elem,
  c = document.getElementById("canvasGrid"),
  ctx = c.getContext("2d"),
  bitIllustrator = {
+     elements: {
+      codeBoxContainer: document.getElementById("code_box_container"),
+      codeBox: document.getElementById("code_box"),
+      cssToggle: document.getElementById("css_toggle"),
+      sassToggle: document.getElementById("sass_toggle"),
+      jsToggle: document.getElementById("js_toggle")
+
+    },
     settings: {
       resetButton: document.getElementById("reset-button"),
       chooseSizeContainer: document.getElementById("choose_size_container"),
@@ -19,6 +27,7 @@ var s,
     },
 
     init: function() {
+      elem = bitIllustrator.elements;
       s = bitIllustrator.settings;
       this.bindActions();
     },
@@ -32,6 +41,7 @@ var s,
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", bitIllustrator.handleClick, false);
+      c.addEventListener("click", bitIllustrator.convertToCode, false);
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
@@ -72,13 +82,9 @@ var s,
 
 
    //allow individual boxes to be clicked
+   // handleClick is still in prototyping phase
     handleClick: function(e) {
       ctx.fillStyle = "black";
-      //remove color behind it, to save memory leaks
-      //ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-      //             Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-      //             s.pixSize, s.pixSize);
-
        var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
                    Math.floor(e.offsetY / s.pixSize) * s.pixSize,
                    s.pixSize, s.pixSize);
@@ -106,9 +112,19 @@ var s,
     },
 
    codeBoxToggle: function() {
-     s.codeBox.style.marginBottom = "0";
-     s.codeBoxToggle.style.bottom = "200px";
+     elem.codeBoxContainer.style.bottom = "0";
+   },
 
+   //convert 8 bit illustrater into code when one clicks
+   //1. x value
+   //2. y value
+   //3. 0 blur value
+   //4. color
+   convertToCode: function(e){
+     var xCode = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
+     var yCode = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
+     var codeColor = "black";
+     elem.codeBox.innerHTML += " " + xCode + "px " + yCode + "px " + "0 " + codeColor + ",";
    }
 
    //if color already exists, then change it back to default
