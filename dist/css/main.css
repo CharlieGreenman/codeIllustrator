@@ -6311,13 +6311,17 @@ html, body {
 ##### Modules ###### //any re-usable elements in your page
 ####################
 */
+#header-container {
+  display: none; }
+
 #reset-button, #view-button {
-  display: none;
   width: 150px;
   height: 30px;
   background: #333333;
   text-align: center;
-  cursor: pointer; }
+  cursor: pointer;
+  border: 1px solid white;
+  color: white; }
 
 #choose_size_container {
   margin: 0 auto;

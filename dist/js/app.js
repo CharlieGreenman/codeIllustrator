@@ -1,3 +1,9 @@
+/**
+ * @constructor
+ * @param {string} title - Pixelator
+ * @param {string} author - Charlie Greenman
+ */
+
 "use strict";
 
 document.addEventListener("DOMContentLoaded", domLoaded, false);
@@ -11,6 +17,7 @@ function domLoaded() {
       bitIllustrator = {
     elements: {
       codeBoxContainer: document.getElementById("code_box_container"),
+      headerContainer: document.getElementById("header-container"),
       codeBox: document.getElementById("code_box"),
       cssToggle: document.getElementById("css_toggle"),
       sassToggle: document.getElementById("sass_toggle"),
@@ -26,7 +33,8 @@ function domLoaded() {
       columnCount: document.getElementById("input-for-columns").value,
       pixSize: document.getElementById("input-for-pixel-size").value,
       codeBox: document.getElementById("code_box"),
-      codeBoxToggle: document.getElementById("code_box_toggle")
+      codeBoxToggle: document.getElementById("code_box_toggle"),
+      storeValues: []
     },
 
     init: function init() {
@@ -44,6 +52,7 @@ function domLoaded() {
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", bitIllustrator.handleClick, false);
+      c.addEventListener("click", bitIllustrator.passToArray, false);
       c.addEventListener("click", bitIllustrator.convertToCode, false);
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
@@ -60,7 +69,7 @@ function domLoaded() {
 
     hideShow: function hideShow() {
       s.chooseSizeContainer.style.display = "none";
-      s.resetButton.style.display = "block";
+      elem.headerContainer.style.display = "block";
       s.canvas.style.display = "block";
     },
 
@@ -101,6 +110,15 @@ function domLoaded() {
       }
 
       ctx.fillRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
+    },
+
+    // currently causing things to go slow
+    // will revisit later
+    passToArray: function passToArray(e) {
+      var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
+      var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
+      s.storeValues.push(xVal + "" + yVal);
+      //will get back to this, want to play around with view first
     },
 
     codeBoxToggle: function codeBoxToggle() {

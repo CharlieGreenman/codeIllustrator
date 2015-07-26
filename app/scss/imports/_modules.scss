@@ -4,7 +4,7 @@
 ####################
 */
 
-// 1. Reset Button
+// 1. header
 // 2. Choose Size Form
 // 3. Grid illustrator
 // 4. Code Box
@@ -13,17 +13,21 @@
 //
 
 
-//1. Reset Button
-#reset-button, #view-button{
+//1. header
+
+//header-container
+#header-container{
   display: none;
-//  position: fixed;
+}
+
+#reset-button, #view-button{
   width: 150px;
   height: 30px;
   background: $medium-background-color;
   text-align: center;
-//  left: 50%;
-//  margin-left: (-150px/2);
   cursor: pointer;
+  border: 1px solid white;
+  color: white;
 }
 
 //2. CHOOSE SIZE CONTAINER
