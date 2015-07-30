@@ -52,8 +52,9 @@ function domLoaded() {
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", bitIllustrator.handleClick, false);
-      c.addEventListener("click", bitIllustrator.passToArray, false);
+      c.addEventListener("click", bitIllustrator.c, false);
       c.addEventListener("click", bitIllustrator.convertToCode, false);
+      c.addEventListener("click", bitIllustrator.convertToArray, false);
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
@@ -91,6 +92,18 @@ function domLoaded() {
       }
     },
 
+    /* create multi-dimensional array
+       that is sorted by x value */
+    convertToArray: function convertToArray(e) {
+      var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
+      var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
+      s.storeValues.push([xVal, yVal]);
+      var compare = function compare(a, b) {
+        return a[0] - b[0];
+      };
+      s.storeValues.sort(compare);
+    },
+
     //allow individual boxes to be clicked
     // handleClick is still in prototyping phase
     handleClick: function handleClick(e) {
@@ -112,25 +125,12 @@ function domLoaded() {
       ctx.fillRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
     },
 
-    // currently causing things to go slow
-    // will revisit later
-    passToArray: function passToArray(e) {
-      var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
-      var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
-      s.storeValues.push(xVal + "" + yVal);
-      //will get back to this, want to play around with view first
-    },
-
     codeBoxToggle: function codeBoxToggle() {
       elem.codeBoxContainer.style.bottom = "0";
     },
 
-    //convert 8 bit illustrater into code when one clicks
-    //1. x value
-    //2. y value
-    //3. 0 blur value
-    //4. color
     convertToCode: function convertToCode(e) {
+
       var xCode = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
       var yCode = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
       var codeColor = "black";
