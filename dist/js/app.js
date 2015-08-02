@@ -99,9 +99,15 @@ function domLoaded() {
       var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
       s.storeValues.push([xVal, yVal]);
       var compare = function compare(a, b) {
-        return a[0] - b[0];
+        return parseFloat(a[0]) - parseFloat(b[0]);
       };
+
+      for (var i = 0; i < 2; i++) {
+        s.storeValues[s.storeValues.length - 1][i] += "px";
+      }
       s.storeValues.sort(compare);
+      //I am currently only sorting by the last one, and that is causing the issue
+      //because after the sort, it is not neccesarily going to be the last one
     },
 
     //allow individual boxes to be clicked
@@ -129,12 +135,8 @@ function domLoaded() {
       elem.codeBoxContainer.style.bottom = "0";
     },
 
-    convertToCode: function convertToCode(e) {
-
-      var xCode = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
-      var yCode = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
-      var codeColor = "black";
-      elem.codeBox.innerHTML += " " + xCode + "px " + yCode + "px " + "0 " + codeColor + ",";
+    convertToCode: function convertToCode() {
+      elem.codeBox.innerHTML = s.storeValues;
     }
 
     //if color already exists, then change it back to default
