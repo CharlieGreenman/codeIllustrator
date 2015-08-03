@@ -50,8 +50,8 @@ var s, elem,
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", bitIllustrator.handleClick, false);
       c.addEventListener("click", bitIllustrator.c, false);
-      c.addEventListener("click", bitIllustrator.convertToCode, false);
       c.addEventListener("click", bitIllustrator.convertToArray, false);
+      c.addEventListener("click", bitIllustrator.convertToCode, false);
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
@@ -95,15 +95,23 @@ var s, elem,
    convertToArray: function(e){
      var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
      var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
-     s.storeValues.push([xVal, yVal]);
-     var compare = function(a, b) {return parseFloat(a[0]) - parseFloat(b[0]); };
+     s.storeValues.push([xVal, yVal, 0]);
 
-       for(var i = 0; i < 2; i++){
+     var compare = function(a, b) {
+       if(parseFloat(a[0]) - parseFloat(b[0]) === 0){
+         return parseFloat(a[1]) - parseFloat(b[1]);
+       }
+       else {
+         return parseFloat(a[0]) - parseFloat(b[0]);
+       }
+     };
+
+     for(var i = 0; i < 2; i++){
        s.storeValues[s.storeValues.length - 1][i] += "px";
      }
+
      s.storeValues.sort(compare);
-     //I am currently only sorting by the last one, and that is causing the issue
-     //because after the sort, it is not neccesarily going to be the last one
+
    },
 
    //allow individual boxes to be clicked
@@ -141,7 +149,8 @@ var s, elem,
    },
 
    convertToCode: function(){
-     elem.codeBox.innerHTML = s.storeValues;
+
+     elem.codeBox.innerHTML = s.storeValues.join(" ");
    }
 
    //if color already exists, then change it back to default
