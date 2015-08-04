@@ -97,7 +97,8 @@ function domLoaded() {
     convertToArray: function convertToArray(e) {
       var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
       var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
-      s.storeValues.push([xVal, yVal, 0]);
+
+      s.storeValues.push([xVal, yVal, 0, "black"]);
 
       var compare = function compare(a, b) {
         if (parseFloat(a[0]) - parseFloat(b[0]) === 0) {
@@ -140,12 +141,16 @@ function domLoaded() {
     },
 
     convertToCode: function convertToCode() {
+      /* reset value for elem.codeBox */
+      elem.codeBox.innerHTML = "";
+      /* instead of re-inserting value, need to think of how to do this */
+      for (var abc = 0; abc < s.storeValues.length; abc++) {
+        elem.codeBox.innerHTML += s.storeValues[abc].join(" ") + "; ";
+      }
 
-      elem.codeBox.innerHTML = s.storeValues.join(" ");
+      // }
     }
-
     //if color already exists, then change it back to default
-
   };
 
   bitIllustrator.init();
