@@ -48,6 +48,13 @@ var s, elem,
         bitIllustrator.createGridIllustrator();
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
+      //c.addEventListener("click", function(){
+      //   bitIllustrator.handleClick();
+      //   bitIllustrator.c();
+      //   bitIllustrator.convertToArray();
+      //   bitIllustrator.convertToCode();
+      //
+      //});
       c.addEventListener("click", bitIllustrator.handleClick, false);
       c.addEventListener("click", bitIllustrator.c, false);
       c.addEventListener("click", bitIllustrator.convertToArray, false);
