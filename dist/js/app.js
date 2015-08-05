@@ -51,17 +51,16 @@ function domLoaded() {
         bitIllustrator.createGridIllustrator();
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
-      //c.addEventListener("click", function(){
-      //   bitIllustrator.handleClick();
-      //   bitIllustrator.c();
-      //   bitIllustrator.convertToArray();
-      //   bitIllustrator.convertToCode();
-      //
-      //});
-      c.addEventListener("click", bitIllustrator.handleClick, false);
-      c.addEventListener("click", bitIllustrator.c, false);
-      c.addEventListener("click", bitIllustrator.convertToArray, false);
-      c.addEventListener("click", bitIllustrator.convertToCode, false);
+      /* eslint-disable */
+      c.addEventListener("click", function () {
+        bitIllustrator.handleClick();
+        bitIllustrator.convertToArray();
+        bitIllustrator.convertToCode();
+      });
+      //c.addEventListener("click", bitIllustrator.handleClick, false);
+      //c.addEventListener("click", bitIllustrator.c, false);
+      //c.addEventListener("click", bitIllustrator.convertToArray, false);
+      //c.addEventListener("click", bitIllustrator.convertToCode, false);
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
@@ -102,6 +101,7 @@ function domLoaded() {
     /* create multi-dimensional array
        that is sorted by x value */
     convertToArray: function convertToArray(e) {
+      e = e || window.event;
       var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
       var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
 
@@ -125,6 +125,7 @@ function domLoaded() {
     //allow individual boxes to be clicked
     // handleClick is still in prototyping phase
     handleClick: function handleClick(e) {
+      e = e || window.event;
       ctx.fillStyle = "black";
       var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
       if (imgData.data[0] === 0) {
