@@ -51,16 +51,11 @@ function domLoaded() {
         bitIllustrator.createGridIllustrator();
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
-      /* eslint-disable */
       c.addEventListener("click", function () {
         bitIllustrator.handleClick();
         bitIllustrator.convertToArray();
         bitIllustrator.convertToCode();
       });
-      //c.addEventListener("click", bitIllustrator.handleClick, false);
-      //c.addEventListener("click", bitIllustrator.c, false);
-      //c.addEventListener("click", bitIllustrator.convertToArray, false);
-      //c.addEventListener("click", bitIllustrator.convertToCode, false);
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
@@ -98,6 +93,18 @@ function domLoaded() {
       }
     },
 
+    //utility functions
+
+    //compare functions
+    compare: function compare(a, b) {
+
+      if (parseFloat(a[0]) - parseFloat(b[0]) === 0) {
+        return parseFloat(a[1]) - parseFloat(b[1]);
+      } else {
+        return parseFloat(a[0]) - parseFloat(b[0]);
+      }
+    },
+
     /* create multi-dimensional array
        that is sorted by x value */
     convertToArray: function convertToArray(e) {
@@ -105,21 +112,23 @@ function domLoaded() {
       var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
       var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
 
-      s.storeValues.push([xVal, yVal, 0, "black"]);
-
-      var compare = function compare(a, b) {
-        if (parseFloat(a[0]) - parseFloat(b[0]) === 0) {
-          return parseFloat(a[1]) - parseFloat(b[1]);
-        } else {
-          return parseFloat(a[0]) - parseFloat(b[0]);
+      //remove value if it already exist
+      for (var q = 0; q < s.storeValues.length; q++) {
+        var parsedValues = s.storeValues[q].indexOf(xVal + "px", yVal + "px", 0, "black");
+        if (parsedValues === q) {
+          s.storeValues.splice(parsedValues, 1);
+          return false;
+          //   s.storeValues.splice(0, 1);
         }
-      };
+      }
+
+      s.storeValues.push([xVal, yVal, 0, "black"]);
 
       for (var i = 0; i < 2; i++) {
         s.storeValues[s.storeValues.length - 1][i] += "px";
       }
 
-      s.storeValues.sort(compare);
+      s.storeValues.sort(bitIllustrator.compare);
     },
 
     //allow individual boxes to be clicked
@@ -150,13 +159,15 @@ function domLoaded() {
 
     convertToCode: function convertToCode() {
       /* reset value for elem.codeBox */
-      elem.codeBox.innerHTML = "";
+      elem.codeBox.innerHTML = "box-shadow: ";
       /* instead of re-inserting value, need to think of how to do this */
       for (var abc = 0; abc < s.storeValues.length; abc++) {
-        elem.codeBox.innerHTML += s.storeValues[abc].join(" ") + "; ";
+        if (abc === s.storeValues.length - 1) {
+          elem.codeBox.innerHTML += s.storeValues[abc].join(" ") + "; ";
+        } else {
+          elem.codeBox.innerHTML += s.storeValues[abc].join(" ") + ", ";
+        }
       }
-
-      // }
     }
     //if color already exists, then change it back to default
   };
