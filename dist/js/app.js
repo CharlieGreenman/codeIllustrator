@@ -21,8 +21,8 @@ function domLoaded() {
       codeBox: document.getElementById("code_box"),
       cssToggle: document.getElementById("css_toggle"),
       sassToggle: document.getElementById("sass_toggle"),
-      jsToggle: document.getElementById("js_toggle")
-
+      jsToggle: document.getElementById("js_toggle"),
+      viewButton: document.getElementById("view-button")
     },
     settings: {
       resetButton: document.getElementById("reset-button"),
@@ -49,6 +49,10 @@ function domLoaded() {
         bitIllustrator.hideShow();
         bitIllustrator.resizeGrid();
         bitIllustrator.createGridIllustrator();
+      });
+      elem.viewButton.addEventListener("click", function () {
+        bitIllustrator.removeTiles();
+        bitIllustrator.addBackTiles();
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", function () {
@@ -154,6 +158,22 @@ function domLoaded() {
 
     codeBoxToggle: function codeBoxToggle() {
       elem.codeBoxContainer.style.bottom = "0";
+    },
+
+    removeTiles: function removeTiles() {
+
+      for (var r = 0; r < s.columnCount; r++) {
+        for (var i = 0; i < s.rowCount; i++) {
+          s.canvas.style.background = "none";
+          ctx.clearRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
+        }
+      }
+    },
+
+    addBackTiles: function addBackTiles() {
+      for (var pw = 0; pw < s.storeValues.length; pw++) {
+        ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
+      }
     },
 
     convertToCode: function convertToCode() {
