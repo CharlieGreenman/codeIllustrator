@@ -119,13 +119,11 @@ var s, elem,
      }
 
       for (var io = 0; io < s.storeValues.length - 1; io++) {
-       /*eslint-disable */
         //decided it made more sense to remove pushed value in array and then to parse through and remove value
      //used this stackoverflow http://stackoverflow.com/questions/26635297/how-to-remove-an-array-from-a-multidimensional-array-if-it-exists-in-another-mul
-        if (JSON.stringify(s.storeValues[io]) == JSON.stringify(s.storeValues[s.storeValues.length - 1]) ){
+        if (JSON.stringify(s.storeValues[io]) === JSON.stringify(s.storeValues[s.storeValues.length - 1]) ){
           s.storeValues.splice(io, 1);
           s.storeValues.splice(s.storeValues.length - 1, 1);
-        /*eslint-enable */
         }
      }
 
