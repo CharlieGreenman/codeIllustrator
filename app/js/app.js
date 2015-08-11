@@ -111,20 +111,22 @@ var s, elem,
      var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
      var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
 
-     //remove value if it already exist
-     for(var q = 0; q < s.storeValues.length; q++){
-       var parsedValues = s.storeValues[q].indexOf(xVal + "px", yVal + "px", 0, "black");
-        if(parsedValues === q ){
-          s.storeValues.splice(parsedValues, 1);
-          return false;
-         //   s.storeValues.splice(0, 1);
-       }
-     }
-
      s.storeValues.push([xVal, yVal, 0, "black"]);
+
 
      for(var i = 0; i < 2; i++){
        s.storeValues[s.storeValues.length - 1][i] += "px";
+     }
+
+      for (var io = 0; io < s.storeValues.length - 1; io++) {
+       /*eslint-disable */
+        //decided it made more sense to remove pushed value in array and then to parse through and remove value
+     //used this stackoverflow http://stackoverflow.com/questions/26635297/how-to-remove-an-array-from-a-multidimensional-array-if-it-exists-in-another-mul
+        if (JSON.stringify(s.storeValues[io]) == JSON.stringify(s.storeValues[s.storeValues.length - 1]) ){
+          s.storeValues.splice(io, 1);
+          s.storeValues.splice(s.storeValues.length - 1, 1);
+        /*eslint-enable */
+        }
      }
 
      s.storeValues.sort(bitIllustrator.compare);
