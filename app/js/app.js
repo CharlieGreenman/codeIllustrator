@@ -19,7 +19,8 @@ var s, elem,
       cssToggle: document.getElementById("css_toggle"),
       sassToggle: document.getElementById("sass_toggle"),
       jsToggle: document.getElementById("js_toggle"),
-      viewButton: document.getElementById("view-button")
+      viewButton: document.getElementById("view-button"),
+      drawButton: document.getElementById("draw-button")
     },
     settings: {
       resetButton: document.getElementById("reset-button"),
@@ -50,6 +51,9 @@ var s, elem,
       elem.viewButton.addEventListener("click", function(){
         bitIllustrator.removeTiles();
         bitIllustrator.addBackTiles();
+      });
+      elem.drawButton.addEventListener("click", function(){
+        bitIllustrator.redoGrid();
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", function(){
@@ -184,6 +188,23 @@ var s, elem,
         ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
       }
    },
+
+   redoGrid: function(){
+      for(var r = 0; r < 20; r++) {
+        for(var i = 0; i < 20; i++) {
+          s.canvas.style.background = "rgba(0, 0, 0, 0.1)";
+          ctx.strokeStyle = "#3e4649";
+          ctx.strokeRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
+        }
+      }
+
+     for(var pw = 0; pw < s.storeValues.length; pw++){
+        ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
+      }
+
+   },
+
+
 
    convertToCode: function(){
         /* reset value for elem.codeBox */

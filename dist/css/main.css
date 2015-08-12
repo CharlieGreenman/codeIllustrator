@@ -6314,7 +6314,7 @@ html, body {
 #header-container {
   display: none; }
 
-#reset-button, #view-button {
+#reset-button, #view-button, #draw-button {
   width: 150px;
   height: 30px;
   background: #333333;
