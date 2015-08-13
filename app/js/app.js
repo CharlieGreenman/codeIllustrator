@@ -59,7 +59,13 @@ var s, elem,
       c.addEventListener("click", function(){
          bitIllustrator.handleClick();
          bitIllustrator.convertToArray();
-         bitIllustrator.convertToCode();
+         bitIllustrator.convertToCss();
+      });
+      elem.cssToggle.addEventListener("click", function(){
+         bitIllustrator.convertToCss();
+      });
+      elem.sassToggle.addEventListener("click", function(){
+         bitIllustrator.convertToSass();
       });
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
@@ -119,7 +125,7 @@ var s, elem,
      var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
      var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
 
-     s.storeValues.push([xVal, yVal, 0, "black"]);
+     s.storeValues.push([xVal, yVal, "black"]);
 
 
      for(var i = 0; i < 2; i++){
@@ -203,10 +209,7 @@ var s, elem,
       }
 
    },
-
-
-
-   convertToCode: function(){
+   convertToCss: function(){
         /* reset value for elem.codeBox */
         elem.codeBox.innerHTML = "box-shadow: ";
        /* instead of re-inserting value, need to think of how to do this */
@@ -219,9 +222,25 @@ var s, elem,
           }
         }
 
+   },
+
+   convertToSass: function(){
+    elem.codeBox.innerHTML = "box-shadow: ";
+     for(var xyz = 0; xyz < s.storeValues.length; xyz++) {
+       elem.codeBox.innerHTML += " $x" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
+       elem.codeBox.innerHTML += " $y" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+       if(xyz === s.storeValues.length - 1){
+        elem.codeBox.innerHTML += " black;";
+       }
+       else{
+        elem.codeBox.innerHTML += " black,";
+       }
+     }
    }
    //if color already exists, then change it back to default
   };
+
+
 
   bitIllustrator.init();
 
