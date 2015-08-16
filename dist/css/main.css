@@ -6360,7 +6360,8 @@ html, body {
   top: 50%;
   left: 50%;
   margin-top: -250px;
-  margin-left: -250px; }
+  margin-left: -250px;
+  cursor: crosshair; }
 
 #code_box_container {
   position: fixed;
@@ -6398,7 +6399,8 @@ html, body {
   color: white;
   box-shadow: 0 0 0 10px #f8f8ff inset;
   padding-top: 0.9375rem;
-  padding-bottom: 0.9375rem; }
+  padding-bottom: 0.9375rem;
+  overflow: scroll; }
 
 .code_toggle {
   height: 30px;

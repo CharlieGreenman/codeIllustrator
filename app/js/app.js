@@ -18,6 +18,7 @@ var s, elem,
       codeBox: document.getElementById("code_box"),
       cssToggle: document.getElementById("css_toggle"),
       sassToggle: document.getElementById("sass_toggle"),
+      lessToggle: document.getElementById("less_toggle"),
       jsToggle: document.getElementById("js_toggle"),
       viewButton: document.getElementById("view-button"),
       drawButton: document.getElementById("draw-button")
@@ -65,7 +66,15 @@ var s, elem,
          bitIllustrator.convertToCss();
       });
       elem.sassToggle.addEventListener("click", function(){
+         bitIllustrator.addSassVariables();
          bitIllustrator.convertToSass();
+      });
+      elem.lessToggle.addEventListener("click", function(){
+         bitIllustrator.addLessVariables();
+         bitIllustrator.convertToLess();
+      });
+      elem.jsToggle.addEventListner("click", function*(){
+         bitIllustrator.convertToJs();
       });
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
@@ -196,8 +205,8 @@ var s, elem,
    },
 
    redoGrid: function(){
-      for(var r = 0; r < 20; r++) {
-        for(var i = 0; i < 20; i++) {
+      for(var r = 0; r < s.columnCount; r++) {
+        for(var i = 0; i < s.rowCount; i++) {
           s.canvas.style.background = "rgba(0, 0, 0, 0.1)";
           ctx.strokeStyle = "#3e4649";
           ctx.strokeRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
@@ -224,11 +233,25 @@ var s, elem,
 
    },
 
+   addSassVariables: function(){
+     elem.codeBox.innerHTML = "$num:" + s.pixSize + ";<br>";
+
+
+      for(var x = 0; x < s.columnCount; x++){
+        elem.codeBox.innerHTML += "$X" + x + ": $num*" + x + "px; ";
+      }
+     elem.codeBox.innerHTML += "$num:" + s.pixSize + ";<br>";
+     for(var y = 0; y < s.columnCount; y++){
+        elem.codeBox.innerHTML += "$O" + x + ": $num*" + x + "px; ";
+      }
+     elem.codeBox.innerHTML += "<br><br>";
+   },
+
    convertToSass: function(){
-    elem.codeBox.innerHTML = "box-shadow: ";
+    elem.codeBox.innerHTML += "box-shadow: ";
      for(var xyz = 0; xyz < s.storeValues.length; xyz++) {
-       elem.codeBox.innerHTML += " $x" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
-       elem.codeBox.innerHTML += " $y" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+       elem.codeBox.innerHTML += " $X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
+       elem.codeBox.innerHTML += " $O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
        if(xyz === s.storeValues.length - 1){
         elem.codeBox.innerHTML += " black;";
        }
@@ -236,11 +259,40 @@ var s, elem,
         elem.codeBox.innerHTML += " black,";
        }
      }
+   },
+
+   addLessVariables: function(){
+    elem.codeBox.innerHTML = "@num:" + s.pixSize + ";<br>";
+
+
+      for(var x = 0; x < s.columnCount; x++){
+        elem.codeBox.innerHTML += "@X" + x + ": @num*" + x + "px; ";
+      }
+     elem.codeBox.innerHTML += "$num:" + s.pixSize + ";<br>";
+     for(var y = 0; y < s.columnCount; y++){
+        elem.codeBox.innerHTML += "@O" + x + ": @num*" + x + "px; ";
+      }
+     elem.codeBox.innerHTML += "<br><br>";
+   },
+
+   convertToLess: function() {
+     elem.codeBox.innerHTML += "box-shadow: ";
+     for (var xyz = 0; xyz < s.storeValues.length; xyz++) {
+       elem.codeBox.innerHTML += " @X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
+       elem.codeBox.innerHTML += " @O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+       if (xyz === s.storeValues.length - 1) {
+         elem.codeBox.innerHTML += " black;";
+       }
+       else {
+         elem.codeBox.innerHTML += " black,";
+       }
+     }
+   },
+
+   convertToJs: function(){
+
    }
-   //if color already exists, then change it back to default
   };
-
-
 
   bitIllustrator.init();
 

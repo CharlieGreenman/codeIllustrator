@@ -81,6 +81,7 @@
   left: 50%;
   margin-top: -250px;
   margin-left: -250px;
+  cursor: crosshair;
 }
 
 //4. Code Box
@@ -132,6 +133,7 @@ height: $code-height;
   box-shadow: 0 0 0 10px #f8f8ff inset;
   padding-top: 0.9375rem;
   padding-bottom: 0.9375rem;
+  overflow: scroll;
 }
 
 //5. Code Toggle

@@ -21,6 +21,7 @@ function domLoaded() {
       codeBox: document.getElementById("code_box"),
       cssToggle: document.getElementById("css_toggle"),
       sassToggle: document.getElementById("sass_toggle"),
+      lessToggle: document.getElementById("less_toggle"),
       jsToggle: document.getElementById("js_toggle"),
       viewButton: document.getElementById("view-button"),
       drawButton: document.getElementById("draw-button")
@@ -68,8 +69,25 @@ function domLoaded() {
         bitIllustrator.convertToCss();
       });
       elem.sassToggle.addEventListener("click", function () {
+        bitIllustrator.addSassVariables();
         bitIllustrator.convertToSass();
       });
+      elem.lessToggle.addEventListener("click", function () {
+        bitIllustrator.addLessVariables();
+        bitIllustrator.convertToLess();
+      });
+      elem.jsToggle.addEventListner("click", regeneratorRuntime.mark(function callee$2$0() {
+        return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
+          while (1) switch (context$3$0.prev = context$3$0.next) {
+            case 0:
+              bitIllustrator.convertToJs();
+
+            case 1:
+            case "end":
+              return context$3$0.stop();
+          }
+        }, callee$2$0, this);
+      }));
       s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
@@ -187,8 +205,8 @@ function domLoaded() {
     },
 
     redoGrid: function redoGrid() {
-      for (var r = 0; r < 20; r++) {
-        for (var i = 0; i < 20; i++) {
+      for (var r = 0; r < s.columnCount; r++) {
+        for (var i = 0; i < s.rowCount; i++) {
           s.canvas.style.background = "rgba(0, 0, 0, 0.1)";
           ctx.strokeStyle = "#3e4649";
           ctx.strokeRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
@@ -212,19 +230,59 @@ function domLoaded() {
       }
     },
 
+    addSassVariables: function addSassVariables() {
+      elem.codeBox.innerHTML = "$num:" + s.pixSize + ";<br>";
+
+      for (var x = 0; x < s.columnCount; x++) {
+        elem.codeBox.innerHTML += "$X" + x + ": $num*" + x + "px; ";
+      }
+      elem.codeBox.innerHTML += "$num:" + s.pixSize + ";<br>";
+      for (var y = 0; y < s.columnCount; y++) {
+        elem.codeBox.innerHTML += "$O" + x + ": $num*" + x + "px; ";
+      }
+      elem.codeBox.innerHTML += "<br><br>";
+    },
+
     convertToSass: function convertToSass() {
-      elem.codeBox.innerHTML = "box-shadow: ";
+      elem.codeBox.innerHTML += "box-shadow: ";
       for (var xyz = 0; xyz < s.storeValues.length; xyz++) {
-        elem.codeBox.innerHTML += " $x" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
-        elem.codeBox.innerHTML += " $y" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+        elem.codeBox.innerHTML += " $X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
+        elem.codeBox.innerHTML += " $O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
         if (xyz === s.storeValues.length - 1) {
           elem.codeBox.innerHTML += " black;";
         } else {
           elem.codeBox.innerHTML += " black,";
         }
       }
-    }
-    //if color already exists, then change it back to default
+    },
+
+    addLessVariables: function addLessVariables() {
+      elem.codeBox.innerHTML = "@num:" + s.pixSize + ";<br>";
+
+      for (var x = 0; x < s.columnCount; x++) {
+        elem.codeBox.innerHTML += "@X" + x + ": @num*" + x + "px; ";
+      }
+      elem.codeBox.innerHTML += "$num:" + s.pixSize + ";<br>";
+      for (var y = 0; y < s.columnCount; y++) {
+        elem.codeBox.innerHTML += "@O" + x + ": @num*" + x + "px; ";
+      }
+      elem.codeBox.innerHTML += "<br><br>";
+    },
+
+    convertToLess: function convertToLess() {
+      elem.codeBox.innerHTML += "box-shadow: ";
+      for (var xyz = 0; xyz < s.storeValues.length; xyz++) {
+        elem.codeBox.innerHTML += " @X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
+        elem.codeBox.innerHTML += " @O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+        if (xyz === s.storeValues.length - 1) {
+          elem.codeBox.innerHTML += " black;";
+        } else {
+          elem.codeBox.innerHTML += " black,";
+        }
+      }
+    },
+
+    convertToJs: function convertToJs() {}
   };
 
   bitIllustrator.init();
