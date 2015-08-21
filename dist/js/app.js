@@ -25,7 +25,9 @@ function domLoaded() {
       jsToggle: document.getElementById("js_toggle"),
       viewButton: document.getElementById("view-button"),
       drawButton: document.getElementById("draw-button"),
-      codeBoxToggle: document.getElementById("code_box_toggle")
+      codeBoxToggle: document.getElementById("code_box_toggle"),
+      hexColor: document.getElementById("hex_color"),
+      colorBar: document.getElementById("color_bar")
     },
     settings: {
       resetButton: document.getElementById("reset-button"),
@@ -76,6 +78,9 @@ function domLoaded() {
         bitIllustrator.addLessVariables();
         bitIllustrator.convertToLess();
       });
+      elem.hexColor.addEventListener("input", function () {
+        bitIllustrator.pickHexColor();
+      });
       elem.jsToggle.addEventListener("click", function () {
         bitIllustrator.convertToJs();
       });
@@ -102,6 +107,16 @@ function domLoaded() {
       s.canvas.width = s.columnCount * s.pixSize;
       s.canvas.height = s.rowCount * s.pixSize;
       s.canvas.style.marginLeft = -(s.columnCount * s.pixSize) / 2 + "px";
+    },
+
+    pickHexColor: function pickHexColor() {
+      var newHexValue = elem.hexColor.value;
+      /*eslint-disable*/
+      elem.colorBar.style.background = newHexValue;
+      alert(utils.hexToRgb(newHexValue).r + " " + utils.hexToRgb(newHexValue).g + " " + utils.hexToRgb(newHexValue).b);
+
+      //alert(newHexValue);
+      /*eslint-enable*/
     },
 
     //create grid and create boxes
@@ -137,28 +152,36 @@ function domLoaded() {
           s.storeValues.splice(s.storeValues.length - 1, 1);
         }
       }
-
+      /*eslint-disable*/
       s.storeValues.sort(utils.compare);
+      /*eslint-enable*/
     },
 
     //allow individual boxes to be clicked
     // handleClick is still in prototyping phase
     handleClick: function handleClick(e) {
       e = e || window.event;
-      ctx.fillStyle = "black";
-      var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
-      if (imgData.data[0] === 0) {
-        ctx.fillStyle = "#333333";
-        ctx.strokeStyle = "#3e4649";
-        ctx.lineWidth = 2;
-        // each individual blank piece is now removed and added using canvas
-        // as opposed to how it is/was originally used, which is through
-        //
-        ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
-        ctx.strokeRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
-
-        return false;
-      }
+      var newHexValue = elem.hexColor.value;
+      ctx.fillStyle = newHexValue;
+      //var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
+      //            Math.floor(e.offsetY / s.pixSize) * s.pixSize,
+      //            s.pixSize, s.pixSize);
+      //if(imgData.data[0] === 0){
+      //  ctx.fillStyle = "#333333";
+      //  ctx.strokeStyle = "#3e4649";
+      //  ctx.lineWidth = 2;
+      //  // each individual blank piece is now removed and added using canvas
+      //  // as opposed to how it is/was originally used, which is through
+      //  //
+      //  ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
+      //             Math.floor(e.offsetY / s.pixSize) * s.pixSize,
+      //             s.pixSize, s.pixSize);
+      //  ctx.strokeRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
+      //             Math.floor(e.offsetY / s.pixSize) * s.pixSize,
+      //             s.pixSize, s.pixSize);
+      //
+      //  return false;
+      //}
 
       ctx.fillRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
     },

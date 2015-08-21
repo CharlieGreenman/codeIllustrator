@@ -10,19 +10,19 @@
     .large-4.column
       label
         | hex
-        input(type = "text").large-12
+        input#hex_color(type = "text" value = "#000" maxlength="7").large-12
     .large-2.column#color_bar
       | bar
     .large-6.column
-      .large-4.column
+      .large-4.column.no-padding
         label
           | R
-          input(type = "text")
-      .large-4.column
+          input(type = "text" maxlength="3" value = "000")
+      .large-4.column.no-padding
         label
           | G
-          input(type = "text")
-      .large-4.column
+          input(type = "text" maxlength="3" value = "000")
+      .large-4.column.no-padding
         label
           | B
-          input(type = "text")
+          input(type = "text" maxlength="3" value = "000")

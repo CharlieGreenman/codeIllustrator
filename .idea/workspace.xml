@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f96ab8b3-5d4f-4356-b875-195e53a16a73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/_utils.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/utils.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/jade/includes/app_components/_code_box.jade" afterPath="$PROJECT_DIR$/app/jade/includes/app_components/_code_box.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/jade/includes/_footer.jade" afterPath="$PROJECT_DIR$/app/jade/includes/_footer.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/jade/includes/_head.jade" afterPath="$PROJECT_DIR$/app/jade/includes/_head.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/jade/includes/app_components/_header.jade" afterPath="$PROJECT_DIR$/app/jade/includes/app_components/_header.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scss/imports/_modules.scss" afterPath="$PROJECT_DIR$/app/scss/imports/_modules.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scss/imports/_vars.scss" afterPath="$PROJECT_DIR$/app/scss/imports/_vars.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/_utils.js" afterPath="$PROJECT_DIR$/app/js/_utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/_utils.js" afterPath="$PROJECT_DIR$/dist/js/_utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scss/imports/_utils.scss" afterPath="$PROJECT_DIR$/app/scss/imports/_utils.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="$PROJECT_DIR$/app/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/app.js" afterPath="$PROJECT_DIR$/dist/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="$PROJECT_DIR$/dist/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/css/main.css" afterPath="$PROJECT_DIR$/dist/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/utils.js" afterPath="$PROJECT_DIR$/dist/js/utils.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pixelatorV2_with_react.iws" />
@@ -50,31 +45,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dist/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1230">
-              <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/jade/index.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="270">
-              <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="_header.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/jade/includes/app_components/_header.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.4" vertical-offset="35" max-vertical-offset="495">
-              <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+            <state vertical-scroll-proportion="-4.72" vertical-offset="62" max-vertical-offset="495">
+              <caret line="12" column="65" selection-start-line="12" selection-start-column="65" selection-end-line="12" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_utils.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scss/imports/_utils.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="255">
+              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -83,21 +68,9 @@
       <file leaf-file-name="_modules.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scss/imports/_modules.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.625" vertical-offset="0" max-vertical-offset="3120">
+            <state vertical-scroll-proportion="-16.25" vertical-offset="225" max-vertical-offset="3120">
               <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_head.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/jade/includes/_head.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="195">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding>
-                <marker date="1440117327000" expanded="true" signature="4:126" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -115,8 +88,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33178654" vertical-offset="1942" max-vertical-offset="4650">
-              <caret line="139" column="24" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.4709977" vertical-offset="1492" max-vertical-offset="4905">
+              <caret line="113" column="86" selection-start-line="113" selection-start-column="86" selection-end-line="113" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -125,19 +98,11 @@
       <file leaf-file-name="_utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/_utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_base.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scss/imports/_base.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="285">
-              <caret line="8" column="38" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="38" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="645">
+              <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -159,7 +124,6 @@
         <option value="$PROJECT_DIR$/dist/js/app.js" />
         <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/app/jade/includes/app_components/_8_bit_illustrator_grid.jade" />
-        <option value="$PROJECT_DIR$/app/scss/imports/_utils.scss" />
         <option value="$PROJECT_DIR$/app/scss/main.scss" />
         <option value="$PROJECT_DIR$/app/scss/imports/_monkey_patch.scss" />
         <option value="$PROJECT_DIR$/app/jade/includes/app_components/_choose_size.jade" />
@@ -169,11 +133,13 @@
         <option value="$PROJECT_DIR$/app/jade/includes/app_components/_code_box.jade" />
         <option value="$PROJECT_DIR$/app/scss/imports/_base.scss" />
         <option value="$PROJECT_DIR$/app/jade/includes/app_components/_color_picker.jade" />
-        <option value="$PROJECT_DIR$/app/jade/includes/app_components/_header.jade" />
         <option value="$PROJECT_DIR$/app/scss/imports/_modules.scss" />
         <option value="$PROJECT_DIR$/app/js/utils.js" />
         <option value="$PROJECT_DIR$/app/jade/includes/_head.jade" />
         <option value="$PROJECT_DIR$/app/jade/includes/_footer.jade" />
+        <option value="$PROJECT_DIR$/app/scss/imports/_utils.scss" />
+        <option value="$PROJECT_DIR$/app/jade/includes/app_components/_header.jade" />
+        <option value="$PROJECT_DIR$/app/js/_utils.js" />
         <option value="$PROJECT_DIR$/app/js/app.js" />
       </list>
     </option>
@@ -256,6 +222,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="scss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pixelatorV2_with_react" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pixelatorV2_with_react" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="imports" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pixelatorV2_with_react" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pixelatorV2_with_react" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -275,54 +281,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="jade" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pixelatorV2_with_react" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pixelatorV2_with_react" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jade" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pixelatorV2_with_react" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pixelatorV2_with_react" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jade" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -775,13 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scss/imports/_utils.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2088167" vertical-offset="0" max-vertical-offset="431">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/publish/js/all.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
@@ -860,14 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scss/imports/_base.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="285">
-          <caret line="8" column="38" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1200">
@@ -905,30 +848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/jade/includes/app_components/_code_box.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.4" vertical-offset="0" max-vertical-offset="360">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/jade/includes/app_components/_header.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4" vertical-offset="35" max-vertical-offset="495">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scss/imports/_modules.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.625" vertical-offset="0" max-vertical-offset="3120">
-          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/jade/includes/_scripts.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="433">
@@ -937,21 +856,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/_utils.js">
+    <entry file="file://$PROJECT_DIR$/app/scss/imports/_base.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.2764977" vertical-offset="0" max-vertical-offset="434">
+          <caret line="8" column="38" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/jade/includes/_head.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="195">
+        <state vertical-scroll-proportion="0.17321016" vertical-offset="0" max-vertical-offset="433">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <marker date="1440117327000" expanded="true" signature="4:126" placeholder="..." />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/jade/includes/app_components/_code_box.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.4" vertical-offset="0" max-vertical-offset="360">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -963,10 +888,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/scss/imports/_modules.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.25" vertical-offset="225" max-vertical-offset="3120">
+          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/jade/includes/app_components/_header.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.72" vertical-offset="62" max-vertical-offset="495">
+          <caret line="12" column="65" selection-start-line="12" selection-start-column="65" selection-end-line="12" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scss/imports/_utils.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="255">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/_utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="645">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33178654" vertical-offset="1942" max-vertical-offset="4650">
-          <caret line="139" column="24" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.4709977" vertical-offset="1492" max-vertical-offset="4905">
+          <caret line="113" column="86" selection-start-line="113" selection-start-column="86" selection-end-line="113" selection-end-column="86" />
           <folding />
         </state>
       </provider>
