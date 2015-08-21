@@ -21,7 +21,8 @@ var s, elem,
       lessToggle: document.getElementById("less_toggle"),
       jsToggle: document.getElementById("js_toggle"),
       viewButton: document.getElementById("view-button"),
-      drawButton: document.getElementById("draw-button")
+      drawButton: document.getElementById("draw-button"),
+      codeBoxToggle: document.getElementById("code_box_toggle")
     },
     settings: {
       resetButton: document.getElementById("reset-button"),
@@ -32,7 +33,6 @@ var s, elem,
       columnCount: document.getElementById("input-for-columns").value,
       pixSize: document.getElementById("input-for-pixel-size").value,
       codeBox: document.getElementById("code_box"),
-      codeBoxToggle: document.getElementById("code_box_toggle"),
       storeValues: []
     },
 
@@ -73,10 +73,10 @@ var s, elem,
          bitIllustrator.addLessVariables();
          bitIllustrator.convertToLess();
       });
-      elem.jsToggle.addEventListner("click", function*(){
+      elem.jsToggle.addEventListener("click", function(){
          bitIllustrator.convertToJs();
       });
-      s.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
+      elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
    resetButton: function(){
@@ -114,19 +114,6 @@ var s, elem,
       }
     },
 
-   //utility functions
-
-   //compare functions
-   compare: function(a, b) {
-
-       if(parseFloat(a[0]) - parseFloat(b[0]) === 0){
-         return parseFloat(a[1]) - parseFloat(b[1]);
-       }
-       else {
-         return parseFloat(a[0]) - parseFloat(b[0]);
-       }
-   },
-
    /* create multi-dimensional array
       that is sorted by x value */
    convertToArray: function(e){
@@ -150,7 +137,7 @@ var s, elem,
         }
      }
 
-     s.storeValues.sort(bitIllustrator.compare);
+     s.storeValues.sort(utils.compare);
    },
 
    //allow individual boxes to be clicked
@@ -185,7 +172,13 @@ var s, elem,
     },
 
    codeBoxToggle: function() {
-     elem.codeBoxContainer.style.bottom = "0";
+     elem.codeBoxContainer.classList.toggle("open");
+     if(elem.codeBoxContainer.classList.contains("open")){
+       elem.codeBoxToggle.innerHTML = " - ";
+     }
+     else{
+       elem.codeBoxToggle.innerHTML = " + ";
+     }
    },
 
    removeTiles: function() {
@@ -219,6 +212,9 @@ var s, elem,
 
    },
    convertToCss: function(){
+        elem.codeBox.classList.remove("sass_box", "less_box", "js_box");
+        elem.codeBox.classList.add("css_box");
+
         /* reset value for elem.codeBox */
         elem.codeBox.innerHTML = "box-shadow: ";
        /* instead of re-inserting value, need to think of how to do this */
@@ -234,6 +230,9 @@ var s, elem,
    },
 
    addSassVariables: function(){
+     elem.codeBox.classList.remove("css_box", "less_box", "js_box");
+     elem.codeBox.classList.add("sass_box");
+
      elem.codeBox.innerHTML = "$num:" + s.pixSize + ";<br>";
 
 
@@ -262,6 +261,9 @@ var s, elem,
    },
 
    addLessVariables: function(){
+    elem.codeBox.classList.remove("css_box", "sass_box", "js_box");
+    elem.codeBox.classList.add("less_box");
+
     elem.codeBox.innerHTML = "@num:" + s.pixSize + ";<br>";
 
 
@@ -290,7 +292,8 @@ var s, elem,
    },
 
    convertToJs: function(){
-
+      elem.codeBox.classList.remove("css_box", "sass_box", "less_box");
+      elem.codeBox.classList.add("js_box");
    }
   };
 

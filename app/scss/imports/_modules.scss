@@ -30,6 +30,18 @@
   color: white;
 }
 
+#color-picker{
+  color: white;
+  label{
+    color: white;
+  }
+}
+
+#color_bar{
+  height: 60px;
+  background: black;
+}
+
 //2. CHOOSE SIZE CONTAINER
 #choose_size_container{
   margin: 0 auto;
@@ -125,6 +137,10 @@
 height: $code-height;
 }
 
+.open{
+    bottom: 0!important;
+ }
+
 #code_box{
   transition: .7s;
   height: 200px;
@@ -134,6 +150,19 @@ height: $code-height;
   padding-top: 0.9375rem;
   padding-bottom: 0.9375rem;
   overflow: scroll;
+  &.css_box{
+    box-shadow: 0 0 0 10px $css_color inset;
+  }
+  &.sass_box {
+    box-shadow: 0 0 0 10px $sass_color inset;
+  }
+  &.less_box {
+    box-shadow: 0 0 0 10px $less_color inset;
+  }
+  &.js_box {
+    box-shadow: 0 0 0 10px $js_color inset;
+  }
+
 }
 
 //5. Code Toggle
@@ -142,13 +171,30 @@ height: $code-height;
 //  width: $code-width;
 //  position: absolute;
 //  bottom: -($code-height);
-  background: white;
+  color: white;
   text-align: center;
   line-height: $code-height;
-  border-right: 1px solid black;
+
   transition: 1s;
   cursor: pointer;
-  border-bottom: 1px solid #3e4649 ;
+
+}
+
+//different backgrounds for different buttons
+#css_toggle{
+  background: #1572b6;
+}
+
+#sass_toggle{
+  background: #CF649A;
+}
+
+#less_toggle{
+  background: #1d365d;
+}
+
+#js_toggle{
+  background: #F0DB4F;
 }
 
 
