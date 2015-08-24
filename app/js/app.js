@@ -24,7 +24,11 @@ var s, elem,
       drawButton: document.getElementById("draw-button"),
       codeBoxToggle: document.getElementById("code_box_toggle"),
       hexColor: document.getElementById("hex_color"),
-      colorBar: document.getElementById("color_bar")
+      colorBar: document.getElementById("color_bar"),
+      rgb: document.querySelectorAll(".rgb"),
+      red: document.getElementById("red"),
+      green: document.getElementById("green"),
+      blue: document.getElementById("blue")
     },
     settings: {
       resetButton: document.getElementById("reset-button"),
@@ -78,6 +82,11 @@ var s, elem,
       elem.hexColor.addEventListener("input", function(){
          bitIllustrator.pickHexColor();
       });
+      //consider revision
+
+      for(var i = 0; i < 3; i++){
+        elem.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
+      }
       elem.jsToggle.addEventListener("click", function(){
          bitIllustrator.convertToJs();
       });
@@ -111,9 +120,21 @@ var s, elem,
      var newHexValue = elem.hexColor.value;
      /*eslint-disable*/
      elem.colorBar.style.background = newHexValue;
-     alert(utils.hexToRgb(newHexValue).r + " " + utils.hexToRgb(newHexValue).g + " " + utils.hexToRgb(newHexValue).b) ;
+
+     elem.red.value = utils.hexToRgb(newHexValue).r;
+     elem.green.value = utils.hexToRgb(newHexValue).g;
+     elem.blue.value = utils.hexToRgb(newHexValue).b;
+
+     //alert(utils.hexToRgb(newHexValue).r + " " + utils.hexToRgb(newHexValue).g + " " + utils.hexToRgb(newHexValue).b) ;
 
      //alert(newHexValue);
+     /*eslint-enable*/
+   },
+
+   pickRgbColor: function(){
+     /*eslint-disable*/
+     elem.hexColor.value = utils.rgbToHex(parseFloat(elem.red.value), parseFloat(elem.green.value), parseFloat(elem.blue.value));
+     elem.colorBar.style.background = elem.hexColor.value;
      /*eslint-enable*/
    },
 
@@ -162,7 +183,7 @@ var s, elem,
        e = e || window.event;
       var newHexValue = elem.hexColor.value;
       ctx.fillStyle = newHexValue;
-       //var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
+       // var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
        //            Math.floor(e.offsetY / s.pixSize) * s.pixSize,
        //            s.pixSize, s.pixSize);
       //if(imgData.data[0] === 0){

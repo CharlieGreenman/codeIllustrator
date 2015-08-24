@@ -2,15 +2,6 @@
 <head>
   <title> Pixelator V2</title>
   <link href="css/main.css" rel="stylesheet" type="text/css">
-  <!-- bower:js-->
-  <script src="../../bower_components/modernizr/modernizr.js"></script>
-  <script src="../../bower_components/jquery/dist/jquery.js"></script>
-  <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
-  <script src="../../bower_components/jquery.cookie/jquery.cookie.js"></script>
-  <script src="../../bower_components/jquery-placeholder/jquery.placeholder.js"></script>
-  <script src="../../bower_components/foundation/js/foundation.js"></script>
-  <!-- endbower-->
-  
 </head>
 <body>
   <div id="header-container" class="row">
@@ -27,19 +18,19 @@
       </div>
       <div id="color_bar" class="large-2 column">bar</div>
       <div class="large-6 column">
-        <div class="large-4 column no-padding">
+        <div id="rgb" class="large-4 column no-padding">
           <label>R
-            <input type="text" maxlength="3" value="000">
+            <input id="red" type="text" maxlength="3" value="000" class="rgb">
           </label>
         </div>
         <div class="large-4 column no-padding">
           <label>G
-            <input type="text" maxlength="3" value="000">
+            <input id="green" type="text" maxlength="3" value="000" class="rgb">
           </label>
         </div>
         <div class="large-4 column no-padding">
           <label>B
-            <input type="text" maxlength="3" value="000">
+            <input id="blue" type="text" maxlength="3" value="000" class="rgb">
           </label>
         </div>
       </div>
@@ -71,6 +62,14 @@
       <div id="code_box" class="css_box column large-12"><p> box-shadow: </p></div>
     </div>
   </div>
+  <!-- bower:js-->
+  <script src="../../bower_components/modernizr/modernizr.js"></script>
+  <script src="../../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+  <script src="../../bower_components/jquery.cookie/jquery.cookie.js"></script>
+  <script src="../../bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+  <script src="../../bower_components/foundation/js/foundation.js"></script>
+  <!-- endbower-->
 </body>
 <footer></footer>
 <script src="js/_utils.js"></script>

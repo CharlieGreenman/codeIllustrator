@@ -14,15 +14,15 @@
     .large-2.column#color_bar
       | bar
     .large-6.column
-      .large-4.column.no-padding
+      #rgb.large-4.column.no-padding
         label
           | R
-          input(type = "text" maxlength="3" value = "000")
+          input#red.rgb(type = "text" maxlength="3" value = "000")
       .large-4.column.no-padding
         label
           | G
-          input(type = "text" maxlength="3" value = "000")
+          input#green.rgb(type = "text" maxlength="3" value = "000")
       .large-4.column.no-padding
         label
           | B
-          input(type = "text" maxlength="3" value = "000")
+          input#blue.rgb(type = "text" maxlength="3" value = "000")
