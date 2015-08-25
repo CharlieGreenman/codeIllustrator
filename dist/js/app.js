@@ -159,7 +159,7 @@ function domLoaded() {
       var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
       var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
 
-      s.storeValues.push([xVal, yVal, "black"]);
+      s.storeValues.push([xVal, yVal, elem.hexColor.value]);
 
       for (var i = 0; i < 2; i++) {
         s.storeValues[s.storeValues.length - 1][i] += "px";
@@ -184,25 +184,20 @@ function domLoaded() {
       e = e || window.event;
       var newHexValue = elem.hexColor.value;
       ctx.fillStyle = newHexValue;
-      // var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-      //            Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-      //            s.pixSize, s.pixSize);
-      //if(imgData.data[0] === 0){
-      //  ctx.fillStyle = "#333333";
-      //  ctx.strokeStyle = "#3e4649";
-      //  ctx.lineWidth = 2;
-      //  // each individual blank piece is now removed and added using canvas
-      //  // as opposed to how it is/was originally used, which is through
-      //  //
-      //  ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-      //             Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-      //             s.pixSize, s.pixSize);
-      //  ctx.strokeRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-      //             Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-      //             s.pixSize, s.pixSize);
-      //
-      //  return false;
-      //}
+      var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
+      /*eslint-disable */
+      if (imgData.data[0] !== 62 && imgData.data[1] !== 71 && imgData.data[2] !== 74) {
+        ctx.fillStyle = "#333333";
+        ctx.strokeStyle = "#3e4649";
+        ctx.lineWidth = 2;
+        // each individual blank piece is now removed and added using canvas
+        // as opposed to how it is/was originally used, which is through
+        //
+        ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
+        ctx.strokeRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
+
+        return false;
+      }
 
       ctx.fillRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
     },
@@ -228,7 +223,9 @@ function domLoaded() {
 
     addBackTiles: function addBackTiles() {
       for (var pw = 0; pw < s.storeValues.length; pw++) {
+
         ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
+        ctx.fillStyle = s.storeValues[pw][2];
       }
     },
 
@@ -242,7 +239,9 @@ function domLoaded() {
       }
 
       for (var pw = 0; pw < s.storeValues.length; pw++) {
+
         ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
+        ctx.fillStyle = s.storeValues[pw][2];
       }
     },
     convertToCss: function convertToCss() {
@@ -283,9 +282,9 @@ function domLoaded() {
         elem.codeBox.innerHTML += " $X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
         elem.codeBox.innerHTML += " $O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
         if (xyz === s.storeValues.length - 1) {
-          elem.codeBox.innerHTML += " black;";
+          elem.codeBox.innerHTML += s.storeValues[xyz][2] + ";";
         } else {
-          elem.codeBox.innerHTML += " black,";
+          elem.codeBox.innerHTML += s.storeValues[xyz][2] + ",";
         }
       }
     },
@@ -312,9 +311,9 @@ function domLoaded() {
         elem.codeBox.innerHTML += " @X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
         elem.codeBox.innerHTML += " @O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
         if (xyz === s.storeValues.length - 1) {
-          elem.codeBox.innerHTML += " black;";
+          elem.codeBox.innerHTML += s.storeValues[xyz][2] + ";";
         } else {
-          elem.codeBox.innerHTML += " black,";
+          elem.codeBox.innerHTML += s.storeValues[xyz][2] + ",";
         }
       }
     },
