@@ -39,7 +39,8 @@ var s, elem,
       columnCount: document.getElementById("input-for-columns").value,
       pixSize: document.getElementById("input-for-pixel-size").value,
       codeBox: document.getElementById("code_box"),
-      storeValues: []
+      storeValues: [],
+      storeColors: []
     },
 
     init: function() {
@@ -65,6 +66,7 @@ var s, elem,
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", function(){
          bitIllustrator.handleClick();
+         bitIllustrator.addColors();
          bitIllustrator.convertToArray();
          bitIllustrator.convertToCss();
       });
@@ -150,33 +152,6 @@ var s, elem,
       }
     },
 
-   /* create multi-dimensional array
-      that is sorted by x value */
-   convertToArray: function(e){
-      e = e || window.event;
-     var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
-     var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
-
-     s.storeValues.push([xVal, yVal, elem.hexColor.value]);
-
-
-     for(var i = 0; i < 2; i++){
-       s.storeValues[s.storeValues.length - 1][i] += "px";
-     }
-
-      for (var io = 0; io < s.storeValues.length - 1; io++) {
-        //decided it made more sense to remove pushed value in array and then to parse through and remove value
-     //used this stackoverflow http://stackoverflow.com/questions/26635297/how-to-remove-an-array-from-a-multidimensional-array-if-it-exists-in-another-mul
-        if (JSON.stringify(s.storeValues[io]) === JSON.stringify(s.storeValues[s.storeValues.length - 1]) ){
-          s.storeValues.splice(io, 1);
-          s.storeValues.splice(s.storeValues.length - 1, 1);
-        }
-     }
-     /*eslint-disable*/
-     s.storeValues.sort(utils.compare);
-     /*eslint-enable*/
-   },
-
    //allow individual boxes to be clicked
    // handleClick is still in prototyping phase
     handleClick: function(e) {
@@ -209,6 +184,52 @@ var s, elem,
                    s.pixSize, s.pixSize);
 
     },
+
+   /* create multi-dimensional array
+      that is sorted by x value */
+   convertToArray: function(e){
+      e = e || window.event;
+     var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
+     var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
+
+     s.storeValues.push([xVal, yVal, " " + elem.hexColor.value]);
+
+     for(var i = 0; i < 2; i++){
+       s.storeValues[s.storeValues.length - 1][i] += "px";
+     }
+
+      for (var io = 0; io < s.storeValues.length - 1; io++) {
+        //decided it made more sense to remove pushed value in array and then to parse through and remove value
+     //used this stackoverflow http://stackoverflow.com/questions/26635297/how-to-remove-an-array-from-a-multidimensional-array-if-it-exists-in-another-mul
+        if (JSON.stringify(s.storeValues[io]) === JSON.stringify(s.storeValues[s.storeValues.length - 1]) ){
+          s.storeValues.splice(io, 1);
+          s.storeValues.splice(s.storeValues.length - 1, 1);
+        }
+     }
+     /*eslint-disable*/
+     s.storeValues.sort(utils.compare);
+     /*eslint-enable*/
+   },
+
+   //create a color array for sass variables
+   // in order to enable color1, color2, etc...
+   addColors: function(){
+     //only add value if it is a new color
+     if(s.storeColors.length > 0 && s.storeColors.indexOf(elem.hexColor.value) > -1){
+        return;
+     }
+     else{
+       s.storeColors.push(elem.hexColor.value);
+     }
+
+     //if(s.storeColors.indexOf(elem.hexColor.value) > -1){
+     //  s.storeColors.push(elem.hexColor.value);
+     //}
+
+
+     alert( s.storeColors);
+
+   },
 
    codeBoxToggle: function() {
      elem.codeBoxContainer.classList.toggle("open");
