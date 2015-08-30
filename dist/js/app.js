@@ -161,7 +161,6 @@ function domLoaded() {
       var newHexValue = elem.hexColor.value;
       ctx.fillStyle = newHexValue;
       var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize, Math.floor(e.offsetY / s.pixSize) * s.pixSize, s.pixSize, s.pixSize);
-      /*eslint-disable */
       if (imgData.data[0] !== 62 && imgData.data[1] !== 71 && imgData.data[2] !== 74) {
         ctx.fillStyle = "#333333";
         ctx.strokeStyle = "#3e4649";
@@ -185,7 +184,7 @@ function domLoaded() {
       var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
       var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
 
-      s.storeValues.push([xVal, yVal, " " + elem.hexColor.value]);
+      s.storeValues.push([xVal, yVal, elem.hexColor.value]);
 
       for (var i = 0; i < 2; i++) {
         s.storeValues[s.storeValues.length - 1][i] += "px";
@@ -214,11 +213,8 @@ function domLoaded() {
         s.storeColors.push(elem.hexColor.value);
       }
 
-      //if(s.storeColors.indexOf(elem.hexColor.value) > -1){
-      //  s.storeColors.push(elem.hexColor.value);
-      //}
-
-      alert(s.storeColors);
+      //alert( s.storeColors);
+      // wip look at sass build variabls
     },
 
     codeBoxToggle: function codeBoxToggle() {
@@ -296,10 +292,17 @@ function domLoaded() {
     },
 
     convertToSass: function convertToSass() {
+
       elem.codeBox.innerHTML += "box-shadow: ";
       for (var xyz = 0; xyz < s.storeValues.length; xyz++) {
         elem.codeBox.innerHTML += " $X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
         elem.codeBox.innerHTML += " $O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+        //need to add support with name that color
+        for (var avi = 0; avi < s.storeColors.length; avi++) {
+          if (s.storeValues[xyz][2] === s.storeColors[avi]) {
+            s.storeValues[xyz][2] = " $color" + avi;
+          }
+        }
         if (xyz === s.storeValues.length - 1) {
           elem.codeBox.innerHTML += s.storeValues[xyz][2] + ";";
         } else {
@@ -329,6 +332,11 @@ function domLoaded() {
       for (var xyz = 0; xyz < s.storeValues.length; xyz++) {
         elem.codeBox.innerHTML += " @X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
         elem.codeBox.innerHTML += " @O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+        for (var avi = 0; avi < s.storeColors.length; avi++) {
+          if (s.storeValues[xyz][2] === s.storeColors[avi]) {
+            s.storeValues[xyz][2] = " $color" + avi + 1;
+          }
+        }
         if (xyz === s.storeValues.length - 1) {
           elem.codeBox.innerHTML += s.storeValues[xyz][2] + ";";
         } else {
