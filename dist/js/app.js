@@ -12,6 +12,9 @@ function domLoaded() {
 
   var s,
       elem,
+      ui,
+      colorNum = 0,
+      arrMap = [],
       c = document.getElementById("canvasGrid"),
       ctx = c.getContext("2d"),
       bitIllustrator = {
@@ -43,7 +46,9 @@ function domLoaded() {
       pixSize: document.getElementById("input-for-pixel-size").value,
       codeBox: document.getElementById("code_box"),
       storeValues: [],
-      storeColors: []
+      storeColors: [],
+      sassColorVariables: [],
+      lessColorVariables: []
     },
 
     init: function init() {
@@ -88,11 +93,11 @@ function domLoaded() {
         bitIllustrator.pickHexColor();
       });
       //consider revision
-
       for (var i = 0; i < 3; i++) {
         elem.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
       }
       elem.jsToggle.addEventListener("click", function () {
+        bitIllustrator.addArrayMap();
         bitIllustrator.convertToJs();
       });
       elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
@@ -210,7 +215,10 @@ function domLoaded() {
       if (s.storeColors.length > 0 && s.storeColors.indexOf(elem.hexColor.value) > -1) {
         return;
       } else {
+        colorNum++;
         s.storeColors.push(elem.hexColor.value);
+        s.sassColorVariables.push("$color" + colorNum);
+        s.lessColorVariables.push("$color" + colorNum);
       }
 
       //alert( s.storeColors);
@@ -280,6 +288,11 @@ function domLoaded() {
       elem.codeBox.classList.add("sass_box");
 
       elem.codeBox.innerHTML = "$num:" + s.pixSize + ";<br>";
+      for (var avi = 0; avi < s.storeColors.length; avi++) {
+        elem.codeBox.innerHTML += " $colors" + avi + ":" + s.storeColors[avi] + ";";
+      }
+
+      elem.codeBox.innerHTML += "<br>";
 
       for (var x = 0; x < s.columnCount; x++) {
         elem.codeBox.innerHTML += "$X" + x + ": $num*" + x + "px; ";
@@ -298,15 +311,16 @@ function domLoaded() {
         elem.codeBox.innerHTML += " $X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
         elem.codeBox.innerHTML += " $O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
         //need to add support with name that color
+
         for (var avi = 0; avi < s.storeColors.length; avi++) {
           if (s.storeValues[xyz][2] === s.storeColors[avi]) {
-            s.storeValues[xyz][2] = " $color" + avi;
+            elem.codeBox.innerHTML += " " + s.sassColorVariables[avi];
           }
         }
         if (xyz === s.storeValues.length - 1) {
-          elem.codeBox.innerHTML += s.storeValues[xyz][2] + ";";
+          elem.codeBox.innerHTML += ";";
         } else {
-          elem.codeBox.innerHTML += s.storeValues[xyz][2] + ",";
+          elem.codeBox.innerHTML += ",";
         }
       }
     },
@@ -316,6 +330,12 @@ function domLoaded() {
       elem.codeBox.classList.add("less_box");
 
       elem.codeBox.innerHTML = "@num:" + s.pixSize + ";<br>";
+
+      for (var avi = 0; avi < s.storeColors.length; avi++) {
+        elem.codeBox.innerHTML += " @colors" + avi + ":" + s.storeColors[avi] + ";";
+      }
+
+      elem.codeBox.innerHTML += "<br>";
 
       for (var x = 0; x < s.columnCount; x++) {
         elem.codeBox.innerHTML += "@X" + x + ": @num*" + x + "px; ";
@@ -332,16 +352,43 @@ function domLoaded() {
       for (var xyz = 0; xyz < s.storeValues.length; xyz++) {
         elem.codeBox.innerHTML += " @X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
         elem.codeBox.innerHTML += " @O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+
         for (var avi = 0; avi < s.storeColors.length; avi++) {
           if (s.storeValues[xyz][2] === s.storeColors[avi]) {
-            s.storeValues[xyz][2] = " $color" + avi + 1;
+            elem.codeBox.innerHTML += " " + s.lessColorVariables[avi];
           }
         }
+
         if (xyz === s.storeValues.length - 1) {
-          elem.codeBox.innerHTML += s.storeValues[xyz][2] + ";";
+          elem.codeBox.innerHTML += ";";
         } else {
-          elem.codeBox.innerHTML += s.storeValues[xyz][2] + ",";
+          elem.codeBox.innerHTML += ",";
         }
+      }
+    },
+
+    addArrayMap: function addArrayMap() {
+      elem.codeBox.innerHTML = "";
+      //initialize the array map
+      for (var new1 = 0; new1 < s.columnCount; new1++) {
+        arrMap.push([]);
+      }
+
+      for (ui = 0; ui < s.columnCount; ui++) {
+        for (var new2 = 0; new2 < s.rowCount; new2++) {
+          arrMap[ui].push(0);
+        }
+      }
+
+      for (ui = 0; ui < s.columnCount; ui++) {
+        for (var two2 = 0; two2 < s.rowCount; two2++) {
+          if (ui === parseFloat(s.storeValues[ui][0]) / s.pixSize && two2 === parseFloat(s.storeValues[ui][1]) / s.pixSize) {
+            elem.codeBox.innerHTML += "1";
+          } else {
+            elem.codeBox.innerHTML += arrMap[ui][two2];
+          }
+        }
+        elem.codeBox.innerHTML += "<br>";
       }
     },
 
