@@ -4,11 +4,13 @@
  * @param {string} author - Charlie Greenman
  */
 
+import * as utils from "./js/_utils.js";
+
 document.addEventListener("DOMContentLoaded", domLoaded, false);
 
 function domLoaded(){
 
-var s, elem, ui,
+var s, elem, x, y, z,
  colorNum = 0,
  arrMap = [],
  c = document.getElementById("canvasGrid"),
@@ -306,11 +308,11 @@ var s, elem, ui,
      elem.codeBox.innerHTML += "<br>";
 
 
-      for(var x = 0; x < s.columnCount; x++){
+      for(x = 0; x < s.columnCount; x++){
         elem.codeBox.innerHTML += "$X" + x + ": $num*" + x + "px; ";
       }
      elem.codeBox.innerHTML += "$num:" + s.pixSize + ";<br>";
-     for(var y = 0; y < s.columnCount; y++){
+     for(y = 0; y < s.columnCount; y++){
         elem.codeBox.innerHTML += "$O" + x + ": $num*" + x + "px; ";
       }
      elem.codeBox.innerHTML += "<br><br>";
@@ -350,11 +352,11 @@ var s, elem, ui,
 
      elem.codeBox.innerHTML += "<br>";
 
-      for(var x = 0; x < s.columnCount; x++){
+      for(x = 0; x < s.columnCount; x++){
         elem.codeBox.innerHTML += "@X" + x + ": @num*" + x + "px; ";
       }
      elem.codeBox.innerHTML += "$num:" + s.pixSize + ";<br>";
-     for(var y = 0; y < s.columnCount; y++){
+     for(y = 0; y < s.columnCount; y++){
         elem.codeBox.innerHTML += "@O" + x + ": @num*" + x + "px; ";
       }
      elem.codeBox.innerHTML += "<br><br>";
@@ -382,31 +384,31 @@ var s, elem, ui,
    },
 
    addArrayMap: function (){
+     //reset values, in case one decides to go back to the the js tab
       elem.codeBox.innerHTML = "";
+      arrMap = [];
      //initialize the array map
-     for(var new1 = 0; new1 < s.columnCount; new1++) {
+     for(x = 0; x < s.columnCount; x++) {
          arrMap.push([]);
      }
 
-     for(ui = 0; ui < s.columnCount; ui++) {
-       for (var new2 = 0; new2 < s.rowCount; new2++) {
-         arrMap[ui].push(0);
+     for (x = 0; x < s.rowCount - 1; x++) {
+       for(y = 0; y < s.columnCount - 1; y++) {
+         arrMap[x].push(0);
+        for(z = 0; z < s.storeValues.length - 1; z++) {
+          if (x === parseFloat(s.storeValues[z][0]) / s.pixSize && y === parseFloat(s.storeValues[z][1]) / s.pixSize) {
+            arrMap[y][x] = 1;
+          }
+        }
        }
      }
 
+     //create a new line once the app continues to the next line
+    //test to see if I can change value of  arrMap[1][1] = 3;
 
-
-     for(ui = 0; ui < s.columnCount; ui++) {
-       for (var two2 = 0; two2 < s.rowCount; two2++) {
-           if (ui === parseFloat(s.storeValues[ui][0]) / s.pixSize && two2 === parseFloat(s.storeValues[ui][1]) / s.pixSize) {
-             elem.codeBox.innerHTML += "1";
-           }
-           else {
-             elem.codeBox.innerHTML += arrMap[ui][two2];
-           }
-       }
-       elem.codeBox.innerHTML += "<br>";
-     }
+      arrMap[s.columnCount - 1] += "]";
+      elem.codeBox.innerHTML = "[";
+      elem.codeBox.innerHTML += arrMap.join("],<br />[");
 
    },
 

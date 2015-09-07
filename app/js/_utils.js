@@ -1,6 +1,6 @@
 /*eslint-disable*/
-var utils = {
-  compare: function(a, b) {
+var compare, hexToRgb, componentToHex, rgbToHex;
+  compare = function(a, b) {
 
        if(parseFloat(a[0]) - parseFloat(b[0]) === 0){
          return parseFloat(a[1]) - parseFloat(b[1]);
@@ -10,7 +10,7 @@ var utils = {
        }
    },
   //used http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-  hexToRgb: function(hex) {
+  hexToRgb = function(hex) {
     // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, function(m, r, g, b) {
@@ -24,14 +24,13 @@ var utils = {
         b: parseInt(result[3], 16)
     } : null;
   },
-  componentToHex: function(c) {
+  componentToHex = function(c) {
     var hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
   },
-  rgbToHex: function(r, g, b) {
-    return "#" + utils.componentToHex(r) + utils.componentToHex(g) + utils.componentToHex(b);
-  }
-};
-/*eslint-enable*/
+  rgbToHex = function(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  };
+
 
 
