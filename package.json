@@ -5,6 +5,7 @@
   "private": true,
   "devDependencies": {
     "browser-sync": "*",
+    "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-babel": "^5.1.0",
     "gulp-browserify": "^0.5.1",

@@ -4,7 +4,6 @@
  * @param {string} title - Pixelator
  * @param {string} author - Charlie Greenman
  */
-
 import utils from "./_utils.js";
 
 document.addEventListener("DOMContentLoaded", domLoaded, false);
@@ -127,21 +126,17 @@ var s, elem, x, y, z,
 
    pickHexColor: () =>{
      var newHexValue = elem.hexColor.value;
-     /*eslint-disable*/
+
      elem.colorBar.style.background = newHexValue;
 
      elem.red.value = utils.hexToRgb(newHexValue).r;
      elem.green.value = utils.hexToRgb(newHexValue).g;
      elem.blue.value = utils.hexToRgb(newHexValue).b;
-
-     /*eslint-enable*/
    },
 
    pickRgbColor: () =>{
-     /*eslint-disable*/
      elem.hexColor.value = utils.rgbToHex(parseFloat(elem.red.value), parseFloat(elem.green.value), parseFloat(elem.blue.value));
      elem.colorBar.style.background = elem.hexColor.value;
-     /*eslint-enable*/
    },
 
    //create grid and create boxes
@@ -209,9 +204,9 @@ var s, elem, x, y, z,
           s.storeValues.splice(s.storeValues.length - 1, 1);
         }
      }
-     /*eslint-disable*/
+
      s.storeValues.sort(utils.compare);
-     /*eslint-enable*/
+
    },
 
    //create a color array for sass variables
@@ -224,12 +219,10 @@ var s, elem, x, y, z,
      else{
        colorNum++;
        s.storeColors.push(elem.hexColor.value);
-       s.sassColorVariables.push("$color" + colorNum);
-       s.lessColorVariables.push("$color" + colorNum);
+       s.sassColorVariables.push(`$color ${colorNum}`);
+       s.lessColorVariables.push(`$color ${colorNum}`);
      }
 
-     //alert( s.storeColors);
-    // wip look at sass build variabls
    },
 
    codeBoxToggle: () => {
@@ -285,7 +278,7 @@ var s, elem, x, y, z,
        /* instead of re-inserting value, need to think of how to do this */
         for(var abc = 0; abc < s.storeValues.length; abc++){
           if(abc === s.storeValues.length - 1){
-             elem.codeBox.innerHTML += s.storeValues[abc].join(" ") + "; ";
+             elem.codeBox.innerHTML += `${s.storeValues[abc].join(" ")};`;
           }
           else {
             elem.codeBox.innerHTML += s.storeValues[abc].join(" ") + ", ";
@@ -319,17 +312,17 @@ var s, elem, x, y, z,
    convertToSass: () =>{
 
     elem.codeBox.innerHTML += "box-shadow: ";
-     for(var xyz = 0; xyz < s.storeValues.length; xyz++) {
-       elem.codeBox.innerHTML += " $X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
-       elem.codeBox.innerHTML += " $O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
+     for(var x = 0; x < s.storeValues.length; x++) {
+       elem.codeBox.innerHTML += ` $X${parseFloat(s.storeValues[x][0]) / s.pixSize}`;
+       elem.codeBox.innerHTML += ` $O${parseFloat(s.storeValues[x][1]) / s.pixSize}`;
        //need to add support with name that color
 
-       for(var avi = 0; avi < s.storeColors.length; avi++){
-         if(s.storeValues[xyz][2] === s.storeColors[avi]){
-           elem.codeBox.innerHTML += " " + s.sassColorVariables[avi];
+       for(y = 0; y < s.storeColors.length; y++){
+         if(s.storeValues[x][2] === s.storeColors[y]){
+           elem.codeBox.innerHTML += ` ${s.sassColorVariables[y]}`;
          }
        }
-       if(xyz === s.storeValues.length - 1){
+       if(x === s.storeValues.length - 1){
         elem.codeBox.innerHTML += ";";
        }
        else{
@@ -344,8 +337,8 @@ var s, elem, x, y, z,
 
     elem.codeBox.innerHTML = "@num:" + s.pixSize + ";<br>";
 
-     for(var avi = 0; avi < s.storeColors.length; avi++){
-       elem.codeBox.innerHTML += `@colors ${avi}: ${s.storeColors[avi]};`;
+     for(x = 0; x < s.storeColors.length; x++){
+       elem.codeBox.innerHTML += `@colors ${x}: ${s.storeColors[x]};`;
      }
 
      elem.codeBox.innerHTML += "<br>";
@@ -387,9 +380,12 @@ var s, elem, x, y, z,
       arrMap = [];
      //initialize the array map
      for(x = 0; x < s.columnCount; x++) {
-         arrMap.push([]);
+       arrMap.push([]);
      }
 
+// create a tile map for values
+// if the value is the same value as the stored values,
+// input that value instead.
      for (x = 0; x < s.rowCount - 1; x++) {
        for(y = 0; y < s.columnCount - 1; y++) {
          arrMap[x].push(0);
