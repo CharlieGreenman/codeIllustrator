@@ -339,9 +339,9 @@
 	      elem.codeBox.classList.remove("css_box", "less_box", "js_box");
 	      elem.codeBox.classList.add("sass_box");
 
-	      elem.codeBox.innerHTML = "$num:" + s.pixSize + ";<br>";
+	      elem.codeBox.innerHTML = "$num: " + s.pixSize + ";<br>";
 	      for (var avi = 0; avi < s.storeColors.length; avi++) {
-	        elem.codeBox.innerHTML += " $colors" + avi + ":" + s.storeColors[avi] + ";";
+	        elem.codeBox.innerHTML += " $colors" + avi + ": " + s.storeColors[avi] + ";";
 	      }
 
 	      elem.codeBox.innerHTML += "<br>";
@@ -349,7 +349,7 @@
 	      for (x = 0; x < s.columnCount; x++) {
 	        elem.codeBox.innerHTML += "$X" + x + ": $num*" + x + "px; ";
 	      }
-	      elem.codeBox.innerHTML += "$num:" + s.pixSize + ";<br>";
+	      elem.codeBox.innerHTML += "$num: " + s.pixSize + ";<br>";
 	      for (y = 0; y < s.columnCount; y++) {
 	        elem.codeBox.innerHTML += "$O" + x + ": $num*" + x + "px; ";
 	      }
@@ -392,7 +392,7 @@
 	      for (x = 0; x < s.columnCount; x++) {
 	        elem.codeBox.innerHTML += "@X" + x + ": @num*" + x + "px; ";
 	      }
-	      elem.codeBox.innerHTML += "$num:" + s.pixSize + ";<br>";
+	      elem.codeBox.innerHTML += "$num: " + s.pixSize + ";<br>";
 	      for (y = 0; y < s.columnCount; y++) {
 	        elem.codeBox.innerHTML += "@O" + x + ": @num*" + x + "px; ";
 	      }
