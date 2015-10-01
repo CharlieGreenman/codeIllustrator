@@ -1,5 +1,7 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync');
+//var browserify = require('gulp-browserify');
+var webpack = require('webpack-stream');
 var sass        = require('gulp-sass');
 var jade        = require('gulp-jade');
 var wiredep     = require('wiredep').stream;
@@ -17,7 +19,7 @@ gulp.task('templates', function() {
 
     var YOUR_LOCALS = {};
 
-    gulp.src('./app/jade/*.jade')
+    return gulp.src('./app/jade/*.jade')
         .pipe(plumber())
         .pipe(jade({
             locals: YOUR_LOCALS,
@@ -35,7 +37,7 @@ gulp.task('templates-publish', function() {
 
     var YOUR_LOCALS = {};
 
-    gulp.src('./app/jade/*.jade')
+    return gulp.src('./app/jade/*.jade')
         .pipe(plumber())
         .pipe(jade({
             locals: YOUR_LOCALS,
@@ -56,7 +58,7 @@ gulp.task('jade-watch', ['templates'], reload);
 //Sass task and browser reload
 
 gulp.task('sass', function () {
-    gulp.src('./app/scss/*.scss')
+  return gulp.src('./app/scss/*.scss')
         .pipe(plumber())
         .pipe(autoprefixer())
         .pipe(sass({
@@ -69,7 +71,7 @@ gulp.task('sass', function () {
 
 
 gulp.task('sass-publish', function () {
-    gulp.src('./app/scss/*.scss')
+    return gulp.src('./app/scss/*.scss')
         .pipe(plumber())
 
         .pipe(sass({
@@ -97,6 +99,23 @@ gulp.task('imagemin', function() {
 //eslint task
 gulp.task('lint', function () {
     return gulp.src(['./app/js/*.js'])
+
+        .pipe(webpack({
+          module: {
+            loaders: [
+              { test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: "babel-loader" }
+            ]
+          },
+        entry: {
+          app: './app/js/app.js'
+         },
+          output: {
+              filename: "app.js"
+          }
+
+        }))
         .pipe(plumber())
         .pipe(eslint({
           envs: {
@@ -105,12 +124,13 @@ gulp.task('lint', function () {
           }))
         .pipe(eslint.format())
         .pipe(eslint.failOnError())
-        .pipe(babel())
+        //.pipe(babel())
         .pipe(gulp.dest('./dist/js'));
 });
 
 //eslint task
 gulp.task('lint-publish', function () {
+
     return gulp.src(['./app/js/*.js'])
         .pipe(plumber())
         .pipe(eslint({

@@ -28,6 +28,7 @@ var CAPS_ALLOWED = [
  * @returns {string[]} Returns obj[key] if it's an Array, otherwise `fallback`
  */
 function checkArray(obj, key, fallback) {
+    /* istanbul ignore if */
     if (Object.prototype.hasOwnProperty.call(obj, key) && !Array.isArray(obj[key])) {
         throw new TypeError(key + ", if provided, must be an Array");
     }
@@ -69,6 +70,7 @@ module.exports = function(context) {
     var config = context.options[0] || {};
     config.newIsCap = config.newIsCap !== false;
     config.capIsNew = config.capIsNew !== false;
+    var skipProperties = config.properties === false;
 
     var newIsCapExceptions = checkArray(config, "newIsCapExceptions", []).reduce(invert, {});
 
@@ -134,15 +136,17 @@ module.exports = function(context) {
      * @returns {Boolean} Returns true if the callee may be capitalized
      */
     function isCapAllowed(allowedMap, node, calleeName) {
-        if (allowedMap[calleeName]) {
+        if (allowedMap[calleeName] || allowedMap[context.getSource(node.callee)]) {
             return true;
         }
+
         if (calleeName === "UTC" && node.callee.type === "MemberExpression") {
             // allow if callee is Date.UTC
             return node.callee.object.type === "Identifier" &&
                 node.callee.object.name === "Date";
         }
-        return false;
+
+        return skipProperties && node.callee.type === "MemberExpression";
     }
 
     /**
@@ -217,6 +221,9 @@ module.exports.schema = [
                 "items": {
                     "type": "string"
                 }
+            },
+            "properties": {
+                "type": "boolean"
             }
         },
         "additionalProperties": false

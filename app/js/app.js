@@ -1,10 +1,11 @@
+
 /**
  * @constructor
  * @param {string} title - Pixelator
  * @param {string} author - Charlie Greenman
  */
 
-import * as utils from "./js/_utils.js";
+import utils from "./_utils.js";
 
 document.addEventListener("DOMContentLoaded", domLoaded, false);
 
@@ -49,13 +50,13 @@ var s, elem, x, y, z,
       lessColorVariables: []
     },
 
-    init: function() {
+    init: () => {
       elem = bitIllustrator.elements;
       s = bitIllustrator.settings;
-      this.bindActions();
+      bitIllustrator.bindActions();
     },
 
-    bindActions: function() {
+    bindActions: () => {
       s.createGrid.addEventListener("click", function(){
         bitIllustrator.updatedSettings();
         bitIllustrator.hideShow();
@@ -101,30 +102,30 @@ var s, elem, x, y, z,
       elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
-   resetButton: function(){
+   resetButton: () =>{
       location.reload();
    },
 
-    updatedSettings: function(){
+    updatedSettings: () =>{
       s.rowCount = document.getElementById("input-for-rows").value;
       s.columnCount = document.getElementById("input-for-columns").value;
       s.pixSize = document.getElementById("input-for-pixel-size").value;
     },
 
-    hideShow: function() {
+    hideShow: () => {
       s.chooseSizeContainer.style.display = "none";
       elem.headerContainer.style.display = "block";
       s.canvas.style.display = "block";
     },
 
-   resizeGrid: function(){
+   resizeGrid: () =>{
      s.canvas.width = s.columnCount * s.pixSize;
      s.canvas.height = s.rowCount * s.pixSize;
      s.canvas.style.marginLeft = -(s.columnCount * s.pixSize) / 2 + "px";
 
    },
 
-   pickHexColor: function(){
+   pickHexColor: () =>{
      var newHexValue = elem.hexColor.value;
      /*eslint-disable*/
      elem.colorBar.style.background = newHexValue;
@@ -133,13 +134,10 @@ var s, elem, x, y, z,
      elem.green.value = utils.hexToRgb(newHexValue).g;
      elem.blue.value = utils.hexToRgb(newHexValue).b;
 
-     //alert(utils.hexToRgb(newHexValue).r + " " + utils.hexToRgb(newHexValue).g + " " + utils.hexToRgb(newHexValue).b) ;
-
-     //alert(newHexValue);
      /*eslint-enable*/
    },
 
-   pickRgbColor: function(){
+   pickRgbColor: () =>{
      /*eslint-disable*/
      elem.hexColor.value = utils.rgbToHex(parseFloat(elem.red.value), parseFloat(elem.green.value), parseFloat(elem.blue.value));
      elem.colorBar.style.background = elem.hexColor.value;
@@ -147,7 +145,7 @@ var s, elem, x, y, z,
    },
 
    //create grid and create boxes
-    createGridIllustrator: function() {
+    createGridIllustrator: () => {
       //module for creating a grid
 
       for(var r = 0; r < s.columnCount; r++) {
@@ -160,7 +158,7 @@ var s, elem, x, y, z,
 
    //allow individual boxes to be clicked
    // handleClick is still in prototyping phase
-    handleClick: function(e) {
+    handleClick: (e) => {
        e = e || window.event;
       var newHexValue = elem.hexColor.value;
       ctx.fillStyle = newHexValue;
@@ -192,7 +190,7 @@ var s, elem, x, y, z,
 
    /* create multi-dimensional array
       that is sorted by x value */
-   convertToArray: function(e){
+   convertToArray: (e) =>{
       e = e || window.event;
      var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
      var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
@@ -218,7 +216,7 @@ var s, elem, x, y, z,
 
    //create a color array for sass variables
    // in order to enable color1, color2, etc...
-   addColors: function(){
+   addColors: () =>{
      //only add value if it is a new color
      if(s.storeColors.length > 0 && s.storeColors.indexOf(elem.hexColor.value) > -1){
         return;
@@ -234,7 +232,7 @@ var s, elem, x, y, z,
     // wip look at sass build variabls
    },
 
-   codeBoxToggle: function() {
+   codeBoxToggle: () => {
      elem.codeBoxContainer.classList.toggle("open");
      if(elem.codeBoxContainer.classList.contains("open")){
        elem.codeBoxToggle.innerHTML = " - ";
@@ -244,7 +242,7 @@ var s, elem, x, y, z,
      }
    },
 
-   removeTiles: function() {
+   removeTiles: () => {
 
       for(var r = 0; r < s.columnCount; r++) {
         for(var i = 0; i < s.rowCount; i++) {
@@ -254,7 +252,7 @@ var s, elem, x, y, z,
       }
    },
 
-   addBackTiles: function(){
+   addBackTiles: () =>{
       for(var pw = 0; pw < s.storeValues.length; pw++){
 
         ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
@@ -262,7 +260,7 @@ var s, elem, x, y, z,
       }
    },
 
-   redoGrid: function(){
+   redoGrid: () =>{
       for(var r = 0; r < s.columnCount; r++) {
         for(var i = 0; i < s.rowCount; i++) {
           s.canvas.style.background = "rgba(0, 0, 0, 0.1)";
@@ -278,7 +276,7 @@ var s, elem, x, y, z,
       }
 
    },
-   convertToCss: function(){
+   convertToCss: () =>{
         elem.codeBox.classList.remove("sass_box", "less_box", "js_box");
         elem.codeBox.classList.add("css_box");
 
@@ -296,7 +294,7 @@ var s, elem, x, y, z,
 
    },
 
-   addSassVariables: function(){
+   addSassVariables: () =>{
      elem.codeBox.classList.remove("css_box", "less_box", "js_box");
      elem.codeBox.classList.add("sass_box");
 
@@ -318,7 +316,7 @@ var s, elem, x, y, z,
      elem.codeBox.innerHTML += "<br><br>";
    },
 
-   convertToSass: function(){
+   convertToSass: () =>{
 
     elem.codeBox.innerHTML += "box-shadow: ";
      for(var xyz = 0; xyz < s.storeValues.length; xyz++) {
@@ -340,14 +338,14 @@ var s, elem, x, y, z,
      }
    },
 
-   addLessVariables: function(){
+   addLessVariables: () =>{
     elem.codeBox.classList.remove("css_box", "sass_box", "js_box");
     elem.codeBox.classList.add("less_box");
 
     elem.codeBox.innerHTML = "@num:" + s.pixSize + ";<br>";
 
      for(var avi = 0; avi < s.storeColors.length; avi++){
-       elem.codeBox.innerHTML += " @colors" + avi + ":" + s.storeColors[avi] + ";";
+       elem.codeBox.innerHTML += `@colors ${avi}: ${s.storeColors[avi]};`;
      }
 
      elem.codeBox.innerHTML += "<br>";
@@ -362,7 +360,7 @@ var s, elem, x, y, z,
      elem.codeBox.innerHTML += "<br><br>";
    },
 
-   convertToLess: function() {
+   convertToLess: () => {
      elem.codeBox.innerHTML += "box-shadow: ";
      for (var xyz = 0; xyz < s.storeValues.length; xyz++) {
        elem.codeBox.innerHTML += " @X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
@@ -412,7 +410,7 @@ var s, elem, x, y, z,
 
    },
 
-   convertToJs: function(){
+   convertToJs: () =>{
       elem.codeBox.classList.remove("css_box", "sass_box", "less_box");
       elem.codeBox.classList.add("js_box");
    }

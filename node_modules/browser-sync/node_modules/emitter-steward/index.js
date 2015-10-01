@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * @constructor
  */
@@ -15,8 +13,6 @@ var EmitterSteward = function(emitter) {
     this.setWatcher(1000);
 };
 
-module.exports = EmitterSteward;
-
 /**
  * @param timeout
  */
@@ -24,10 +20,18 @@ EmitterSteward.prototype.setWatcher = function (timeout) {
 
     var that = this;
 
-    setInterval(function () {
+    this._int = setInterval(function () {
         that.currentEmitter = null;
     }, timeout);
+};
 
+/**
+ * Clear the interval
+ */
+EmitterSteward.prototype.destroy = function () {
+    if (this._int) {
+        return clearInterval(this._int);
+    }
 };
 
 /**
@@ -60,3 +64,5 @@ EmitterSteward.prototype.valid = function (id) {
         }
     }
 };
+
+module.exports = EmitterSteward;
