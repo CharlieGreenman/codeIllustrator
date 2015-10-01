@@ -1,11 +1,15 @@
 # pixelatorV2_with_react
 Creating pixelator using Vanilla Javascript with react where possible
 
-TODO create view functionality where all lines and boxes are removed besides currently clicked on one's *[Done]*
+create using singleton desing pattern *[Done]*
 
-TODO create Code compilation functionality where code is converted to CSS *[Done]*
+create view functionality where all lines and boxes are removed besides currently clicked on one's *[Done]*
 
-TODO create Code compilation functionality where code is converted to SASS
+create Code compilation functionality where code is converted to CSS *[Done]*
+
+create Code compilation functionality where code is converted to SASS *[Done]*
+
+Convert to es6(with babel) *[Done]*
 
 TODO create Code compilation functionality where code is converted to Javascript
 
