@@ -95,6 +95,7 @@ var s, elem, x, y, z,
         elem.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
       }
       elem.jsToggle.addEventListener("click", function(){
+         bitIllustrator.addEmptyArrayMap();
          bitIllustrator.addArrayMap();
          bitIllustrator.convertToJs();
       });
@@ -374,15 +375,16 @@ var s, elem, x, y, z,
      }
    },
 
-   addArrayMap: function (){
-     //reset values, in case one decides to go back to the the js tab
-      elem.codeBox.innerHTML = "";
-      arrMap = [];
-     //initialize the array map
-     for(x = 0; x < s.columnCount; x++) {
-       arrMap.push([]);
-     }
+   addEmptyArrayMap: function () {
+       elem.codeBox.innerHTML = "";
+       arrMap = [];
+       //initialize the array map
+       for(x = 0; x < s.columnCount; x++) {
+           arrMap.push([]);
+       }
+   },
 
+   addArrayMap: function (){
 // create a tile map for values
 // if the value is the same value as the stored values,
 // input that value instead.
