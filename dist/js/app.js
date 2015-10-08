@@ -129,7 +129,7 @@
 	      c.addEventListener("click", function () {
 	        bitIllustrator.handleClick();
 	        bitIllustrator.addColors();
-	        bitIllustrator.convertToArray();
+	        bitIllustrator.addJsColorFunction();
 	        bitIllustrator.convertToCss();
 	      });
 	      elem.cssToggle.addEventListener("click", function () {
@@ -153,6 +153,7 @@
 	      elem.jsToggle.addEventListener("click", function () {
 	        bitIllustrator.addEmptyArrayMap();
 	        bitIllustrator.addArrayMap();
+	        bitIllustrator.addJsColorFunction();
 	        bitIllustrator.convertToJs();
 	      });
 	      elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
@@ -412,8 +413,8 @@
 	    },
 
 	    addEmptyArrayMap: function addEmptyArrayMap() {
-	      elem.codeBox.innerHTML = "";
-	      elem.codeBox.innerHTML = "[";
+	      elem.codeBox.innerHTML = "var map = [<br> ";
+	      elem.codeBox.innerHTML += "[";
 	      arrMap = [];
 	      //initialize the array map
 	      for (x = 0; x < s.rowCount; x++) {
@@ -439,9 +440,13 @@
 
 	      //create a new line once the app continues to the next line
 	      //test to see if I can change value of  arrMap[1][1] = 3;
-
 	      arrMap[s.columnCount - 1] += "]";
+	      arrMap[s.columnCount - 1] += "<br>];<br><br>";
 	      elem.codeBox.innerHTML += arrMap.join("],<br />[");
+	    },
+
+	    addJsColorFunction: function addJsColorFunction() {
+	      elem.codeBox.innerHTML += "\n     var Color = function(r, g, b, a) {<br>\n        this.r = r; <br>\n        this.g = g; <br>\n        this.b = b; <br>\n        this.a = a; <br>\n\n        this.toString = function() {<br>\n\n            return \"rgba(\" + this.r + \",\" + this.g + \",\" + this.b + \",\" + this.a + \")\";<br>\n\n        }<br>\n\n    }<br>\n     ";
 	    },
 
 	    convertToJs: function convertToJs() {

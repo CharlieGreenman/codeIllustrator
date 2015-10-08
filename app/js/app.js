@@ -73,7 +73,7 @@ var s, elem, x, y, z,
       c.addEventListener("click", function(){
          bitIllustrator.handleClick();
          bitIllustrator.addColors();
-         bitIllustrator.convertToArray();
+         bitIllustrator.addJsColorFunction();
          bitIllustrator.convertToCss();
       });
       elem.cssToggle.addEventListener("click", function(){
@@ -97,6 +97,7 @@ var s, elem, x, y, z,
       elem.jsToggle.addEventListener("click", function(){
          bitIllustrator.addEmptyArrayMap();
          bitIllustrator.addArrayMap();
+         bitIllustrator.addJsColorFunction();
          bitIllustrator.convertToJs();
       });
       elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
@@ -375,9 +376,9 @@ var s, elem, x, y, z,
      }
    },
 
-   addEmptyArrayMap: function () {
-       elem.codeBox.innerHTML = "";
-       elem.codeBox.innerHTML = "[";
+   addEmptyArrayMap: () => {
+       elem.codeBox.innerHTML = "var map = [<br> " ;
+       elem.codeBox.innerHTML += "[";
        arrMap = [];
        //initialize the array map
        for(x = 0; x < s.rowCount; x++) {
@@ -387,7 +388,7 @@ var s, elem, x, y, z,
 
    },
 
-   addArrayMap: function (){
+   addArrayMap: () => {
 // create a tile map for values
 // if the value is the same value as the stored values,
 // input that value instead.
@@ -404,11 +405,31 @@ var s, elem, x, y, z,
 
      //create a new line once the app continues to the next line
     //test to see if I can change value of  arrMap[1][1] = 3;
-
       arrMap[s.columnCount - 1] += "]";
+      arrMap[s.columnCount - 1] += "<br>];<br><br>";
       elem.codeBox.innerHTML += arrMap.join("],<br />[");
 
    },
+
+   addJsColorFunction: () => {
+     elem.codeBox.innerHTML += `
+     var Color = function(r, g, b, a) {<br>
+        this.r = r; <br>
+        this.g = g; <br>
+        this.b = b; <br>
+        this.a = a; <br>
+
+        this.toString = function() {<br>
+
+            return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";<br>
+
+        }<br>
+
+    }<br>
+     `
+   },
+
+
 
    convertToJs: () =>{
       elem.codeBox.classList.remove("css_box", "sass_box", "less_box");
