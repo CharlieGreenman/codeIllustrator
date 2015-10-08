@@ -413,21 +413,23 @@
 
 	    addEmptyArrayMap: function addEmptyArrayMap() {
 	      elem.codeBox.innerHTML = "";
+	      elem.codeBox.innerHTML = "[";
 	      arrMap = [];
 	      //initialize the array map
-	      for (x = 0; x < s.columnCount; x++) {
+	      for (x = 0; x < s.rowCount; x++) {
 	        arrMap.push([]);
 	      }
+	      // populate initial array map
 	    },
 
 	    addArrayMap: function addArrayMap() {
 	      // create a tile map for values
 	      // if the value is the same value as the stored values,
 	      // input that value instead.
-	      for (x = 0; x < s.rowCount - 1; x++) {
-	        for (y = 0; y < s.columnCount - 1; y++) {
-	          arrMap[x].push(0);
-	          for (z = 0; z < s.storeValues.length - 1; z++) {
+	      for (x = 0; x < s.rowCount; x++) {
+	        for (y = 0; y < s.columnCount; y++) {
+	          arrMap[y].push(0);
+	          for (z = 0; z < s.storeValues.length; z++) {
 	            if (x === parseFloat(s.storeValues[z][0]) / s.pixSize && y === parseFloat(s.storeValues[z][1]) / s.pixSize) {
 	              arrMap[y][x] = 1;
 	            }
@@ -439,7 +441,6 @@
 	      //test to see if I can change value of  arrMap[1][1] = 3;
 
 	      arrMap[s.columnCount - 1] += "]";
-	      elem.codeBox.innerHTML = "[";
 	      elem.codeBox.innerHTML += arrMap.join("],<br />[");
 	    },
 
