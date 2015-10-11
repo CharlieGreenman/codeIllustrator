@@ -129,7 +129,7 @@
 	      c.addEventListener("click", function () {
 	        bitIllustrator.handleClick();
 	        bitIllustrator.addColors();
-	        bitIllustrator.addJsColorFunction();
+	        bitIllustrator.convertToArray();
 	        bitIllustrator.convertToCss();
 	      });
 	      elem.cssToggle.addEventListener("click", function () {
@@ -441,12 +441,14 @@
 	      //create a new line once the app continues to the next line
 	      //test to see if I can change value of  arrMap[1][1] = 3;
 	      arrMap[s.columnCount - 1] += "]";
-	      arrMap[s.columnCount - 1] += "<br>];<br><br>";
+	      arrMap[s.columnCount - 1] += "<br>];";
 	      elem.codeBox.innerHTML += arrMap.join("],<br />[");
 	    },
 
+	    // make to add a pre tag, so that it actually treats code as code
+	    // and it makes a line break
 	    addJsColorFunction: function addJsColorFunction() {
-	      elem.codeBox.innerHTML += "\n     var Color = function(r, g, b, a) {<br>\n        this.r = r; <br>\n        this.g = g; <br>\n        this.b = b; <br>\n        this.a = a; <br>\n\n        this.toString = function() {<br>\n\n            return \"rgba(\" + this.r + \",\" + this.g + \",\" + this.b + \",\" + this.a + \")\";<br>\n\n        }<br>\n\n    }<br>\n     ";
+	      elem.codeBox.innerHTML += "\n       <pre> var Color = function(r, g, b, a) {\n\n         this.r = r;\n         this.g = g;\n         this.b = b;\n         this.a = a;\n\n         this.toString = function() {\n\n            return \"rgba(\" + this.r + \",\" + this.g + \",\" + this.b + \",\" + this.a + \")\";\n\n         }\n\n       }</pre>";
 	    },
 
 	    convertToJs: function convertToJs() {

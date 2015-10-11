@@ -56,13 +56,13 @@ var s, elem, x, y, z,
     },
 
     bindActions: () => {
-      s.createGrid.addEventListener("click", function(){
+      s.createGrid.addEventListener("click",() =>{
         bitIllustrator.updatedSettings();
         bitIllustrator.hideShow();
         bitIllustrator.resizeGrid();
         bitIllustrator.createGridIllustrator();
       });
-      elem.viewButton.addEventListener("click", function(){
+      elem.viewButton.addEventListener("click", () =>{
         bitIllustrator.removeTiles();
         bitIllustrator.addBackTiles();
       });
@@ -73,7 +73,7 @@ var s, elem, x, y, z,
       c.addEventListener("click", function(){
          bitIllustrator.handleClick();
          bitIllustrator.addColors();
-         bitIllustrator.addJsColorFunction();
+         bitIllustrator.convertToArray();
          bitIllustrator.convertToCss();
       });
       elem.cssToggle.addEventListener("click", function(){
@@ -406,30 +406,30 @@ var s, elem, x, y, z,
      //create a new line once the app continues to the next line
     //test to see if I can change value of  arrMap[1][1] = 3;
       arrMap[s.columnCount - 1] += "]";
-      arrMap[s.columnCount - 1] += "<br>];<br><br>";
+      arrMap[s.columnCount - 1] += "<br>];";
       elem.codeBox.innerHTML += arrMap.join("],<br />[");
 
    },
 
+// make to add a pre tag, so that it actually treats code as code
+// and it makes a line break
    addJsColorFunction: () => {
      elem.codeBox.innerHTML += `
-     var Color = function(r, g, b, a) {<br>
-        this.r = r; <br>
-        this.g = g; <br>
-        this.b = b; <br>
-        this.a = a; <br>
+       <pre> var Color = function(r, g, b, a) {
 
-        this.toString = function() {<br>
+         this.r = r;
+         this.g = g;
+         this.b = b;
+         this.a = a;
 
-            return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";<br>
+         this.toString = function() {
 
-        }<br>
+            return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";
 
-    }<br>
-     `
+         }
+
+       }</pre>`;
    },
-
-
 
    convertToJs: () =>{
       elem.codeBox.classList.remove("css_box", "sass_box", "less_box");
