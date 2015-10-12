@@ -1,6 +1,21 @@
-#color-picker
-  label
-    | hex
-  input
-  label
-    |
+.row
+  #color-picker.column.large-offset-3.large-6
+    .large-4.column
+      label
+        | hex
+        input#hex_color(type = "text" value = "#000" maxlength="7").large-12
+    .large-2.column#color_bar
+      | bar
+    .large-6.column
+      #rgb.large-4.column.no-padding
+        label
+          | R
+          input#red.rgb(type = "text" maxlength="3" value = "000")
+      .large-4.column.no-padding
+        label
+          | G
+          input#green.rgb(type = "text" maxlength="3" value = "000")
+      .large-4.column.no-padding
+        label
+          | B
+          input#blue.rgb(type = "text" maxlength="3" value = "000")

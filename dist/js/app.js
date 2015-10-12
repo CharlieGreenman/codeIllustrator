@@ -153,7 +153,8 @@
 	      elem.jsToggle.addEventListener("click", function () {
 	        bitIllustrator.addEmptyArrayMap();
 	        bitIllustrator.addArrayMap();
-	        bitIllustrator.addJsColorFunction();
+	        bitIllustrator.addArrMapCode();
+	        bitIllustrator.addColorMap();
 	        bitIllustrator.convertToJs();
 	      });
 	      elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
@@ -413,7 +414,7 @@
 	    },
 
 	    addEmptyArrayMap: function addEmptyArrayMap() {
-	      elem.codeBox.innerHTML = "var map = [<br> ";
+	      elem.codeBox.innerHTML = "var canvas, ctx, tileSize = " + s.pixSize + ",var map = [<br> ";
 	      elem.codeBox.innerHTML += "[";
 	      arrMap = [];
 	      //initialize the array map
@@ -427,6 +428,7 @@
 	      // create a tile map for values
 	      // if the value is the same value as the stored values,
 	      // input that value instead.
+
 	      for (x = 0; x < s.rowCount; x++) {
 	        for (y = 0; y < s.columnCount; y++) {
 	          arrMap[y].push(0);
@@ -447,8 +449,16 @@
 
 	    // make to add a pre tag, so that it actually treats code as code
 	    // and it makes a line break
-	    addJsColorFunction: function addJsColorFunction() {
-	      elem.codeBox.innerHTML += "\n       <pre> var Color = function(r, g, b, a) {\n\n         this.r = r;\n         this.g = g;\n         this.b = b;\n         this.a = a;\n\n         this.toString = function() {\n\n            return \"rgba(\" + this.r + \",\" + this.g + \",\" + this.b + \",\" + this.a + \")\";\n\n         }\n\n       }</pre>";
+	    addArrMapCode: function addArrMapCode() {
+	      elem.codeBox.innerHTML += "\n       <pre> arrMap = {\n      Color: function(r, g, b, a) {\n\n          this.r = r;\n          this.g = g;\n          this.b = b;\n          this.a = a;\n\n          this.toString = function() {\n\n              return \"rgba(\" + this.r + \",\" + this.g + \",\" + this.b + \",\" + this.a + \")\";\n          }\n\n      },\n\n      draw: function(){\n        for(var y = 0; y < map.length; y++) {\n          for(var x = 0; x < map.length; x++) {\n            ctx.fillStyle = colors[map[y][x]].toString();\n            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);\n          }\n        }\n      },\n      init: function(){\n        canvas = document.getElementById(\"canvas\");\n        canvas.width = window.outerWidth;\n        canvas.height = window.outerHeight;\n        ctx = canvas.getContext(\"2d\");\n\n        window.setInterval(function() {\n\n            arrMap.draw();\n        }, 1000 / 30);\n      }\n    };\n\n       </pre>";
+	    },
+
+	    addColorMap: function addColorMap() {
+	      elem.codeBox.innerHTML += "var colors = [";
+	      for (x = 0; x < s.storeColors.length; x++) {
+	        elem.codeBox.innerHTML += "new arrMap.Color(" + _utilsJs2["default"].hexToRgb(s.storeColors[x]) + "),";
+	      }
+	      elem.codeBox.innerHTML += "]";
 	    },
 
 	    convertToJs: function convertToJs() {

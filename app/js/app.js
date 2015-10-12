@@ -97,7 +97,8 @@ var s, elem, x, y, z,
       elem.jsToggle.addEventListener("click", function(){
          bitIllustrator.addEmptyArrayMap();
          bitIllustrator.addArrayMap();
-         bitIllustrator.addJsColorFunction();
+         bitIllustrator.addArrMapCode();
+          bitIllustrator.addColorMap();
          bitIllustrator.convertToJs();
       });
       elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
@@ -377,7 +378,7 @@ var s, elem, x, y, z,
    },
 
    addEmptyArrayMap: () => {
-       elem.codeBox.innerHTML = "var map = [<br> " ;
+       elem.codeBox.innerHTML = `var canvas, ctx, tileSize = ${s.pixSize},var map = [<br> `;
        elem.codeBox.innerHTML += "[";
        arrMap = [];
        //initialize the array map
@@ -392,6 +393,7 @@ var s, elem, x, y, z,
 // create a tile map for values
 // if the value is the same value as the stored values,
 // input that value instead.
+
      for (x = 0; x < s.rowCount ; x++) {
        for(y = 0; y < s.columnCount; y++) {
          arrMap[y].push(0);
@@ -408,27 +410,57 @@ var s, elem, x, y, z,
       arrMap[s.columnCount - 1] += "]";
       arrMap[s.columnCount - 1] += "<br>];";
       elem.codeBox.innerHTML += arrMap.join("],<br />[");
-
    },
 
 // make to add a pre tag, so that it actually treats code as code
 // and it makes a line break
-   addJsColorFunction: () => {
+   addArrMapCode: () => {
      elem.codeBox.innerHTML += `
-       <pre> var Color = function(r, g, b, a) {
+       <pre> arrMap = {
+      Color: function(r, g, b, a) {
 
-         this.r = r;
-         this.g = g;
-         this.b = b;
-         this.a = a;
+          this.r = r;
+          this.g = g;
+          this.b = b;
+          this.a = a;
 
-         this.toString = function() {
+          this.toString = function() {
 
-            return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";
+              return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";
+          }
 
-         }
+      },
 
-       }</pre>`;
+      draw: function(){
+        for(var y = 0; y < map.length; y++) {
+          for(var x = 0; x < map.length; x++) {
+            ctx.fillStyle = colors[map[y][x]].toString();
+            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+          }
+        }
+      },
+      init: function(){
+        canvas = document.getElementById("canvas");
+        canvas.width = window.outerWidth;
+        canvas.height = window.outerHeight;
+        ctx = canvas.getContext("2d");
+
+        window.setInterval(function() {
+
+            arrMap.draw();
+        }, 1000 / 30);
+      }
+    };
+
+       </pre>`;
+   },
+
+   addColorMap: () => {
+     elem.codeBox.innerHTML += "var colors = ["
+     for(x = 0; x < s.storeColors.length; x++){
+       elem.codeBox.innerHTML += `new arrMap.Color(${utils.hexToRgb(s.storeColors[x])}),`;
+     }
+     elem.codeBox.innerHTML += "]"
    },
 
    convertToJs: () =>{
