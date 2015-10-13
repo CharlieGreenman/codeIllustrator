@@ -414,7 +414,7 @@
 	    },
 
 	    addEmptyArrayMap: function addEmptyArrayMap() {
-	      elem.codeBox.innerHTML = "var canvas, ctx, tileSize = " + s.pixSize + ",var map = [<br> ";
+	      elem.codeBox.innerHTML = "var canvas, ctx, tileSize = " + s.pixSize + ", map = [<br> ";
 	      elem.codeBox.innerHTML += "[";
 	      arrMap = [];
 	      //initialize the array map
@@ -434,10 +434,14 @@
 	          arrMap[y].push(0);
 	          for (z = 0; z < s.storeValues.length; z++) {
 	            if (x === parseFloat(s.storeValues[z][0]) / s.pixSize && y === parseFloat(s.storeValues[z][1]) / s.pixSize) {
-	              arrMap[y][x] = 1;
+	              arrMap[y][x] = createfunc(z);
 	            }
 	          }
 	        }
+	      }
+
+	      function createfunc(z) {
+	        return z;
 	      }
 
 	      //create a new line once the app continues to the next line
@@ -456,9 +460,15 @@
 	    addColorMap: function addColorMap() {
 	      elem.codeBox.innerHTML += "var colors = [";
 	      for (x = 0; x < s.storeColors.length; x++) {
-	        elem.codeBox.innerHTML += "new arrMap.Color(" + _utilsJs2["default"].hexToRgb(s.storeColors[x]) + "),";
+	        elem.codeBox.innerHTML += "new arrMap.Color(" + _utilsJs2["default"].hexToRgb(s.storeColors[x]).r + "," + _utilsJs2["default"].hexToRgb(s.storeColors[x]).g + "," + _utilsJs2["default"].hexToRgb(s.storeColors[x]).b + ", 1)";
+	        if (x === s.storeColors.length - 1) {
+	          elem.codeBox.innerHTML += '';
+	        } else {
+	          elem.codeBox.innerHTML += ", ";
+	        }
 	      }
-	      elem.codeBox.innerHTML += "]";
+
+	      elem.codeBox.innerHTML += "];<pre>\n     arrMap.init();</pre>\n     ";
 	    },
 
 	    convertToJs: function convertToJs() {
