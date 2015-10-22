@@ -428,18 +428,15 @@
 	      // create a tile map for values
 	      // if the value is the same value as the stored values,
 	      // input that value instead.
-	      var breakCheck1 = false;
 
 	      for (x = 0; x < s.rowCount; x++) {
 	        for (y = 0; y < s.columnCount; y++) {
 	          arrMap[y].push(0);
 	          for (z = 0; z < s.storeValues.length; z++) {
+	            //tells us value needs to be changed
 	            if (x === parseFloat(s.storeValues[z][0]) / s.pixSize && y === parseFloat(s.storeValues[z][1]) / s.pixSize) {
-	              arrMap[y][x] = 1;
-	              //  breakCheck1=true;
-
-	              //s.storeColors.indexOf(elem.hexColor.value);
-	              //arrMap[y][x] = s.storeColors.length;
+	              //tells us what it should be changed to
+	              arrMap[y][x] = s.storeColors.indexOf(s.storeValues[z][2]) + 1;
 	            }
 	          }
 	        }
