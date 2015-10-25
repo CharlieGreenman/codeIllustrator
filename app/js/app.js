@@ -98,7 +98,7 @@ var s, elem, x, y, z,
          bitIllustrator.addEmptyArrayMap();
          bitIllustrator.addArrayMap();
          bitIllustrator.addArrMapCode();
-          bitIllustrator.addColorMap();
+         bitIllustrator.addColorMap();
          bitIllustrator.convertToJs();
       });
       elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
@@ -390,10 +390,7 @@ var s, elem, x, y, z,
    },
 
    addArrayMap: () => {
-// create a tile map for values
-// if the value is the same value as the stored values,
-// input that value instead.
-
+// create a dynamic array map
      for (x = 0; x < s.rowCount ; x++) {
        for(y = 0; y < s.columnCount; y++) {
          arrMap[y].push(0);
@@ -411,7 +408,7 @@ var s, elem, x, y, z,
      //create a new line once the app continues to the next line
     //test to see if I can change value of  arrMap[1][1] = 3;
       arrMap[s.columnCount - 1] += "]";
-      arrMap[s.columnCount - 1] += "<br>];";
+      arrMap[s.columnCount - 1] += "<br>],";
       elem.codeBox.innerHTML += arrMap.join("],<br />[");
    },
 
@@ -459,7 +456,7 @@ var s, elem, x, y, z,
    },
 
    addColorMap: () => {
-     elem.codeBox.innerHTML += "var colors = ["
+     elem.codeBox.innerHTML += `var colors = [ " ",`
      for(x = 0; x < s.storeColors.length; x++){
        elem.codeBox.innerHTML += `new arrMap.Color(${utils.hexToRgb(s.storeColors[x]).r},${utils.hexToRgb(s.storeColors[x]).g},${utils.hexToRgb(s.storeColors[x]).b}, 1)`;
        if(x === s.storeColors.length - 1){

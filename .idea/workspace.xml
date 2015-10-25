@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f96ab8b3-5d4f-4356-b875-195e53a16a73" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bit_font.zip" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="$PROJECT_DIR$/app/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/app.js" afterPath="$PROJECT_DIR$/dist/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -26,14 +27,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="_grid.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/_grid.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46153846">
-              <caret line="403" column="74" selection-start-line="403" selection-start-column="74" selection-end-line="403" selection-end-column="74" />
+            <state vertical-scroll-proportion="1.8490566">
+              <caret line="186" column="6" selection-start-line="144" selection-start-column="3" selection-end-line="186" selection-end-column="6" />
               <folding>
-                <marker date="1445489206000" expanded="true" signature="14419:15313" placeholder="..." />
-                <marker date="1445489206000" expanded="true" signature="15819:15845" placeholder="..." />
+                <marker date="1445787203000" expanded="true" signature="14330:15224" placeholder="..." />
+                <marker date="1445787203000" expanded="true" signature="15735:15761" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -43,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/app/js/_utils.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="10" />
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -104,6 +115,7 @@
         <option value="$PROJECT_DIR$/app/jade/index.jade" />
         <option value="$PROJECT_DIR$/app/jade/includes/app_components/_header.jade" />
         <option value="$PROJECT_DIR$/app/jade/includes/app_components/_color_picker.jade" />
+        <option value="$PROJECT_DIR$/app/js/_grid.js" />
         <option value="$PROJECT_DIR$/app/js/app.js" />
       </list>
     </option>
@@ -267,38 +279,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pixelatorV2_with_react" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="codeIllustrator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jade" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../arrayMap" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="options.lastSelected" value="preferences.pluginManager" />
@@ -438,17 +424,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1445489206000" expanded="true" signature="14419:15313" placeholder="..." />
-            <marker date="1445489206000" expanded="true" signature="15819:15845" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/_utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -485,8 +460,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding>
-            <marker date="1445489206000" expanded="true" signature="14419:15313" placeholder="..." />
-            <marker date="1445489206000" expanded="true" signature="15819:15845" placeholder="..." />
+            <marker date="1445787203000" expanded="true" signature="14330:15224" placeholder="..." />
+            <marker date="1445787203000" expanded="true" signature="15735:15761" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -519,8 +494,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
           <folding>
-            <marker date="1445489206000" expanded="true" signature="14419:15313" placeholder="..." />
-            <marker date="1445489206000" expanded="true" signature="15819:15845" placeholder="..." />
+            <marker date="1445787203000" expanded="true" signature="14330:15224" placeholder="..." />
+            <marker date="1445787203000" expanded="true" signature="15735:15761" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -793,14 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/_utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="7.5675673">
@@ -809,13 +776,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/_utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/_grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46153846">
-          <caret line="403" column="74" selection-start-line="403" selection-start-column="74" selection-end-line="403" selection-end-column="74" />
+        <state vertical-scroll-proportion="1.8490566">
+          <caret line="186" column="6" selection-start-line="144" selection-start-column="3" selection-end-line="186" selection-end-column="6" />
           <folding>
-            <marker date="1445489206000" expanded="true" signature="14419:15313" placeholder="..." />
-            <marker date="1445489206000" expanded="true" signature="15819:15845" placeholder="..." />
+            <marker date="1445787203000" expanded="true" signature="14330:15224" placeholder="..." />
+            <marker date="1445787203000" expanded="true" signature="15735:15761" placeholder="..." />
           </folding>
         </state>
       </provider>

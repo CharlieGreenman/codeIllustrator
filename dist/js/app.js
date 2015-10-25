@@ -425,10 +425,7 @@
 	    },
 
 	    addArrayMap: function addArrayMap() {
-	      // create a tile map for values
-	      // if the value is the same value as the stored values,
-	      // input that value instead.
-
+	      // create a dynamic array map
 	      for (x = 0; x < s.rowCount; x++) {
 	        for (y = 0; y < s.columnCount; y++) {
 	          arrMap[y].push(0);
@@ -445,7 +442,7 @@
 	      //create a new line once the app continues to the next line
 	      //test to see if I can change value of  arrMap[1][1] = 3;
 	      arrMap[s.columnCount - 1] += "]";
-	      arrMap[s.columnCount - 1] += "<br>];";
+	      arrMap[s.columnCount - 1] += "<br>],";
 	      elem.codeBox.innerHTML += arrMap.join("],<br />[");
 	    },
 
@@ -456,7 +453,7 @@
 	    },
 
 	    addColorMap: function addColorMap() {
-	      elem.codeBox.innerHTML += "var colors = [";
+	      elem.codeBox.innerHTML += "var colors = [ \" \",";
 	      for (x = 0; x < s.storeColors.length; x++) {
 	        elem.codeBox.innerHTML += "new arrMap.Color(" + _utilsJs2["default"].hexToRgb(s.storeColors[x]).r + "," + _utilsJs2["default"].hexToRgb(s.storeColors[x]).g + "," + _utilsJs2["default"].hexToRgb(s.storeColors[x]).b + ", 1)";
 	        if (x === s.storeColors.length - 1) {
