@@ -5,10 +5,9 @@
  * @param {string} author - Charlie Greenman
  */
 import utils from "./_utils.js";
-
-document.addEventListener("DOMContentLoaded", domLoaded, false);
-
-function domLoaded(){
+import grid from "./_grid.js";
+import hndClck from "./_when-clicked.js";
+import convert from "./_conversion.js";
 
 var s, elem, x, y, z,
  colorNum = 0,
@@ -60,7 +59,7 @@ var s, elem, x, y, z,
         bitIllustrator.updatedSettings();
         bitIllustrator.hideShow();
         bitIllustrator.resizeGrid();
-        bitIllustrator.createGridIllustrator();
+        grid.createGridIllustrator();
       });
       elem.viewButton.addEventListener("click", () =>{
         bitIllustrator.removeTiles();
@@ -71,21 +70,21 @@ var s, elem, x, y, z,
       });
       s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
       c.addEventListener("click", function(){
-         bitIllustrator.handleClick();
-         bitIllustrator.addColors();
-         bitIllustrator.convertToArray();
-         bitIllustrator.convertToCss();
+         grid.handleClick();
+         hndClck.addColors();
+         hndClck.convertToArray();
+         hndClck.convertToCss();
       });
       elem.cssToggle.addEventListener("click", function(){
          bitIllustrator.convertToCss();
       });
       elem.sassToggle.addEventListener("click", function(){
-         bitIllustrator.addSassVariables();
-         bitIllustrator.convertToSass();
+         convert.addSassVariables();
+         convert.convertToSass();
       });
       elem.lessToggle.addEventListener("click", function(){
-         bitIllustrator.addLessVariables();
-         bitIllustrator.convertToLess();
+         convert.addLessVariables();
+         convert.convertToLess();
       });
       elem.hexColor.addEventListener("input", function(){
          bitIllustrator.pickHexColor();
@@ -142,92 +141,6 @@ var s, elem, x, y, z,
      elem.colorBar.style.background = elem.hexColor.value;
    },
 
-   //create grid and create boxes
-    createGridIllustrator: () => {
-      //module for creating a grid
-
-      for(var r = 0; r < s.columnCount; r++) {
-        for(var i = 0; i < s.rowCount; i++) {
-          ctx.strokeStyle = "#3e4649";
-          ctx.strokeRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
-        }
-      }
-    },
-
-   //allow individual boxes to be clicked
-   // handleClick is still in prototyping phase
-    handleClick: (e) => {
-       e = e || window.event;
-      var newHexValue = elem.hexColor.value;
-      ctx.fillStyle = newHexValue;
-      var imgData = ctx.getImageData(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-                    Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-                    s.pixSize, s.pixSize);
-      if(imgData.data[0] !== 62 && imgData.data[1] !== 71 && imgData.data[2] !== 74){
-        ctx.fillStyle = "#333333";
-        ctx.strokeStyle = "#3e4649";
-        ctx.lineWidth = 2;
-        // each individual blank piece is now removed and added using canvas
-        // as opposed to how it is/was originally used, which is through
-        //
-        ctx.clearRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-                   Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-                   s.pixSize, s.pixSize);
-        ctx.strokeRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-                   Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-                   s.pixSize, s.pixSize);
-
-        return false;
-      }
-
-      ctx.fillRect(Math.floor(e.offsetX / s.pixSize) * s.pixSize,
-                   Math.floor(e.offsetY / s.pixSize) * s.pixSize,
-                   s.pixSize, s.pixSize);
-
-    },
-
-   /* create multi-dimensional array
-      that is sorted by x value */
-   convertToArray: (e) =>{
-      e = e || window.event;
-     var xVal = Math.floor(e.offsetX / s.pixSize) * s.pixSize;
-     var yVal = Math.floor(e.offsetY / s.pixSize) * s.pixSize;
-
-     s.storeValues.push([xVal, yVal, elem.hexColor.value]);
-
-     for(var i = 0; i < 2; i++){
-       s.storeValues[s.storeValues.length - 1][i] += "px";
-     }
-
-      for (var io = 0; io < s.storeValues.length - 1; io++) {
-        //decided it made more sense to remove pushed value in array and then to parse through and remove value
-     //used this stackoverflow http://stackoverflow.com/questions/26635297/how-to-remove-an-array-from-a-multidimensional-array-if-it-exists-in-another-mul
-        if (JSON.stringify(s.storeValues[io]) === JSON.stringify(s.storeValues[s.storeValues.length - 1]) ){
-          s.storeValues.splice(io, 1);
-          s.storeValues.splice(s.storeValues.length - 1, 1);
-        }
-     }
-
-     s.storeValues.sort(utils.compare);
-
-   },
-
-   //create a color array for sass variables
-   // in order to enable color1, color2, etc...
-   addColors: () =>{
-     //only add value if it is a new color
-     if(s.storeColors.length > 0 && s.storeColors.indexOf(elem.hexColor.value) > -1){
-        return;
-     }
-     else{
-       colorNum++;
-       s.storeColors.push(elem.hexColor.value);
-       s.sassColorVariables.push(`$color ${colorNum}`);
-       s.lessColorVariables.push(`$color ${colorNum}`);
-     }
-
-   },
-
    codeBoxToggle: () => {
      elem.codeBoxContainer.classList.toggle("open");
      if(elem.codeBoxContainer.classList.contains("open")){
@@ -271,110 +184,6 @@ var s, elem, x, y, z,
         ctx.fillStyle = s.storeValues[pw][2];
       }
 
-   },
-   convertToCss: () =>{
-        elem.codeBox.classList.remove("sass_box", "less_box", "js_box");
-        elem.codeBox.classList.add("css_box");
-
-        /* reset value for elem.codeBox */
-        elem.codeBox.innerHTML = "box-shadow: ";
-       /* instead of re-inserting value, need to think of how to do this */
-        for(var abc = 0; abc < s.storeValues.length; abc++){
-          if(abc === s.storeValues.length - 1){
-             elem.codeBox.innerHTML += `${s.storeValues[abc].join(" ")};`;
-          }
-          else {
-            elem.codeBox.innerHTML += s.storeValues[abc].join(" ") + ", ";
-          }
-        }
-
-   },
-
-   addSassVariables: () =>{
-     elem.codeBox.classList.remove("css_box", "less_box", "js_box");
-     elem.codeBox.classList.add("sass_box");
-
-     elem.codeBox.innerHTML = `$num: ${s.pixSize};<br>`;
-     for(var avi = 0; avi < s.storeColors.length; avi++){
-       elem.codeBox.innerHTML += ` $colors${avi}: ${s.storeColors[avi]};`;
-     }
-
-     elem.codeBox.innerHTML += "<br>";
-
-
-      for(x = 0; x < s.columnCount; x++){
-        elem.codeBox.innerHTML += `$X${x}: $num*${x}px; `;
-      }
-     elem.codeBox.innerHTML += `$num: ${s.pixSize};<br>`;
-     for(y = 0; y < s.columnCount; y++){
-        elem.codeBox.innerHTML += `$O${x}: $num*${x}px; `;
-      }
-     elem.codeBox.innerHTML += "<br><br>";
-   },
-
-   convertToSass: () =>{
-
-    elem.codeBox.innerHTML += "box-shadow: ";
-     for(var x = 0; x < s.storeValues.length; x++) {
-       elem.codeBox.innerHTML += ` $X${parseFloat(s.storeValues[x][0]) / s.pixSize}`;
-       elem.codeBox.innerHTML += ` $O${parseFloat(s.storeValues[x][1]) / s.pixSize}`;
-       //need to add support with name that color
-
-       for(y = 0; y < s.storeColors.length; y++){
-         if(s.storeValues[x][2] === s.storeColors[y]){
-           elem.codeBox.innerHTML += ` ${s.sassColorVariables[y]}`;
-         }
-       }
-       if(x === s.storeValues.length - 1){
-        elem.codeBox.innerHTML += ";";
-       }
-       else{
-        elem.codeBox.innerHTML += ",";
-       }
-     }
-   },
-
-   addLessVariables: () =>{
-    elem.codeBox.classList.remove("css_box", "sass_box", "js_box");
-    elem.codeBox.classList.add("less_box");
-
-    elem.codeBox.innerHTML = "@num:" + s.pixSize + ";<br>";
-
-     for(x = 0; x < s.storeColors.length; x++){
-       elem.codeBox.innerHTML += `@colors ${x}: ${s.storeColors[x]};`;
-     }
-
-     elem.codeBox.innerHTML += "<br>";
-
-      for(x = 0; x < s.columnCount; x++){
-        elem.codeBox.innerHTML += `@X${x}: @num*${x}px; `;
-      }
-     elem.codeBox.innerHTML += `$num: ${s.pixSize};<br>`;
-     for(y = 0; y < s.columnCount; y++){
-        elem.codeBox.innerHTML += `@O${x}: @num*${x}px; `;
-      }
-     elem.codeBox.innerHTML += "<br><br>";
-   },
-
-   convertToLess: () => {
-     elem.codeBox.innerHTML += "box-shadow: ";
-     for (var xyz = 0; xyz < s.storeValues.length; xyz++) {
-       elem.codeBox.innerHTML += " @X" + parseFloat(s.storeValues[xyz][0]) / s.pixSize;
-       elem.codeBox.innerHTML += " @O" + parseFloat(s.storeValues[xyz][1]) / s.pixSize;
-
-       for(var avi = 0; avi < s.storeColors.length; avi++){
-         if(s.storeValues[xyz][2] === s.storeColors[avi]){
-           elem.codeBox.innerHTML += " " + s.lessColorVariables[avi];
-         }
-       }
-
-       if (xyz === s.storeValues.length - 1) {
-         elem.codeBox.innerHTML += ";";
-       }
-       else {
-         elem.codeBox.innerHTML += ",";
-       }
-     }
    },
 
    addEmptyArrayMap: () => {
@@ -478,8 +287,10 @@ var s, elem, x, y, z,
    }
   };
 
-  bitIllustrator.init();
+bitIllustrator.init();
 
-}
+
+
+
 
 
