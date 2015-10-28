@@ -8,6 +8,7 @@ import utils from "./_utils.js";
 import grid from "./_grid.js";
 import hndClck from "./_when-clicked.js";
 import convert from "./_conversion.js";
+import convertJS from "./_js-conversion.js";
 
 var s, elem, x, y, z,
  colorNum = 0,
@@ -94,10 +95,10 @@ var s, elem, x, y, z,
         elem.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
       }
       elem.jsToggle.addEventListener("click", function(){
-         bitIllustrator.addEmptyArrayMap();
-         bitIllustrator.addArrayMap();
-         bitIllustrator.addArrMapCode();
-         bitIllustrator.addColorMap();
+         convertJS.addEmptyArrayMap();
+         convertJS.addArrayMap();
+         convertJS.addArrMapCode();
+         convertJS.addColorMap();
          bitIllustrator.convertToJs();
       });
       elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
@@ -184,101 +185,6 @@ var s, elem, x, y, z,
         ctx.fillStyle = s.storeValues[pw][2];
       }
 
-   },
-
-   addEmptyArrayMap: () => {
-       elem.codeBox.innerHTML = `var canvas, ctx, tileSize = ${s.pixSize}, map = [<br> `;
-       elem.codeBox.innerHTML += "[";
-       arrMap = [];
-       //initialize the array map
-       for(x = 0; x < s.rowCount; x++) {
-           arrMap.push([]);
-       }
-       // populate initial array map
-
-   },
-
-   addArrayMap: () => {
-// create a dynamic array map
-     for (x = 0; x < s.rowCount ; x++) {
-       for(y = 0; y < s.columnCount; y++) {
-         arrMap[y].push(0);
-         for(z = 0; z < s.storeValues.length; z++) {
-           //tells us value needs to be changed
-           if (x === parseFloat(s.storeValues[z][0]) / s.pixSize && y === parseFloat(s.storeValues[z][1]) / s.pixSize) {
-           //tells us what it should be changed to
-             arrMap[y][x] = s.storeColors.indexOf(s.storeValues[z][2]) + 1 ;
-          }
-        }
-       }
-     }
-
-
-     //create a new line once the app continues to the next line
-    //test to see if I can change value of  arrMap[1][1] = 3;
-      arrMap[s.columnCount - 1] += "]";
-      arrMap[s.columnCount - 1] += "<br>],";
-      elem.codeBox.innerHTML += arrMap.join("],<br />[");
-   },
-
-// make to add a pre tag, so that it actually treats code as code
-// and it makes a line break
-   addArrMapCode: () => {
-     elem.codeBox.innerHTML += `
-       <pre> arrMap = {
-      Color: function(r, g, b, a) {
-
-          this.r = r;
-          this.g = g;
-          this.b = b;
-          this.a = a;
-
-          this.toString = function() {
-
-              return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";
-          }
-
-      },
-
-      draw: function(){
-        for(var y = 0; y < map.length; y++) {
-          for(var x = 0; x < map.length; x++) {
-            ctx.fillStyle = colors[map[y][x]].toString();
-            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-          }
-        }
-      },
-      init: function(){
-        canvas = document.getElementById("canvas");
-        canvas.width = window.outerWidth;
-        canvas.height = window.outerHeight;
-        ctx = canvas.getContext("2d");
-
-        window.setInterval(function() {
-
-            arrMap.draw();
-        }, 1000 / 30);
-      }
-    };
-
-       </pre>`;
-   },
-
-   addColorMap: () => {
-     elem.codeBox.innerHTML += `var colors = [ " ",`
-     for(x = 0; x < s.storeColors.length; x++){
-       elem.codeBox.innerHTML += `new arrMap.Color(${utils.hexToRgb(s.storeColors[x]).r},${utils.hexToRgb(s.storeColors[x]).g},${utils.hexToRgb(s.storeColors[x]).b}, 1)`;
-       if(x === s.storeColors.length - 1){
-           elem.codeBox.innerHTML += '';
-       }
-       else{
-           elem.codeBox.innerHTML += ", ";
-       }
-     }
-
-     elem.codeBox.innerHTML += `];<pre>
-     arrMap.init();</pre>
-     `
    },
 
    convertToJs: () =>{

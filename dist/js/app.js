@@ -70,6 +70,10 @@
 
 	var _conversionJs2 = _interopRequireDefault(_conversionJs);
 
+	var _jsConversionJs = __webpack_require__(6);
+
+	var _jsConversionJs2 = _interopRequireDefault(_jsConversionJs);
+
 	var s,
 	    elem,
 	    x,
@@ -159,10 +163,10 @@
 	      elem.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
 	    }
 	    elem.jsToggle.addEventListener("click", function () {
-	      bitIllustrator.addEmptyArrayMap();
-	      bitIllustrator.addArrayMap();
-	      bitIllustrator.addArrMapCode();
-	      bitIllustrator.addColorMap();
+	      _jsConversionJs2["default"].addEmptyArrayMap();
+	      _jsConversionJs2["default"].addArrayMap();
+	      _jsConversionJs2["default"].addArrMapCode();
+	      _jsConversionJs2["default"].addColorMap();
 	      bitIllustrator.convertToJs();
 	    });
 	    elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
@@ -246,59 +250,6 @@
 	      ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
 	      ctx.fillStyle = s.storeValues[pw][2];
 	    }
-	  },
-
-	  addEmptyArrayMap: function addEmptyArrayMap() {
-	    elem.codeBox.innerHTML = "var canvas, ctx, tileSize = " + s.pixSize + ", map = [<br> ";
-	    elem.codeBox.innerHTML += "[";
-	    arrMap = [];
-	    //initialize the array map
-	    for (x = 0; x < s.rowCount; x++) {
-	      arrMap.push([]);
-	    }
-	    // populate initial array map
-	  },
-
-	  addArrayMap: function addArrayMap() {
-	    // create a dynamic array map
-	    for (x = 0; x < s.rowCount; x++) {
-	      for (y = 0; y < s.columnCount; y++) {
-	        arrMap[y].push(0);
-	        for (z = 0; z < s.storeValues.length; z++) {
-	          //tells us value needs to be changed
-	          if (x === parseFloat(s.storeValues[z][0]) / s.pixSize && y === parseFloat(s.storeValues[z][1]) / s.pixSize) {
-	            //tells us what it should be changed to
-	            arrMap[y][x] = s.storeColors.indexOf(s.storeValues[z][2]) + 1;
-	          }
-	        }
-	      }
-	    }
-
-	    //create a new line once the app continues to the next line
-	    //test to see if I can change value of  arrMap[1][1] = 3;
-	    arrMap[s.columnCount - 1] += "]";
-	    arrMap[s.columnCount - 1] += "<br>],";
-	    elem.codeBox.innerHTML += arrMap.join("],<br />[");
-	  },
-
-	  // make to add a pre tag, so that it actually treats code as code
-	  // and it makes a line break
-	  addArrMapCode: function addArrMapCode() {
-	    elem.codeBox.innerHTML += "\n       <pre> arrMap = {\n      Color: function(r, g, b, a) {\n\n          this.r = r;\n          this.g = g;\n          this.b = b;\n          this.a = a;\n\n          this.toString = function() {\n\n              return \"rgba(\" + this.r + \",\" + this.g + \",\" + this.b + \",\" + this.a + \")\";\n          }\n\n      },\n\n      draw: function(){\n        for(var y = 0; y < map.length; y++) {\n          for(var x = 0; x < map.length; x++) {\n            ctx.fillStyle = colors[map[y][x]].toString();\n            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);\n          }\n        }\n      },\n      init: function(){\n        canvas = document.getElementById(\"canvas\");\n        canvas.width = window.outerWidth;\n        canvas.height = window.outerHeight;\n        ctx = canvas.getContext(\"2d\");\n\n        window.setInterval(function() {\n\n            arrMap.draw();\n        }, 1000 / 30);\n      }\n    };\n\n       </pre>";
-	  },
-
-	  addColorMap: function addColorMap() {
-	    elem.codeBox.innerHTML += "var colors = [ \" \",";
-	    for (x = 0; x < s.storeColors.length; x++) {
-	      elem.codeBox.innerHTML += "new arrMap.Color(" + _utilsJs2["default"].hexToRgb(s.storeColors[x]).r + "," + _utilsJs2["default"].hexToRgb(s.storeColors[x]).g + "," + _utilsJs2["default"].hexToRgb(s.storeColors[x]).b + ", 1)";
-	      if (x === s.storeColors.length - 1) {
-	        elem.codeBox.innerHTML += '';
-	      } else {
-	        elem.codeBox.innerHTML += ", ";
-	      }
-	    }
-
-	    elem.codeBox.innerHTML += "];<pre>\n     arrMap.init();</pre>\n     ";
 	  },
 
 	  convertToJs: function convertToJs() {
@@ -650,6 +601,90 @@
 	};
 
 	exports["default"] = convert;
+	module.exports = exports["default"];
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var _elemJs = __webpack_require__(3);
+
+	var _elemJs2 = _interopRequireDefault(_elemJs);
+
+	var _utilsJs = __webpack_require__(1);
+
+	var _utilsJs2 = _interopRequireDefault(_utilsJs);
+
+	var arrMap = [],
+	    x,
+	    y,
+	    z;
+
+	var convertJS = {
+
+	    addEmptyArrayMap: function addEmptyArrayMap() {
+	        _elemJs2["default"].el.codeBox.innerHTML = "var canvas, ctx, tileSize = " + _elemJs2["default"].s.pixSize + ", map = [<br> ";
+	        _elemJs2["default"].el.codeBox.innerHTML += "[";
+	        arrMap = [];
+	        //initialize the array map
+	        for (x = 0; x < _elemJs2["default"].s.rowCount; x++) {
+	            arrMap.push([]);
+	        }
+	        // populate initial array map
+	    },
+
+	    addArrayMap: function addArrayMap() {
+	        // create a dynamic array map
+	        for (x = 0; x < _elemJs2["default"].s.rowCount; x++) {
+	            for (y = 0; y < _elemJs2["default"].s.columnCount; y++) {
+	                arrMap[y].push(0);
+	                for (z = 0; z < _elemJs2["default"].s.storeValues.length; z++) {
+	                    //tells us value needs to be changed
+	                    if (x === parseFloat(_elemJs2["default"].s.storeValues[z][0]) / _elemJs2["default"].s.pixSize && y === parseFloat(_elemJs2["default"].s.storeValues[z][1]) / _elemJs2["default"].s.pixSize) {
+	                        //tells us what it should be changed to
+	                        arrMap[y][x] = _elemJs2["default"].s.storeColors.indexOf(_elemJs2["default"].s.storeValues[z][2]) + 1;
+	                    }
+	                }
+	            }
+	        }
+
+	        //create a new line once the app continues to the next line
+	        //test to see if I can change value of  arrMap[1][1] = 3;
+	        arrMap[_elemJs2["default"].s.columnCount - 1] += "]";
+	        arrMap[_elemJs2["default"].s.columnCount - 1] += "<br>],";
+	        _elemJs2["default"].el.codeBox.innerHTML += arrMap.join("],<br />[");
+	    },
+
+	    // make to add a pre tag, so that it actually treats code as code
+	    // and it makes a line break
+	    addArrMapCode: function addArrMapCode() {
+	        _elemJs2["default"].el.codeBox.innerHTML += "\n       <pre> arrMap = {\n      Color: function(r, g, b, a) {\n\n          this.r = r;\n          this.g = g;\n          this.b = b;\n          this.a = a;\n\n          this.toString = function() {\n\n              return \"rgba(\" + this.r + \",\" + this.g + \",\" + this.b + \",\" + this.a + \")\";\n          }\n\n      },\n\n      draw: function(){\n        for(var y = 0; y < map.length; y++) {\n          for(var x = 0; x < map.length; x++) {\n            ctx.fillStyle = colors[map[y][x]].toString();\n            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);\n          }\n        }\n      },\n      init: function(){\n        canvas = document.getElementById(\"canvas\");\n        canvas.width = window.outerWidth;\n        canvas.height = window.outerHeight;\n        ctx = canvas.getContext(\"2d\");\n\n        window.setInterval(function() {\n\n            arrMap.draw();\n        }, 1000 / 30);\n      }\n    };\n\n       </pre>";
+	    },
+
+	    addColorMap: function addColorMap() {
+	        _elemJs2["default"].el.codeBox.innerHTML += "var colors = [ \" \",";
+	        for (x = 0; x < _elemJs2["default"].s.storeColors.length; x++) {
+	            _elemJs2["default"].el.codeBox.innerHTML += "new arrMap.Color(" + _utilsJs2["default"].hexToRgb(_elemJs2["default"].s.storeColors[x]).r + "," + _utilsJs2["default"].hexToRgb(_elemJs2["default"].s.storeColors[x]).g + "," + _utilsJs2["default"].hexToRgb(_elemJs2["default"].s.storeColors[x]).b + ", 1)";
+	            if (x === _elemJs2["default"].s.storeColors.length - 1) {
+	                _elemJs2["default"].el.codeBox.innerHTML += '';
+	            } else {
+	                _elemJs2["default"].el.codeBox.innerHTML += ", ";
+	            }
+	        }
+
+	        _elemJs2["default"].el.codeBox.innerHTML += "];<pre>\n     arrMap.init();</pre>\n     ";
+	    }
+	};
+
+	exports["default"] = convertJS;
 	module.exports = exports["default"];
 
 /***/ }
