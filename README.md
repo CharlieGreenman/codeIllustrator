@@ -14,10 +14,8 @@ Convert to es6(with babel) *[Done]*
 Create Code compilation functionality where code is converted to Javascript *complete*
  * Array map is complete, do need to add complete code to Javascript compilation, however for the most part it is finished(the array map which is the hardest part is complete* 
  
-TODO Tidy up Javascript click events so that it works with addition and removal of 8 bit squares seamleasly, and that bugs are removed
-  * bugs are put here 
-  * 
-  * 
+Tidy up Javascript click events so that it works with addition and removal of 8 bit squares seamleasly, and that bugs are removed
+  *[Done]*
 
 TODO Tidy up the color picker, so that it actually looks nice as part of the application
   * for the record, would like to stick with a very minamalistic color picker, that allows you to input values instead of actually picking a color 
