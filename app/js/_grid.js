@@ -24,6 +24,8 @@ var grid = {
     // handleClick is still in prototyping phase
     handleClick: (e) => {
         e = e || window.event;
+        var xVal = Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize;
+        var yVal = Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize;
         ctx.fillStyle = elem.el.hexColor.value;
         var imgData = ctx.getImageData(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize,
             Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize,
@@ -31,23 +33,23 @@ var grid = {
         if(imgData.data[0] !== 62 && imgData.data[1] !== 71 && imgData.data[2] !== 74){
             ctx.fillStyle = "#333333";
             ctx.strokeStyle = "#3e4649";
-            ctx.lineWidth = 2;
-            // each individual blank piece is now removed and added using canvas
-            // as opposed to how it is/was originally used, which is through
-            //
+            ctx.lineWidth = 0;
             ctx.clearRect(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize,
                 Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize,
-                bitIllustrator.s.pixSize, elem.s.pixSize);
+                elem.s.pixSize, elem.s.pixSize);
             ctx.strokeRect(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize,
                 Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize,
                 elem.s.pixSize, elem.s.pixSize);
-
+            //elem.s.storeValues.indexOf([xVal, yVal, elem.el.hexColor.value]).pop();
+            //this return false is causing wonky behavior, should look into it
             return false;
         }
 
-        ctx.fillRect(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize,
-            Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize,
-            elem.s.pixSize, elem.s.pixSize);
+        ctx.fillRect(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize + 1,
+            Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize + 1,
+            //accomodate for 2 px border
+            //need to put in a variable down the line
+            elem.s.pixSize - 2, elem.s.pixSize - 2);
 
     }
 };

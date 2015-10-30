@@ -16,7 +16,6 @@ import utils from "./_utils.js";
             elem.s.sassColorVariables.push(`$color ${colorNum}`);
             elem.s.lessColorVariables.push(`$color ${colorNum}`);
         }
-
     },
     /* create multi-dimensional array
      that is sorted by x value */

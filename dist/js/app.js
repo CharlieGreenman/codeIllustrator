@@ -348,22 +348,25 @@
 	    // handleClick is still in prototyping phase
 	    handleClick: function handleClick(e) {
 	        e = e || window.event;
+	        var xVal = Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize;
+	        var yVal = Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize;
 	        ctx.fillStyle = _elemJs2["default"].el.hexColor.value;
 	        var imgData = ctx.getImageData(Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
 	        if (imgData.data[0] !== 62 && imgData.data[1] !== 71 && imgData.data[2] !== 74) {
 	            ctx.fillStyle = "#333333";
 	            ctx.strokeStyle = "#3e4649";
-	            ctx.lineWidth = 2;
-	            // each individual blank piece is now removed and added using canvas
-	            // as opposed to how it is/was originally used, which is through
-	            //
-	            ctx.clearRect(Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, bitIllustrator.s.pixSize, _elemJs2["default"].s.pixSize);
+	            ctx.lineWidth = 0;
+	            ctx.clearRect(Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
 	            ctx.strokeRect(Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
-
+	            //elem.s.storeValues.indexOf([xVal, yVal, elem.el.hexColor.value]).pop();
+	            //this return false is causing wonky behavior, should look into it
 	            return false;
 	        }
 
-	        ctx.fillRect(Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
+	        ctx.fillRect(Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize + 1, Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize + 1,
+	        //accomodate for 2 px border
+	        //need to put in a variable down the line
+	        _elemJs2["default"].s.pixSize - 2, _elemJs2["default"].s.pixSize - 2);
 	    }
 	};
 
