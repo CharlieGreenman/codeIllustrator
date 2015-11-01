@@ -16,6 +16,8 @@ var grid = {
             for(var i = 0; i < elem.s.rowCount; i++) {
                 ctx.strokeStyle = "#3e4649";
                 ctx.strokeRect(r * elem.s.pixSize, i * elem.s.pixSize, elem.s.pixSize, elem.s.pixSize);
+                ctx.strokeStyle = "#3e4649";
+                ctx.fillRect(r * elem.s.pixSize + 1, i * elem.s.pixSize + 1, elem.s.pixSize - 2, elem.s.pixSize - 2);
             }
         }
     },
@@ -27,10 +29,14 @@ var grid = {
         var xVal = Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize;
         var yVal = Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize;
         ctx.fillStyle = elem.el.hexColor.value;
-        var imgData = ctx.getImageData(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize,
-            Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize,
-            elem.s.pixSize, elem.s.pixSize);
+        //get the color for the box clicked on
+        var imgData = ctx.getImageData(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize + 1,
+            Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize + 1,
+            elem.s.pixSize - 2, elem.s.pixSize - 2);
+        //if it is the background grey/gray remove it
+        //currently does not work with color change
         if(imgData.data[0] !== 62 && imgData.data[1] !== 71 && imgData.data[2] !== 74){
+            console.log('not color');
             ctx.fillStyle = "#333333";
             ctx.strokeStyle = "#3e4649";
             ctx.lineWidth = 0;
