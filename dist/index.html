@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <title> Code Illustrator</title>
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div id="header-container" class="row">
+    <div id="reset-button" class="column large-offset-3 large-1">Reset</div>
+    <div id="view-button" class="column large-1">View Mode</div>
+    <div id="draw-button" class="column large-1 end">Draw Mode</div>
+  </div>
+  <div class="row">
+    <div id="color-picker" class="column large-offset-3 large-6">
+      <div class="large-4 column">
+        <label>hex
+          <input id="hex_color" type="text" value="#000" maxlength="7" class="large-12">
+        </label>
+      </div>
+      <div id="color_bar" class="large-2 column">bar</div>
+      <div class="large-6 column">
+        <div id="rgb" class="large-4 column no-padding">
+          <label>R
+            <input id="red" type="text" maxlength="3" value="000" class="rgb">
+          </label>
+        </div>
+        <div class="large-4 column no-padding">
+          <label>G
+            <input id="green" type="text" maxlength="3" value="000" class="rgb">
+          </label>
+        </div>
+        <div class="large-4 column no-padding">
+          <label>B
+            <input id="blue" type="text" maxlength="3" value="000" class="rgb">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="choose_size_container" class="large-3 center">
+    <h6 id="choose_size_header" class="row">Choose size of grid</h6>
+    <form id="choose_size_form" class="row large-12 medium-12 small-12">
+      <label class="column large-3">columns</label>
+      <input type="text" value="20" id="input-for-columns" class="column large-1">
+      <label class="column large-2">rows</label>
+      <input type="text" value="20" id="input-for-rows" class="column large-1">
+      <label class="column large-3">Pixel Size</label>
+      <input type="text" value="20" id="input-for-pixel-size" class="column large-1 end">
+      <button id="create_grid" type="button" class="column large-12 tiny">Create Grid</button>
+    </form>
+    <div id="need_help" class="row"></div>
+  </div>
+  <canvas width="500" height="500" id="canvasGrid"></canvas>
+  <div id="code_box_container" class="full-width">
+    <div class="row full-width">
+      <div id="css_toggle" class="column large-1 code_toggle"><span>CSS</span></div>
+      <div id="sass_toggle" class="column large-1 code_toggle"><span>SASS</span></div>
+      <div id="less_toggle" class="column large-1 code_toggle"><span>LESS</span></div>
+      <div id="js_toggle" class="column large-1 code_toggle"><span>JS</span></div>
+      <div id="code_box_toggle" class="column large-1"><span>+</span></div>
+    </div>
+    <div class="full-width">
+      <div id="code_box" class="css_box column large-12"><p> box-shadow: </p></div>
+    </div>
+  </div>
+  <!-- bower:js-->
+  <script src="../../bower_components/modernizr/modernizr.js"></script>
+  <script src="../../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+  <script src="../../bower_components/jquery.cookie/jquery.cookie.js"></script>
+  <script src="../../bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+  <script src="../../bower_components/foundation/js/foundation.js"></script>
+  <!-- endbower-->
+  <script src="js/app.js"></script>
+</body>
+<footer></footer>

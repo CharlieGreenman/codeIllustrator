@@ -33,7 +33,8 @@ import utils from "./_utils.js";
         for (var io = 0; io < elem.s.storeValues.length - 1; io++) {
             //decided it made more sense to remove pushed value in array and then to parse through and remove value
             //used this stackoverflow http://stackoverflow.com/questions/26635297/how-to-remove-an-array-from-a-multidimensional-array-if-it-exists-in-another-mul
-            if (JSON.stringify(elem.s.storeValues[io]) === JSON.stringify(elem.s.storeValues[elem.s.storeValues.length - 1]) ){
+            if (JSON.stringify(elem.s.storeValues[io][0] + elem.s.storeValues[io][1]) === JSON.stringify(elem.s.storeValues[elem.s.storeValues.length - 1][0] + elem.s.storeValues[elem.s.storeValues.length - 1][1]) ){
+                //remove value if it already exists, if statement above does not focus on color
                 elem.s.storeValues.splice(io, 1);
                 elem.s.storeValues.splice(elem.s.storeValues.length - 1, 1);
             }
