@@ -9,6 +9,8 @@ import grid from "./_grid.js";
 import hndClck from "./_when-clicked.js";
 import convert from "./_conversion.js";
 import convertJS from "./_js-conversion.js";
+import cntrlView from "./_control-view.js";
+
 
 var s, elem, x, y, z,
  colorNum = 0,
@@ -63,13 +65,13 @@ var s, elem, x, y, z,
         grid.createGridIllustrator();
       });
       elem.viewButton.addEventListener("click", () =>{
-        bitIllustrator.removeTiles();
-        bitIllustrator.addBackTiles();
+        cntrlView.removeTiles();
+        cntrlView.addBackTiles();
       });
       elem.drawButton.addEventListener("click", function(){
-        bitIllustrator.redoGrid();
+        cntrlView.redoGrid();
       });
-      s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
+      s.resetButton.addEventListener("click", cntrlView.resetButton, false);
       c.addEventListener("click", function(){
          grid.handleClick();
          hndClck.addColors();
@@ -104,9 +106,7 @@ var s, elem, x, y, z,
       elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
-   resetButton: () =>{
-      location.reload();
-   },
+
 
     updatedSettings: () =>{
       s.rowCount = document.getElementById("input-for-rows").value;
@@ -150,41 +150,6 @@ var s, elem, x, y, z,
      else{
        elem.codeBoxToggle.innerHTML = " + ";
      }
-   },
-
-   removeTiles: () => {
-
-      for(var r = 0; r < s.columnCount; r++) {
-        for(var i = 0; i < s.rowCount; i++) {
-          s.canvas.style.background = "none";
-          ctx.clearRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
-        }
-      }
-   },
-
-   addBackTiles: () =>{
-      for(var pw = 0; pw < s.storeValues.length; pw++){
-
-        ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
-        ctx.fillStyle = s.storeValues[pw][2];
-      }
-   },
-
-   redoGrid: () =>{
-      for(var r = 0; r < s.columnCount; r++) {
-        for(var i = 0; i < s.rowCount; i++) {
-          s.canvas.style.background = "rgba(0, 0, 0, 0.1)";
-          ctx.strokeStyle = "#3e4649";
-          ctx.strokeRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
-        }
-      }
-
-     for(var pw = 0; pw < s.storeValues.length; pw++){
-
-        ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
-        ctx.fillStyle = s.storeValues[pw][2];
-      }
-
    },
 
    convertToJs: () =>{

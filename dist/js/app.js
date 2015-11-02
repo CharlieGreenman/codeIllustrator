@@ -74,6 +74,10 @@
 
 	var _jsConversionJs2 = _interopRequireDefault(_jsConversionJs);
 
+	var _controlViewJs = __webpack_require__(7);
+
+	var _controlViewJs2 = _interopRequireDefault(_controlViewJs);
+
 	var s,
 	    elem,
 	    x,
@@ -131,13 +135,13 @@
 	      _gridJs2["default"].createGridIllustrator();
 	    });
 	    elem.viewButton.addEventListener("click", function () {
-	      bitIllustrator.removeTiles();
-	      bitIllustrator.addBackTiles();
+	      _controlViewJs2["default"].removeTiles();
+	      _controlViewJs2["default"].addBackTiles();
 	    });
 	    elem.drawButton.addEventListener("click", function () {
-	      bitIllustrator.redoGrid();
+	      _controlViewJs2["default"].redoGrid();
 	    });
-	    s.resetButton.addEventListener("click", bitIllustrator.resetButton, false);
+	    s.resetButton.addEventListener("click", _controlViewJs2["default"].resetButton, false);
 	    c.addEventListener("click", function () {
 	      _gridJs2["default"].handleClick();
 	      _whenClickedJs2["default"].addColors();
@@ -170,10 +174,6 @@
 	      bitIllustrator.convertToJs();
 	    });
 	    elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
-	  },
-
-	  resetButton: function resetButton() {
-	    location.reload();
 	  },
 
 	  updatedSettings: function updatedSettings() {
@@ -215,40 +215,6 @@
 	      elem.codeBoxToggle.innerHTML = " - ";
 	    } else {
 	      elem.codeBoxToggle.innerHTML = " + ";
-	    }
-	  },
-
-	  removeTiles: function removeTiles() {
-
-	    for (var r = 0; r < s.columnCount; r++) {
-	      for (var i = 0; i < s.rowCount; i++) {
-	        s.canvas.style.background = "none";
-	        ctx.clearRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
-	      }
-	    }
-	  },
-
-	  addBackTiles: function addBackTiles() {
-	    for (var pw = 0; pw < s.storeValues.length; pw++) {
-
-	      ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
-	      ctx.fillStyle = s.storeValues[pw][2];
-	    }
-	  },
-
-	  redoGrid: function redoGrid() {
-	    for (var r = 0; r < s.columnCount; r++) {
-	      for (var i = 0; i < s.rowCount; i++) {
-	        s.canvas.style.background = "rgba(0, 0, 0, 0.1)";
-	        ctx.strokeStyle = "#3e4649";
-	        ctx.strokeRect(r * s.pixSize, i * s.pixSize, s.pixSize, s.pixSize);
-	      }
-	    }
-
-	    for (var pw = 0; pw < s.storeValues.length; pw++) {
-
-	      ctx.fillRect(parseFloat(s.storeValues[pw][0]), parseFloat(s.storeValues[pw][1]), s.pixSize, s.pixSize);
-	      ctx.fillStyle = s.storeValues[pw][2];
 	    }
 	  },
 
@@ -358,7 +324,6 @@
 	        //if it is the background grey/gray remove it
 	        //currently does not work with color change
 	        if (imgData.data[0] !== 62 && imgData.data[1] !== 71 && imgData.data[2] !== 74) {
-	            console.log('not color');
 	            ctx.fillStyle = "rgba(62, 71, 74, 1)";
 	            ctx.clearRect(Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize + 1, Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize + 1, _elemJs2["default"].s.pixSize - 2, _elemJs2["default"].s.pixSize - 2);
 	            ctx.fillRect(Math.floor(e.offsetX / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize + 1, Math.floor(e.offsetY / _elemJs2["default"].s.pixSize) * _elemJs2["default"].s.pixSize + 1,
@@ -696,6 +661,69 @@
 	};
 
 	exports["default"] = convertJS;
+	module.exports = exports["default"];
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var _elemJs = __webpack_require__(3);
+
+	var _elemJs2 = _interopRequireDefault(_elemJs);
+
+	var s,
+	    x,
+	    y,
+	    z,
+	    colorNum = 0,
+	    arrMap = [],
+	    c = document.getElementById("canvasGrid"),
+	    ctx = c.getContext("2d");
+
+	var cntrlView = {
+	    removeTiles: function removeTiles() {
+	        _elemJs2["default"].s.canvas.style.background = "none";
+	        for (var r = 0; r < _elemJs2["default"].s.columnCount; r++) {
+	            for (var i = 0; i < _elemJs2["default"].s.rowCount; i++) {
+	                ctx.clearRect(r * _elemJs2["default"].s.pixSize, i * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
+	            }
+	        }
+	    },
+
+	    addBackTiles: function addBackTiles() {
+	        for (x = 0; x < _elemJs2["default"].s.storeValues.length; x++) {
+	            ctx.fillRect(parseFloat(_elemJs2["default"].s.storeValues[x][0]), parseFloat(_elemJs2["default"].s.storeValues[x][1]), _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
+	            ctx.fillStyle = _elemJs2["default"].s.storeValues[x][2];
+	        }
+	    },
+
+	    redoGrid: function redoGrid() {
+	        for (var r = 0; r < _elemJs2["default"].s.columnCount; r++) {
+	            for (var i = 0; i < _elemJs2["default"].s.rowCount; i++) {
+	                ctx.strokeStyle = "#3e4649";
+	                ctx.strokeRect(r * _elemJs2["default"].s.pixSize, i * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
+	            }
+	        }
+
+	        for (var pw = 0; pw < _elemJs2["default"].s.storeValues.length; pw++) {
+	            ctx.fillRect(parseFloat(_elemJs2["default"].s.storeValues[pw][0]), parseFloat(_elemJs2["default"].s.storeValues[pw][1]), _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
+	            ctx.fillStyle = _elemJs2["default"].s.storeValues[pw][2];
+	        }
+	    },
+	    resetButton: function resetButton() {
+	        location.reload();
+	    }
+	};
+
+	exports["default"] = cntrlView;
 	module.exports = exports["default"];
 
 /***/ }

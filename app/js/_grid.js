@@ -36,7 +36,6 @@ var grid = {
         //if it is the background grey/gray remove it
         //currently does not work with color change
         if(imgData.data[0] !== 62 && imgData.data[1] !== 71 && imgData.data[2] !== 74){
-            console.log('not color');
             ctx.fillStyle = "rgba(62, 71, 74, 1)";
             ctx.clearRect(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize + 1,
                 Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize + 1,
