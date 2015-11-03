@@ -35,6 +35,8 @@ var s, x, y, z,
         cntrlView.addBackTiles();
       });
       elem.el.drawButton.addEventListener("click", function(){
+        cntrlView.removeTiles();
+        grid.createGridIllustrator();
         cntrlView.redoGrid();
       });
       elem.s.resetButton.addEventListener("click", cntrlView.resetButton, false);

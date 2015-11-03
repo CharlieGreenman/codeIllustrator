@@ -107,6 +107,8 @@
 	      _controlViewJs2["default"].addBackTiles();
 	    });
 	    _elemJs2["default"].el.drawButton.addEventListener("click", function () {
+	      _controlViewJs2["default"].removeTiles();
+	      _gridJs2["default"].createGridIllustrator();
 	      _controlViewJs2["default"].redoGrid();
 	    });
 	    _elemJs2["default"].s.resetButton.addEventListener("click", _controlViewJs2["default"].resetButton, false);
@@ -659,31 +661,24 @@
 	var cntrlView = {
 	    removeTiles: function removeTiles() {
 	        _elemJs2["default"].s.canvas.style.background = "none";
-	        for (var r = 0; r < _elemJs2["default"].s.columnCount; r++) {
-	            for (var i = 0; i < _elemJs2["default"].s.rowCount; i++) {
-	                ctx.clearRect(r * _elemJs2["default"].s.pixSize, i * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
+	        for (var x = 0; x < _elemJs2["default"].s.columnCount; x++) {
+	            for (var y = 0; y < _elemJs2["default"].s.rowCount; y++) {
+	                ctx.clearRect(x * _elemJs2["default"].s.pixSize, y * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
 	            }
 	        }
 	    },
 
 	    addBackTiles: function addBackTiles() {
 	        for (x = 0; x < _elemJs2["default"].s.storeValues.length; x++) {
-	            ctx.fillRect(parseFloat(_elemJs2["default"].s.storeValues[x][0]), parseFloat(_elemJs2["default"].s.storeValues[x][1]), _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
 	            ctx.fillStyle = _elemJs2["default"].s.storeValues[x][2];
+	            ctx.fillRect(parseFloat(_elemJs2["default"].s.storeValues[x][0]), parseFloat(_elemJs2["default"].s.storeValues[x][1]), _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
 	        }
 	    },
 
 	    redoGrid: function redoGrid() {
-	        for (var r = 0; r < _elemJs2["default"].s.columnCount; r++) {
-	            for (var i = 0; i < _elemJs2["default"].s.rowCount; i++) {
-	                ctx.strokeStyle = "#3e4649";
-	                ctx.strokeRect(r * _elemJs2["default"].s.pixSize, i * _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
-	            }
-	        }
-
-	        for (var pw = 0; pw < _elemJs2["default"].s.storeValues.length; pw++) {
-	            ctx.fillRect(parseFloat(_elemJs2["default"].s.storeValues[pw][0]), parseFloat(_elemJs2["default"].s.storeValues[pw][1]), _elemJs2["default"].s.pixSize, _elemJs2["default"].s.pixSize);
-	            ctx.fillStyle = _elemJs2["default"].s.storeValues[pw][2];
+	        for (x = 0; x < _elemJs2["default"].s.storeValues.length; x++) {
+	            ctx.fillStyle = _elemJs2["default"].s.storeValues[x][2];
+	            ctx.fillRect(parseFloat(_elemJs2["default"].s.storeValues[x][0]) + 1, parseFloat(_elemJs2["default"].s.storeValues[x][1]) + 1, _elemJs2["default"].s.pixSize - 2, _elemJs2["default"].s.pixSize - 2);
 	        }
 	    },
 	    resetButton: function resetButton() {

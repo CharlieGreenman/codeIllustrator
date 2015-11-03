@@ -9,33 +9,26 @@ var s, x, y, z,
 var cntrlView = {
     removeTiles: () => {
         elem.s.canvas.style.background = "none";
-        for(var r = 0; r < elem.s.columnCount; r++) {
-            for(var i = 0; i < elem.s.rowCount; i++) {
-                ctx.clearRect(r * elem.s.pixSize, i * elem.s.pixSize, elem.s.pixSize, elem.s.pixSize);
+        for(var x = 0; x < elem.s.columnCount; x++) {
+            for(var y = 0; y < elem.s.rowCount; y++) {
+                ctx.clearRect(x * elem.s.pixSize, y * elem.s.pixSize, elem.s.pixSize, elem.s.pixSize);
             }
         }
     },
 
     addBackTiles: () =>{
         for(x = 0; x < elem.s.storeValues.length; x++){
-            ctx.fillRect(parseFloat(elem.s.storeValues[x][0]), parseFloat(elem.s.storeValues[x][1]), elem.s.pixSize, elem.s.pixSize);
             ctx.fillStyle = elem.s.storeValues[x][2];
+            ctx.fillRect(parseFloat(elem.s.storeValues[x][0]), parseFloat(elem.s.storeValues[x][1]), elem.s.pixSize, elem.s.pixSize);
         }
     },
 
     redoGrid: () =>{
-        for(var r = 0; r < elem.s.columnCount; r++) {
-            for(var i = 0; i < elem.s.rowCount; i++) {
-                ctx.strokeStyle = "#3e4649";
-                ctx.strokeRect(r * elem.s.pixSize, i * elem.s.pixSize, elem.s.pixSize, elem.s.pixSize);
-            }
-        }
+        for(x = 0; x < elem.s.storeValues.length; x++){
+            ctx.fillStyle = elem.s.storeValues[x][2];
+            ctx.fillRect(parseFloat(elem.s.storeValues[x][0]) + 1, parseFloat(elem.s.storeValues[x][1]) + 1, elem.s.pixSize - 2, elem.s.pixSize - 2);
 
-        for(var pw = 0; pw < elem.s.storeValues.length; pw++){
-            ctx.fillRect(parseFloat(elem.s.storeValues[pw][0]), parseFloat(elem.s.storeValues[pw][1]), elem.s.pixSize, elem.s.pixSize);
-            ctx.fillStyle = elem.s.storeValues[pw][2];
         }
-
     },
     resetButton: () =>{
         location.reload();
