@@ -78,8 +78,11 @@
 
 	var _controlViewJs2 = _interopRequireDefault(_controlViewJs);
 
+	var _elemJs = __webpack_require__(3);
+
+	var _elemJs2 = _interopRequireDefault(_elemJs);
+
 	var s,
-	    elem,
 	    x,
 	    y,
 	    z,
@@ -88,139 +91,104 @@
 	    c = document.getElementById("canvasGrid"),
 	    ctx = c.getContext("2d"),
 	    bitIllustrator = {
-	  elements: {
-	    codeBoxContainer: document.getElementById("code_box_container"),
-	    headerContainer: document.getElementById("header-container"),
-	    codeBox: document.getElementById("code_box"),
-	    cssToggle: document.getElementById("css_toggle"),
-	    sassToggle: document.getElementById("sass_toggle"),
-	    lessToggle: document.getElementById("less_toggle"),
-	    jsToggle: document.getElementById("js_toggle"),
-	    viewButton: document.getElementById("view-button"),
-	    drawButton: document.getElementById("draw-button"),
-	    codeBoxToggle: document.getElementById("code_box_toggle"),
-	    hexColor: document.getElementById("hex_color"),
-	    colorBar: document.getElementById("color_bar"),
-	    rgb: document.querySelectorAll(".rgb"),
-	    red: document.getElementById("red"),
-	    green: document.getElementById("green"),
-	    blue: document.getElementById("blue")
-	  },
-	  settings: {
-	    resetButton: document.getElementById("reset-button"),
-	    chooseSizeContainer: document.getElementById("choose_size_container"),
-	    canvas: document.getElementById("canvasGrid"),
-	    createGrid: document.getElementById("create_grid"),
-	    rowCount: document.getElementById("input-for-rows").value,
-	    columnCount: document.getElementById("input-for-columns").value,
-	    pixSize: document.getElementById("input-for-pixel-size").value,
-	    codeBox: document.getElementById("code_box"),
-	    storeValues: [],
-	    storeColors: [],
-	    sassColorVariables: [],
-	    lessColorVariables: []
-	  },
-
 	  init: function init() {
-	    elem = bitIllustrator.elements;
-	    s = bitIllustrator.settings;
 	    bitIllustrator.bindActions();
 	  },
 
 	  bindActions: function bindActions() {
-	    s.createGrid.addEventListener("click", function () {
+	    _elemJs2["default"].s.createGrid.addEventListener("click", function () {
 	      bitIllustrator.updatedSettings();
 	      bitIllustrator.hideShow();
 	      bitIllustrator.resizeGrid();
 	      _gridJs2["default"].createGridIllustrator();
 	    });
-	    elem.viewButton.addEventListener("click", function () {
+	    _elemJs2["default"].el.viewButton.addEventListener("click", function () {
 	      _controlViewJs2["default"].removeTiles();
 	      _controlViewJs2["default"].addBackTiles();
 	    });
-	    elem.drawButton.addEventListener("click", function () {
+	    _elemJs2["default"].el.drawButton.addEventListener("click", function () {
 	      _controlViewJs2["default"].redoGrid();
 	    });
-	    s.resetButton.addEventListener("click", _controlViewJs2["default"].resetButton, false);
+	    _elemJs2["default"].s.resetButton.addEventListener("click", _controlViewJs2["default"].resetButton, false);
 	    c.addEventListener("click", function () {
 	      _gridJs2["default"].handleClick();
 	      _whenClickedJs2["default"].addColors();
 	      _whenClickedJs2["default"].convertToArray();
 	      _whenClickedJs2["default"].convertToCss();
 	    });
-	    elem.cssToggle.addEventListener("click", function () {
-	      bitIllustrator.convertToCss();
+	    _elemJs2["default"].el.cssToggle.addEventListener("click", function () {
+	      _whenClickedJs2["default"].convertToCss();
 	    });
-	    elem.sassToggle.addEventListener("click", function () {
+	    _elemJs2["default"].el.sassToggle.addEventListener("click", function () {
 	      _conversionJs2["default"].addSassVariables();
 	      _conversionJs2["default"].convertToSass();
 	    });
-	    elem.lessToggle.addEventListener("click", function () {
+	    _elemJs2["default"].el.lessToggle.addEventListener("click", function () {
 	      _conversionJs2["default"].addLessVariables();
 	      _conversionJs2["default"].convertToLess();
 	    });
-	    elem.hexColor.addEventListener("input", function () {
+	    _elemJs2["default"].el.hexColor.addEventListener("input", function () {
 	      bitIllustrator.pickHexColor();
 	    });
 	    //consider revision
 	    for (var i = 0; i < 3; i++) {
-	      elem.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
+	      _elemJs2["default"].el.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
 	    }
-	    elem.jsToggle.addEventListener("click", function () {
+	    _elemJs2["default"].el.jsToggle.addEventListener("click", function () {
 	      _jsConversionJs2["default"].addEmptyArrayMap();
 	      _jsConversionJs2["default"].addArrayMap();
 	      _jsConversionJs2["default"].addArrMapCode();
 	      _jsConversionJs2["default"].addColorMap();
 	      bitIllustrator.convertToJs();
 	    });
-	    elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
+	    _elemJs2["default"].el.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
 	  },
 
 	  updatedSettings: function updatedSettings() {
-	    s.rowCount = document.getElementById("input-for-rows").value;
-	    s.columnCount = document.getElementById("input-for-columns").value;
-	    s.pixSize = document.getElementById("input-for-pixel-size").value;
+	    _elemJs2["default"].s.rowCount = document.getElementById("input-for-rows").value;
+	    _elemJs2["default"].s.columnCount = document.getElementById("input-for-columns").value;
+	    _elemJs2["default"].s.pixSize = document.getElementById("input-for-pixel-size").value;
 	  },
 
 	  hideShow: function hideShow() {
-	    s.chooseSizeContainer.style.display = "none";
-	    elem.headerContainer.style.display = "block";
-	    s.canvas.style.display = "block";
+	    _elemJs2["default"].s.chooseSizeContainer.style.display = "none";
+	    _elemJs2["default"].el.headerContainer.style.display = "block";
+	    _elemJs2["default"].s.canvas.style.display = "block";
 	  },
 
 	  resizeGrid: function resizeGrid() {
-	    s.canvas.width = s.columnCount * s.pixSize;
-	    s.canvas.height = s.rowCount * s.pixSize;
-	    s.canvas.style.marginLeft = -(s.columnCount * s.pixSize) / 2 + "px";
+	    _elemJs2["default"].s.canvas.width = _elemJs2["default"].s.columnCount * _elemJs2["default"].s.pixSize;
+	    _elemJs2["default"].s.canvas.height = _elemJs2["default"].s.rowCount * _elemJs2["default"].s.pixSize;
+	    _elemJs2["default"].s.canvas.style.marginLeft = -(_elemJs2["default"].s.columnCount * _elemJs2["default"].s.pixSize) / 2 + "px";
 	  },
 
 	  pickHexColor: function pickHexColor() {
-	    var newHexValue = elem.hexColor.value;
+	    var newHexValue = _elemJs2["default"].el.hexColor.value;
 
-	    elem.colorBar.style.background = newHexValue;
+	    _elemJs2["default"].el.colorBar.style.background = newHexValue;
 
-	    elem.red.value = _utilsJs2["default"].hexToRgb(newHexValue).r;
-	    elem.green.value = _utilsJs2["default"].hexToRgb(newHexValue).g;
-	    elem.blue.value = _utilsJs2["default"].hexToRgb(newHexValue).b;
+	    _elemJs2["default"].el.red.value = _utilsJs2["default"].hexToRgb(newHexValue).r;
+	    _elemJs2["default"].el.green.value = _utilsJs2["default"].hexToRgb(newHexValue).g;
+	    _elemJs2["default"].el.blue.value = _utilsJs2["default"].hexToRgb(newHexValue).b;
 	  },
 
 	  pickRgbColor: function pickRgbColor() {
-	    elem.hexColor.value = _utilsJs2["default"].rgbToHex(parseFloat(elem.red.value), parseFloat(elem.green.value), parseFloat(elem.blue.value));
-	    elem.colorBar.style.background = elem.hexColor.value;
+	    _elemJs2["default"].el.hexColor.value = _utilsJs2["default"].rgbToHex(parseFloat(_elemJs2["default"].red.value), parseFloat(_elemJs2["default"].green.value), parseFloat(_elemJs2["default"].blue.value));
+	    _elemJs2["default"].el.colorBar.style.background = _elemJs2["default"].hexColor.value;
 	  },
 
 	  codeBoxToggle: function codeBoxToggle() {
-	    elem.codeBoxContainer.classList.toggle("open");
-	    if (elem.codeBoxContainer.classList.contains("open")) {
-	      elem.codeBoxToggle.innerHTML = " - ";
+	    _elemJs2["default"].el.codeBoxContainer.classList.toggle("open");
+	    if (_elemJs2["default"].el.codeBoxContainer.classList.contains("open")) {
+	      _elemJs2["default"].el.codeBoxToggle.innerHTML = " - ";
 	    } else {
-	      elem.codeBoxToggle.innerHTML = " + ";
+	      _elemJs2["default"].el.codeBoxToggle.innerHTML = " + ";
 	    }
 	  },
 
 	  convertToJs: function convertToJs() {
-	    elem.codeBox.classList.remove("css_box", "sass_box", "less_box");
-	    elem.codeBox.classList.add("js_box");
+	    _elemJs2["default"].el.codeBox.classList.remove("css_box", "sass_box", "less_box");
+	    _elemJs2["default"].el.codeBox.classList.add("js_box");
 	  }
 	};
 

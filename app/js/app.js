@@ -10,151 +10,117 @@ import hndClck from "./_when-clicked.js";
 import convert from "./_conversion.js";
 import convertJS from "./_js-conversion.js";
 import cntrlView from "./_control-view.js";
+import elem from "./_elem.js";
 
 
-var s, elem, x, y, z,
+var s, x, y, z,
  colorNum = 0,
  arrMap = [],
  c = document.getElementById("canvasGrid"),
  ctx = c.getContext("2d"),
  bitIllustrator = {
-     elements: {
-      codeBoxContainer: document.getElementById("code_box_container"),
-      headerContainer: document.getElementById("header-container"),
-      codeBox: document.getElementById("code_box"),
-      cssToggle: document.getElementById("css_toggle"),
-      sassToggle: document.getElementById("sass_toggle"),
-      lessToggle: document.getElementById("less_toggle"),
-      jsToggle: document.getElementById("js_toggle"),
-      viewButton: document.getElementById("view-button"),
-      drawButton: document.getElementById("draw-button"),
-      codeBoxToggle: document.getElementById("code_box_toggle"),
-      hexColor: document.getElementById("hex_color"),
-      colorBar: document.getElementById("color_bar"),
-      rgb: document.querySelectorAll(".rgb"),
-      red: document.getElementById("red"),
-      green: document.getElementById("green"),
-      blue: document.getElementById("blue")
-    },
-    settings: {
-      resetButton: document.getElementById("reset-button"),
-      chooseSizeContainer: document.getElementById("choose_size_container"),
-      canvas: document.getElementById("canvasGrid"),
-      createGrid: document.getElementById("create_grid"),
-      rowCount: document.getElementById("input-for-rows").value,
-      columnCount: document.getElementById("input-for-columns").value,
-      pixSize: document.getElementById("input-for-pixel-size").value,
-      codeBox: document.getElementById("code_box"),
-      storeValues: [],
-      storeColors: [],
-      sassColorVariables: [],
-      lessColorVariables: []
-    },
-
     init: () => {
-      elem = bitIllustrator.elements;
-      s = bitIllustrator.settings;
       bitIllustrator.bindActions();
     },
 
     bindActions: () => {
-      s.createGrid.addEventListener("click",() =>{
+      elem.s.createGrid.addEventListener("click",() =>{
         bitIllustrator.updatedSettings();
         bitIllustrator.hideShow();
         bitIllustrator.resizeGrid();
         grid.createGridIllustrator();
       });
-      elem.viewButton.addEventListener("click", () =>{
+      elem.el.viewButton.addEventListener("click", () =>{
         cntrlView.removeTiles();
         cntrlView.addBackTiles();
       });
-      elem.drawButton.addEventListener("click", function(){
+      elem.el.drawButton.addEventListener("click", function(){
         cntrlView.redoGrid();
       });
-      s.resetButton.addEventListener("click", cntrlView.resetButton, false);
+      elem.s.resetButton.addEventListener("click", cntrlView.resetButton, false);
       c.addEventListener("click", function(){
          grid.handleClick();
          hndClck.addColors();
          hndClck.convertToArray();
          hndClck.convertToCss();
       });
-      elem.cssToggle.addEventListener("click", function(){
-         bitIllustrator.convertToCss();
+      elem.el.cssToggle.addEventListener("click", function(){
+          hndClck.convertToCss();
       });
-      elem.sassToggle.addEventListener("click", function(){
+      elem.el.sassToggle.addEventListener("click", function(){
          convert.addSassVariables();
          convert.convertToSass();
       });
-      elem.lessToggle.addEventListener("click", function(){
+      elem.el.lessToggle.addEventListener("click", function(){
          convert.addLessVariables();
          convert.convertToLess();
       });
-      elem.hexColor.addEventListener("input", function(){
+      elem.el.hexColor.addEventListener("input", function(){
          bitIllustrator.pickHexColor();
       });
       //consider revision
       for(var i = 0; i < 3; i++){
-        elem.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
+        elem.el.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
       }
-      elem.jsToggle.addEventListener("click", function(){
+      elem.el.jsToggle.addEventListener("click", function(){
          convertJS.addEmptyArrayMap();
          convertJS.addArrayMap();
          convertJS.addArrMapCode();
          convertJS.addColorMap();
          bitIllustrator.convertToJs();
       });
-      elem.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
+      elem.el.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
     },
 
 
 
     updatedSettings: () =>{
-      s.rowCount = document.getElementById("input-for-rows").value;
-      s.columnCount = document.getElementById("input-for-columns").value;
-      s.pixSize = document.getElementById("input-for-pixel-size").value;
+      elem.s.rowCount = document.getElementById("input-for-rows").value;
+      elem.s.columnCount = document.getElementById("input-for-columns").value;
+      elem.s.pixSize = document.getElementById("input-for-pixel-size").value;
     },
 
     hideShow: () => {
-      s.chooseSizeContainer.style.display = "none";
-      elem.headerContainer.style.display = "block";
-      s.canvas.style.display = "block";
+      elem.s.chooseSizeContainer.style.display = "none";
+      elem.el.headerContainer.style.display = "block";
+      elem.s.canvas.style.display = "block";
     },
 
    resizeGrid: () =>{
-     s.canvas.width = s.columnCount * s.pixSize;
-     s.canvas.height = s.rowCount * s.pixSize;
-     s.canvas.style.marginLeft = -(s.columnCount * s.pixSize) / 2 + "px";
+     elem.s.canvas.width = elem.s.columnCount * elem.s.pixSize;
+     elem.s.canvas.height = elem.s.rowCount * elem.s.pixSize;
+     elem.s.canvas.style.marginLeft = -(elem.s.columnCount * elem.s.pixSize) / 2 + "px";
 
    },
 
    pickHexColor: () =>{
-     var newHexValue = elem.hexColor.value;
+     var newHexValue = elem.el.hexColor.value;
 
-     elem.colorBar.style.background = newHexValue;
+     elem.el.colorBar.style.background = newHexValue;
 
-     elem.red.value = utils.hexToRgb(newHexValue).r;
-     elem.green.value = utils.hexToRgb(newHexValue).g;
-     elem.blue.value = utils.hexToRgb(newHexValue).b;
+     elem.el.red.value = utils.hexToRgb(newHexValue).r;
+     elem.el.green.value = utils.hexToRgb(newHexValue).g;
+     elem.el.blue.value = utils.hexToRgb(newHexValue).b;
    },
 
    pickRgbColor: () =>{
-     elem.hexColor.value = utils.rgbToHex(parseFloat(elem.red.value), parseFloat(elem.green.value), parseFloat(elem.blue.value));
-     elem.colorBar.style.background = elem.hexColor.value;
+     elem.el.hexColor.value = utils.rgbToHex(parseFloat(elem.red.value), parseFloat(elem.green.value), parseFloat(elem.blue.value));
+     elem.el.colorBar.style.background = elem.hexColor.value;
    },
 
    codeBoxToggle: () => {
-     elem.codeBoxContainer.classList.toggle("open");
-     if(elem.codeBoxContainer.classList.contains("open")){
-       elem.codeBoxToggle.innerHTML = " - ";
+     elem.el.codeBoxContainer.classList.toggle("open");
+     if(elem.el.codeBoxContainer.classList.contains("open")){
+       elem.el.codeBoxToggle.innerHTML = " - ";
      }
      else{
-       elem.codeBoxToggle.innerHTML = " + ";
+       elem.el.codeBoxToggle.innerHTML = " + ";
      }
    },
 
    convertToJs: () =>{
-      elem.codeBox.classList.remove("css_box", "sass_box", "less_box");
-      elem.codeBox.classList.add("js_box");
+      elem.el.codeBox.classList.remove("css_box", "sass_box", "less_box");
+      elem.el.codeBox.classList.add("js_box");
    }
   };
 
