@@ -46,6 +46,7 @@ import utils from "./_utils.js";
     convertToCss: () =>{
         elem.el.codeBox.classList.remove("sass_box", "less_box", "js_box");
         elem.el.codeBox.classList.add("css_box");
+        elem.el.codeBoxToggle.style.color = "#1572b6";
 
         /* reset value for elem.codeBox */
         elem.el.codeBox.innerHTML = "box-shadow: ";

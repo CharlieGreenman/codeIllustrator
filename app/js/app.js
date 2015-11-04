@@ -44,7 +44,26 @@ var s, x, y, z,
          grid.handleClick();
          hndClck.addColors();
          hndClck.convertToArray();
-         hndClck.convertToCss();
+         //I would like the following code to be cleaner if possible
+         if(elem.s.codeBox.classList.contains("css_box")){
+             hndClck.convertToCss();
+         }
+         else if(elem.s.codeBox.classList.contains("sass_box")) {
+             convert.addSassVariables();
+             convert.convertToSass();
+         }
+         else if(elem.s.codeBox.classList.contains("less_box")) {
+             convert.addLessVariables();
+             convert.convertToLess();
+         }
+         else{
+             convertJS.addEmptyArrayMap();
+             convertJS.addArrayMap();
+             convertJS.addArrMapCode();
+             convertJS.addColorMap();
+             bitIllustrator.convertToJs();
+         }
+
       });
       elem.el.cssToggle.addEventListener("click", function(){
           hndClck.convertToCss();

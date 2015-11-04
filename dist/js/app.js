@@ -116,7 +116,22 @@
 	      _gridJs2["default"].handleClick();
 	      _whenClickedJs2["default"].addColors();
 	      _whenClickedJs2["default"].convertToArray();
-	      _whenClickedJs2["default"].convertToCss();
+	      //I would like the following code to be cleaner if possible
+	      if (_elemJs2["default"].s.codeBox.classList.contains("css_box")) {
+	        _whenClickedJs2["default"].convertToCss();
+	      } else if (_elemJs2["default"].s.codeBox.classList.contains("sass_box")) {
+	        _conversionJs2["default"].addSassVariables();
+	        _conversionJs2["default"].convertToSass();
+	      } else if (_elemJs2["default"].s.codeBox.classList.contains("less_box")) {
+	        _conversionJs2["default"].addLessVariables();
+	        _conversionJs2["default"].convertToLess();
+	      } else {
+	        _jsConversionJs2["default"].addEmptyArrayMap();
+	        _jsConversionJs2["default"].addArrayMap();
+	        _jsConversionJs2["default"].addArrMapCode();
+	        _jsConversionJs2["default"].addColorMap();
+	        bitIllustrator.convertToJs();
+	      }
 	    });
 	    _elemJs2["default"].el.cssToggle.addEventListener("click", function () {
 	      _whenClickedJs2["default"].convertToCss();
@@ -426,6 +441,7 @@
 	    convertToCss: function convertToCss() {
 	        _elemJs2["default"].el.codeBox.classList.remove("sass_box", "less_box", "js_box");
 	        _elemJs2["default"].el.codeBox.classList.add("css_box");
+	        _elemJs2["default"].el.codeBoxToggle.style.color = "#1572b6";
 
 	        /* reset value for elem.codeBox */
 	        _elemJs2["default"].el.codeBox.innerHTML = "box-shadow: ";
