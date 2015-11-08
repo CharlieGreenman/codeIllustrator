@@ -31,6 +31,7 @@
 }
 
 #color-picker{
+  display: none;
   color: white;
   label{
     color: white;
@@ -48,11 +49,16 @@
   margin-top: 40px;
   text-align: center;
   background: $medium-background-color;
+  font-family: 'Reenie Beanie', cursive;
 }
 
 #choose_size_header{
   background: $dark-background-color;
   color: $light-color;
+  font-family: 'Reenie Beanie', cursive;
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 
 
@@ -60,25 +66,50 @@
 
 
   label{
-    height: 50px;
-    line-height: 50px;
+    height: 30px;
+    line-height: 30px;
     color: $medium-color;
+    font-size: 20px;
+    text-transform: uppercase;
+    &:nth-child(1){
+      background: #82998F;
+    }
+    &:nth-child(2){
+      background: #5FBF79;
+    }
+    &:nth-child(5){
+      background: #BF975F;
+    }
+
   }
 
   input{
-    width: 8.33333%;
-    margin-top: 14px;
+    width: 50%;
     height: 20px;
-    background: $light-background-color;
     border: none;
+    font-size: 20px;
+    margin: 0;
+    &:nth-child(3){
+      background: #82998F;
+    }
+    &:nth-child(4){
+      background: #5FBF79;
+    }
+    &:nth-child(7){
+      background: #BF975F;
+      margin-top: -20px;
+    }
   }
 }
 
 #create_grid{
   margin: 0;
+  height: 50px;
+  background: #F2A030;
 }
 
 #need_help{
+  display: none;
   height: 40px;
   line-height: 40px;
   color: $dark-color;

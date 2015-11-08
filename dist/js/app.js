@@ -169,6 +169,7 @@
 
 	  hideShow: function hideShow() {
 	    _elemJs2["default"].s.chooseSizeContainer.style.display = "none";
+	    _elemJs2["default"].el.colorPicker.style.display = "block";
 	    _elemJs2["default"].el.headerContainer.style.display = "block";
 	    _elemJs2["default"].s.canvas.style.display = "block";
 	  },
@@ -190,8 +191,8 @@
 	  },
 
 	  pickRgbColor: function pickRgbColor() {
-	    _elemJs2["default"].el.hexColor.value = _utilsJs2["default"].rgbToHex(parseFloat(_elemJs2["default"].red.value), parseFloat(_elemJs2["default"].green.value), parseFloat(_elemJs2["default"].blue.value));
-	    _elemJs2["default"].el.colorBar.style.background = _elemJs2["default"].hexColor.value;
+	    _elemJs2["default"].el.hexColor.value = _utilsJs2["default"].rgbToHex(parseFloat(_elemJs2["default"].el.red.value), parseFloat(_elemJs2["default"].el.green.value), parseFloat(_elemJs2["default"].el.blue.value));
+	    _elemJs2["default"].el.colorBar.style.background = _elemJs2["default"].el.hexColor.value;
 	  },
 
 	  codeBoxToggle: function codeBoxToggle() {
@@ -343,6 +344,7 @@
 	    el: {
 	        codeBoxContainer: document.getElementById("code_box_container"),
 	        headerContainer: document.getElementById("header-container"),
+	        colorPicker: document.getElementById("color-picker"),
 	        codeBox: document.getElementById("code_box"),
 	        cssToggle: document.getElementById("css_toggle"),
 	        sassToggle: document.getElementById("sass_toggle"),
@@ -526,7 +528,7 @@
 	        _elemJs2["default"].el.codeBox.innerHTML = "@num:" + _elemJs2["default"].s.pixSize + ";<br>";
 
 	        for (var x = 0; x < _elemJs2["default"].s.storeColors.length; x++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += "@colors " + x + ": " + _elemJs2["default"].s.storeColors[x] + ";";
+	            _elemJs2["default"].el.codeBox.innerHTML += "@colors" + x + ": " + _elemJs2["default"].s.storeColors[x] + ";";
 	        }
 
 	        _elemJs2["default"].el.codeBox.innerHTML += "<br>";

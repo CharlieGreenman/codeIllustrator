@@ -51,7 +51,7 @@ var convert = {
         elem.el.codeBox.innerHTML = "@num:" + elem.s.pixSize + ";<br>";
 
         for(var x = 0; x < elem.s.storeColors.length; x++){
-            elem.el.codeBox.innerHTML += `@colors ${x}: ${elem.s.storeColors[x]};`;
+            elem.el.codeBox.innerHTML += `@colors${x}: ${elem.s.storeColors[x]};`;
         }
 
         elem.el.codeBox.innerHTML += "<br>";

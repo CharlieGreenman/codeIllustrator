@@ -2,6 +2,7 @@
     el: {
         codeBoxContainer: document.getElementById("code_box_container"),
         headerContainer: document.getElementById("header-container"),
+        colorPicker: document.getElementById("color-picker"),
         codeBox: document.getElementById("code_box"),
         cssToggle: document.getElementById("css_toggle"),
         sassToggle: document.getElementById("sass_toggle"),

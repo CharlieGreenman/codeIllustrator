@@ -103,6 +103,7 @@ var s, x, y, z,
 
     hideShow: () => {
       elem.s.chooseSizeContainer.style.display = "none";
+      elem.el.colorPicker.style.display = "block";
       elem.el.headerContainer.style.display = "block";
       elem.s.canvas.style.display = "block";
     },
@@ -125,8 +126,8 @@ var s, x, y, z,
    },
 
    pickRgbColor: () =>{
-     elem.el.hexColor.value = utils.rgbToHex(parseFloat(elem.red.value), parseFloat(elem.green.value), parseFloat(elem.blue.value));
-     elem.el.colorBar.style.background = elem.hexColor.value;
+     elem.el.hexColor.value = utils.rgbToHex(parseFloat(elem.el.red.value), parseFloat(elem.el.green.value), parseFloat(elem.el.blue.value));
+     elem.el.colorBar.style.background = elem.el.hexColor.value;
    },
 
    codeBoxToggle: () => {

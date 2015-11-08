@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
   <title> Code Illustrator</title>
+  <link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet" type="text/css">
   <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -39,13 +41,13 @@
   <div id="choose_size_container" class="large-3 center">
     <h6 id="choose_size_header" class="row">Choose size of grid</h6>
     <form id="choose_size_form" class="row large-12 medium-12 small-12">
-      <label class="column large-3">columns</label>
-      <input type="text" value="20" id="input-for-columns" class="column large-1">
-      <label class="column large-2">rows</label>
-      <input type="text" value="20" id="input-for-rows" class="column large-1">
-      <label class="column large-3">Pixel Size</label>
+      <label class="column large-6">columns</label>
+      <label class="column large-6">rows</label>
+      <input type="text" value="20" id="input-for-columns" class="column large-6">
+      <input type="text" value="20" id="input-for-rows" class="column large-6">
+      <label class="column large-6">Pixel Size</label>
+      <button id="create_grid" type="button" class="column large-6 tiny">Create Grid</button>
       <input type="text" value="20" id="input-for-pixel-size" class="column large-1 end">
-      <button id="create_grid" type="button" class="column large-12 tiny">Create Grid</button>
     </form>
     <div id="need_help" class="row"></div>
   </div>

@@ -6601,6 +6601,7 @@ html, body {
   color: white; }
 
 #color-picker {
+  display: none;
   color: white; }
   #color-picker label {
     color: white; }
@@ -6613,28 +6614,51 @@ html, body {
   margin: 0 auto;
   margin-top: 40px;
   text-align: center;
-  background: #333333; }
+  background: #333333;
+  font-family: 'Reenie Beanie', cursive; }
 
 #choose_size_header {
   background: #262626;
-  color: rgba(255, 255, 255, 0.8); }
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Reenie Beanie', cursive;
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase; }
 
 #choose_size_form label {
-  height: 50px;
-  line-height: 50px;
-  color: rgba(255, 255, 255, 0.5); }
+  height: 30px;
+  line-height: 30px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  text-transform: uppercase; }
+  #choose_size_form label:nth-child(1) {
+    background: #82998F; }
+  #choose_size_form label:nth-child(2) {
+    background: #5FBF79; }
+  #choose_size_form label:nth-child(5) {
+    background: #BF975F; }
 
 #choose_size_form input {
-  width: 8.33333%;
-  margin-top: 14px;
+  width: 50%;
   height: 20px;
-  background: #3e4649;
-  border: none; }
+  border: none;
+  font-size: 20px;
+  margin: 0; }
+  #choose_size_form input:nth-child(3) {
+    background: #82998F; }
+  #choose_size_form input:nth-child(4) {
+    background: #5FBF79; }
+  #choose_size_form input:nth-child(7) {
+    background: #BF975F;
+    margin-top: -20px; }
 
 #create_grid {
-  margin: 0; }
+  margin: 0;
+  height: 50px;
+  background: #F2A030; }
 
 #need_help {
+  display: none;
   height: 40px;
   line-height: 40px;
   color: rgba(255, 255, 255, 0.3); }
