@@ -1,7 +1,27 @@
 .row#header-container
-  #reset-button.column.large-offset-3.large-1
-    | Reset
-  #view-button.column.large-1
-    | View Mode
-  #draw-button.column.large-1.end
-    | Draw Mode
+  #color-picker.column.large-2.large-offset-4
+    .large-12
+      label#hex_label
+        | Hex
+        input#hex_color(type = "text" value = "#000" maxlength="7").large-12
+    .large-12#color_bar
+    .large-12
+      #rgb.large-4.column.no-padding
+        label
+          | R
+          input#red.rgb(type = "text" maxlength="3" value = "000")
+      .large-4.column.no-padding
+        label
+          | G
+          input#green.rgb(type = "text" maxlength="3" value = "000")
+      .large-4.column.no-padding
+        label
+          | B
+          input#blue.rgb(type = "text" maxlength="3" value = "000")
+  .column.large-3.left
+    #reset-button.large-12
+      | Reset
+    #view-button.large-12
+      | View Mode
+    #draw-button.large-12
+      | Draw Mode

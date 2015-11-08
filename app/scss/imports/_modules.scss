@@ -22,24 +22,64 @@
 
 #reset-button, #view-button, #draw-button{
   width: 150px;
-  height: 30px;
-  background: $medium-background-color;
+  background: #000;
   text-align: center;
   cursor: pointer;
-  border: 1px solid white;
   color: white;
+}
+
+#view-button{
+  margin-top: 0;
+  border-bottom: 1px solid white;
+}
+
+#view-button, #draw-button{
+  height: 35px;
+  line-height: 35px;
+}
+
+#reset-button{
+  height: 50px;
+  line-height: 50px;
+  background: #FF4A00;
+  text-transform: uppercase;
+  transition: 1s;
+  &.warning{
+    background: #B33A3A;
+  }
+}
+
+textarea:focus, input:focus{
+  outline: 0;
 }
 
 #color-picker{
   display: none;
-  color: white;
+  max-width: 130px;
+  color: black;
+  background: white;
   label{
-    color: white;
+    color: #999999;
+  }
+  input{
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    background: white;
   }
 }
 
+#hex_label{
+  padding-top: 0.5rem;
+}
+
+#hex_color{
+  height: 30px;
+}
+
 #color_bar{
-  height: 60px;
+  height: 3px;
   background: black;
 }
 
@@ -50,6 +90,7 @@
   text-align: center;
   background: $medium-background-color;
   font-family: 'Reenie Beanie', cursive;
+  max-width: 300px;
 }
 
 #choose_size_header{

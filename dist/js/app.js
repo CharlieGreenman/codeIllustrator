@@ -700,7 +700,11 @@
 	        }
 	    },
 	    resetButton: function resetButton() {
-	        location.reload();
+	        if (_elemJs2["default"].s.resetButton.classList.contains("warning")) {
+	            location.reload();
+	        } else {
+	            _elemJs2["default"].s.resetButton.classList.add("warning");
+	        }
 	    }
 	};
 

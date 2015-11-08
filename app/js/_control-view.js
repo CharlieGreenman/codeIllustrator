@@ -31,7 +31,12 @@ var cntrlView = {
         }
     },
     resetButton: () =>{
-        location.reload();
+        if(elem.s.resetButton.classList.contains("warning")){
+          location.reload();
+        }
+        else{
+            elem.s.resetButton.classList.add("warning");
+        }
     }
 };
 
