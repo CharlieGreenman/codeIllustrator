@@ -1,4 +1,6 @@
 # pixelatorV2_with_react
+Current version of Code Illustrator, can be seen [here](http://charliegreenman.github.io/codeILL/)
+
 Creating pixelator using Vanilla Javascript with react where possible
 
 create using singleton desing pattern *[Done]*
