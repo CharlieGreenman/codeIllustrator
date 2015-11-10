@@ -90,7 +90,7 @@ var s, x, y, z,
          convertJS.addColorMap();
          bitIllustrator.convertToJs();
       });
-      elem.el.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
+
     },
 
 
@@ -130,15 +130,6 @@ var s, x, y, z,
      elem.el.colorBar.style.background = elem.el.hexColor.value;
    },
 
-   codeBoxToggle: () => {
-     elem.el.codeBoxContainer.classList.toggle("open");
-     if(elem.el.codeBoxContainer.classList.contains("open")){
-       elem.el.codeBoxToggle.innerHTML = " - ";
-     }
-     else{
-       elem.el.codeBoxToggle.innerHTML = " + ";
-     }
-   },
 
    convertToJs: () =>{
       elem.el.codeBox.classList.remove("css_box", "sass_box", "less_box");

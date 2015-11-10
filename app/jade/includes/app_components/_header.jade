@@ -1,5 +1,5 @@
-.row#header-container
-  #color-picker.column.large-2.large-offset-4
+#header-container
+  #color-picker.column.large-12
     .large-12
       label#hex_label
         | Hex
@@ -18,10 +18,10 @@
         label
           | B
           input#blue.rgb(type = "text" maxlength="3" value = "000")
-  .column.large-3.left
-    #reset-button.large-12
-      | Reset
+  #control_view.column
     #view-button.large-12
       | View Mode
     #draw-button.large-12
       | Draw Mode
+    #reset-button.large-12
+      | Reset

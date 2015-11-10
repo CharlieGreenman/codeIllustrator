@@ -6,8 +6,8 @@
   <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <div id="header-container" class="row">
-    <div id="color-picker" class="column large-2 large-offset-4">
+  <div id="header-container">
+    <div id="color-picker" class="column large-12">
       <div class="large-12">
         <label id="hex_label">Hex
           <input id="hex_color" type="text" value="#000" maxlength="7" class="large-12">
@@ -32,10 +32,10 @@
         </div>
       </div>
     </div>
-    <div class="column large-3 left">
-      <div id="reset-button" class="large-12">Reset</div>
+    <div id="control_view" class="column">
       <div id="view-button" class="large-12">View Mode</div>
       <div id="draw-button" class="large-12">Draw Mode</div>
+      <div id="reset-button" class="large-12">Reset</div>
     </div>
   </div>
   <div id="choose_size_container" class="large-3 center">
@@ -52,16 +52,15 @@
     <div id="need_help" class="row"></div>
   </div>
   <canvas width="500" height="500" id="canvasGrid"></canvas>
-  <div id="code_box_container" class="full-width">
-    <div class="row full-width">
-      <div id="css_toggle" class="column large-1 code_toggle"><span>CSS</span></div>
-      <div id="sass_toggle" class="column large-1 code_toggle"><span>SASS</span></div>
-      <div id="less_toggle" class="column large-1 code_toggle"><span>LESS</span></div>
-      <div id="js_toggle" class="column large-1 code_toggle"><span>JS</span></div>
-      <div id="code_box_toggle" class="column large-1"><span>+</span></div>
-    </div>
-    <div class="full-width">
-      <div id="code_box" class="css_box column large-12"><p> box-shadow: </p></div>
+  <div id="code_box_container">
+    <div id="code_box" class="css_box column large-12">
+      <div class="row">
+        <div id="css_toggle" class="column large-6 code_toggle"><span>CSS</span></div>
+        <div id="sass_toggle" class="column large-6 code_toggle"><span>SASS</span></div>
+        <div id="less_toggle" class="column large-6 code_toggle"><span>LESS</span></div>
+        <div id="js_toggle" class="column large-6 code_toggle"><span>JS</span></div>
+      </div>
+      <p id="inner_code_box">box-shadow:</p>
     </div>
   </div>
   <!-- bower:js-->

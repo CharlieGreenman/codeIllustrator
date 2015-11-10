@@ -4,6 +4,7 @@
         headerContainer: document.getElementById("header-container"),
         colorPicker: document.getElementById("color-picker"),
         codeBox: document.getElementById("code_box"),
+        innerCodeBox: document.getElementById("inner_code_box"),
         cssToggle: document.getElementById("css_toggle"),
         sassToggle: document.getElementById("sass_toggle"),
         lessToggle: document.getElementById("less_toggle"),

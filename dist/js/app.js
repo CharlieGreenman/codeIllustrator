@@ -158,7 +158,6 @@
 	      _jsConversionJs2["default"].addColorMap();
 	      bitIllustrator.convertToJs();
 	    });
-	    _elemJs2["default"].el.codeBoxToggle.addEventListener("click", bitIllustrator.codeBoxToggle, false);
 	  },
 
 	  updatedSettings: function updatedSettings() {
@@ -193,15 +192,6 @@
 	  pickRgbColor: function pickRgbColor() {
 	    _elemJs2["default"].el.hexColor.value = _utilsJs2["default"].rgbToHex(parseFloat(_elemJs2["default"].el.red.value), parseFloat(_elemJs2["default"].el.green.value), parseFloat(_elemJs2["default"].el.blue.value));
 	    _elemJs2["default"].el.colorBar.style.background = _elemJs2["default"].el.hexColor.value;
-	  },
-
-	  codeBoxToggle: function codeBoxToggle() {
-	    _elemJs2["default"].el.codeBoxContainer.classList.toggle("open");
-	    if (_elemJs2["default"].el.codeBoxContainer.classList.contains("open")) {
-	      _elemJs2["default"].el.codeBoxToggle.innerHTML = " - ";
-	    } else {
-	      _elemJs2["default"].el.codeBoxToggle.innerHTML = " + ";
-	    }
 	  },
 
 	  convertToJs: function convertToJs() {
@@ -346,6 +336,7 @@
 	        headerContainer: document.getElementById("header-container"),
 	        colorPicker: document.getElementById("color-picker"),
 	        codeBox: document.getElementById("code_box"),
+	        innerCodeBox: document.getElementById("inner_code_box"),
 	        cssToggle: document.getElementById("css_toggle"),
 	        sassToggle: document.getElementById("sass_toggle"),
 	        lessToggle: document.getElementById("less_toggle"),
@@ -443,7 +434,6 @@
 	    convertToCss: function convertToCss() {
 	        _elemJs2["default"].el.codeBox.classList.remove("sass_box", "less_box", "js_box");
 	        _elemJs2["default"].el.codeBox.classList.add("css_box");
-	        _elemJs2["default"].el.codeBoxToggle.style.color = "#1572b6";
 
 	        /* reset value for elem.codeBox */
 	        _elemJs2["default"].el.codeBox.innerHTML = "box-shadow: ";
@@ -483,82 +473,82 @@
 	        _elemJs2["default"].el.codeBox.classList.remove("css_box", "less_box", "js_box");
 	        _elemJs2["default"].el.codeBox.classList.add("sass_box");
 
-	        _elemJs2["default"].el.codeBox.innerHTML = "$num: " + _elemJs2["default"].s.pixSize + ";<br>";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML = "$num: " + _elemJs2["default"].s.pixSize + ";<br>";
 	        for (var avi = 0; avi < _elemJs2["default"].s.storeColors.length; avi++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += " $colors" + avi + ": " + _elemJs2["default"].s.storeColors[avi] + ";";
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += " $colors" + avi + ": " + _elemJs2["default"].s.storeColors[avi] + ";";
 	        }
 
-	        _elemJs2["default"].el.codeBox.innerHTML += "<br>";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML += "<br>";
 
-	        for (var x = 0; x < _elemJs2["default"].s.columnCount; x++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += "$X" + x + ": $num*" + x + "px; ";
+	        for (var x = 0; x < _elemJs2["default"].s.colçumnCount; x++) {
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += "$X" + x + ": $num*" + x + "px; ";
 	        }
 	        _elemJs2["default"].el.codeBox.innerHTML += "$num: " + _elemJs2["default"].s.pixSize + ";<br>";
 	        for (var y = 0; y < _elemJs2["default"].s.columnCount; y++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += "$O" + x + ": $num*" + x + "px; ";
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += "$O" + x + ": $num*" + x + "px; ";
 	        }
-	        _elemJs2["default"].el.codeBox.innerHTML += "<br><br>";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML += "<br><br>";
 	    },
 
 	    convertToSass: function convertToSass() {
 
-	        _elemJs2["default"].el.codeBox.innerHTML += "box-shadow: ";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML += "box-shadow: ";
 	        for (var x = 0; x < _elemJs2["default"].s.storeValues.length; x++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += " $X" + parseFloat(_elemJs2["default"].s.storeValues[x][0]) / _elemJs2["default"].s.pixSize;
-	            _elemJs2["default"].el.codeBox.innerHTML += " $O" + parseFloat(_elemJs2["default"].s.storeValues[x][1]) / _elemJs2["default"].s.pixSize;
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += " $X" + parseFloat(_elemJs2["default"].s.storeValues[x][0]) / _elemJs2["default"].s.pixSize;
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += " $O" + parseFloat(_elemJs2["default"].s.storeValues[x][1]) / _elemJs2["default"].s.pixSize;
 	            //need to add support with name that color
 
 	            for (var y = 0; y < _elemJs2["default"].s.storeColors.length; y++) {
 	                if (_elemJs2["default"].s.storeValues[x][2] === _elemJs2["default"].s.storeColors[y]) {
-	                    _elemJs2["default"].el.codeBox.innerHTML += " " + _elemJs2["default"].s.sassColorVariables[y];
+	                    _elemJs2["default"].el.innerCodeBox.innerHTML += " " + _elemJs2["default"].s.sassColorVariables[y];
 	                }
 	            }
 	            if (x === _elemJs2["default"].s.storeValues.length - 1) {
-	                _elemJs2["default"].el.codeBox.innerHTML += ";";
+	                _elemJs2["default"].el.innerCodeBox.innerHTML += ";";
 	            } else {
-	                _elemJs2["default"].el.codeBox.innerHTML += ",";
+	                _elemJs2["default"].el.innerCodeBox.innerHTML += ",";
 	            }
 	        }
 	    },
 
 	    addLessVariables: function addLessVariables() {
-	        _elemJs2["default"].el.codeBox.classList.remove("css_box", "sass_box", "js_box");
-	        _elemJs2["default"].el.codeBox.classList.add("less_box");
+	        _elemJs2["default"].el.innerCodeBox.classList.remove("css_box", "sass_box", "js_box");
+	        _elemJs2["default"].el.innerCodeBox.classList.add("less_box");
 
-	        _elemJs2["default"].el.codeBox.innerHTML = "@num:" + _elemJs2["default"].s.pixSize + ";<br>";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML = "@num:" + _elemJs2["default"].s.pixSize + ";<br>";
 
 	        for (var x = 0; x < _elemJs2["default"].s.storeColors.length; x++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += "@colors" + x + ": " + _elemJs2["default"].s.storeColors[x] + ";";
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += "@colors" + x + ": " + _elemJs2["default"].s.storeColors[x] + ";";
 	        }
 
-	        _elemJs2["default"].el.codeBox.innerHTML += "<br>";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML += "<br>";
 
 	        for (var x = 0; x < _elemJs2["default"].s.columnCount; x++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += "@X" + x + ": @num*" + x + "px; ";
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += "@X" + x + ": @num*" + x + "px; ";
 	        }
-	        _elemJs2["default"].el.codeBox.innerHTML += "$num: " + _elemJs2["default"].s.pixSize + ";<br>";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML += "$num: " + _elemJs2["default"].s.pixSize + ";<br>";
 	        for (var y = 0; y < _elemJs2["default"].s.columnCount; y++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += "@O" + x + ": @num*" + x + "px; ";
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += "@O" + x + ": @num*" + x + "px; ";
 	        }
-	        _elemJs2["default"].el.codeBox.innerHTML += "<br><br>";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML += "<br><br>";
 	    },
 
 	    convertToLess: function convertToLess() {
-	        _elemJs2["default"].el.codeBox.innerHTML += "box-shadow: ";
+	        _elemJs2["default"].el.innerCodeBox.innerHTML += "box-shadow: ";
 	        for (var xyz = 0; xyz < _elemJs2["default"].s.storeValues.length; xyz++) {
-	            _elemJs2["default"].el.codeBox.innerHTML += " @X" + parseFloat(_elemJs2["default"].s.storeValues[xyz][0]) / _elemJs2["default"].s.pixSize;
-	            _elemJs2["default"].el.codeBox.innerHTML += " @O" + parseFloat(_elemJs2["default"].s.storeValues[xyz][1]) / _elemJs2["default"].s.pixSize;
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += " @X" + parseFloat(_elemJs2["default"].s.storeValues[xyz][0]) / _elemJs2["default"].s.pixSize;
+	            _elemJs2["default"].el.innerCodeBox.innerHTML += " @O" + parseFloat(_elemJs2["default"].s.storeValues[xyz][1]) / _elemJs2["default"].s.pixSize;
 
 	            for (var avi = 0; avi < _elemJs2["default"].s.storeColors.length; avi++) {
 	                if (_elemJs2["default"].s.storeValues[xyz][2] === _elemJs2["default"].s.storeColors[avi]) {
-	                    _elemJs2["default"].el.codeBox.innerHTML += " " + _elemJs2["default"].s.lessColorVariables[avi];
+	                    _elemJs2["default"].el.innerCodeBox.innerHTML += " " + _elemJs2["default"].s.lessColorVariables[avi];
 	                }
 	            }
 
 	            if (xyz === _elemJs2["default"].s.storeValues.length - 1) {
-	                _elemJs2["default"].el.codeBox.innerHTML += ";";
+	                _elemJs2["default"].el.innerCodeBox.innerHTML += ";";
 	            } else {
-	                _elemJs2["default"].el.codeBox.innerHTML += ",";
+	                _elemJs2["default"].el.innerCodeBox.innerHTML += ",";
 	            }
 	        }
 	    }
