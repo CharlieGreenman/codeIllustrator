@@ -5,14 +5,17 @@ var convert = {
         elem.el.codeBox.classList.remove("css_box", "less_box", "js_box");
         elem.el.codeBox.classList.add("sass_box");
 
+        elem.el.codeBoxBorder.classList.remove("css_border", "less_border", "js_border");
+        elem.el.codeBoxBorder.classList.add("sass_border");
+
         elem.el.innerCodeBox.innerHTML = `$num: ${elem.s.pixSize};<br>`;
-        for(var x = 0; x < elem.s.storeColors.length; x++){
+        for(let x = 0; x < elem.s.storeColors.length; x++){
             elem.el.innerCodeBox.innerHTML += `$colors${x}: ${elem.s.storeColors[x]};`;
         }
 
         elem.el.innerCodeBox.innerHTML += "<br>";
 
-        for(x = 0; x < elem.s.colçumnCount; x++){
+        for(let x = 0; x < elem.s.columnCount; x++){
             elem.el.innerCodeBox.innerHTML += `$X${x}: $num*${x}px; `;
         }
         //elem.el.innerCodeBox.innerHTML += `$num: ${elem.s.pixSize};<br>`;
@@ -48,20 +51,23 @@ var convert = {
         elem.el.codeBox.classList.remove("css_box", "sass_box", "js_box");
         elem.el.codeBox.classList.add("less_box");
 
+        elem.el.codeBoxBorder.classList.remove("css_border", "sass_border", "js_border");
+        elem.el.codeBoxBorder.classList.add("less_border");
+
         elem.el.innerCodeBox.innerHTML = "@num:" + elem.s.pixSize + ";<br>";
 
-        for(var x = 0; x < elem.s.storeColors.length; x++){
+        for(let x = 0; x < elem.s.storeColors.length; x++){
             elem.el.innerCodeBox.innerHTML += `@colors${x}: ${elem.s.storeColors[x]};`;
         }
 
         elem.el.innerCodeBox.innerHTML += "<br>";
 
-        for(var x = 0; x < elem.s.columnCount; x++){
+        for(let x = 0; x < elem.s.columnCount; x++){
             elem.el.innerCodeBox.innerHTML += `@X${x}: @num*${x}px; `;
         }
         elem.el.innerCodeBox.innerHTML += `$num: ${elem.s.pixSize};<br>`;
-        for(var y = 0; y < elem.s.columnCount; y++){
-            elem.el.innerCodeBox.innerHTML += `@O${x}: @num*${x}px; `;
+        for(let y = 0; y < elem.s.columnCount; y++){
+            elem.el.innerCodeBox.innerHTML += `@O${y}: @num*${y}px; `;
         }
         elem.el.innerCodeBox.innerHTML += "<br><br>";
     },

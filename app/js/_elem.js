@@ -12,6 +12,7 @@
         viewButton: document.getElementById("view-button"),
         drawButton: document.getElementById("draw-button"),
         codeBoxToggle: document.getElementById("code_box_toggle"),
+        codeBoxBorder : document.getElementById("code_box_border"),
         hexColor: document.getElementById("hex_color"),
         colorBar: document.getElementById("color_bar"),
         rgb: document.querySelectorAll(".rgb"),

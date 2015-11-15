@@ -134,6 +134,9 @@ var s, x, y, z,
    convertToJs: () =>{
       elem.el.codeBox.classList.remove("css_box", "sass_box", "less_box");
       elem.el.codeBox.classList.add("js_box");
+
+      elem.el.codeBoxBorder.classList.remove("css_border", "less_border", "sass_border");
+      elem.el.codeBoxBorder.classList.add("js_border");
    }
   };
 

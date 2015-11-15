@@ -231,6 +231,7 @@ height: $code-height;
   padding-top: 0.9375rem;
   padding-bottom: 0.9375rem;
   overflow: scroll;
+  font-family: 'Caveat', cursive;
   &.css_box{
     box-shadow: 0 0 0 10px $css_color inset;
   }
@@ -244,6 +245,29 @@ height: $code-height;
     box-shadow: 0 0 0 10px $js_color inset;
   }
 
+}
+
+pre{
+  font-family: 'Caveat', cursive;
+}
+
+
+#code_box_border{
+  height: .1rem;
+  background: $css_color;
+  margin-top: 1rem;
+  &.css_border{
+    background: $css_color;
+  }
+  &.sass_border{
+    background: $sass_color;
+  }
+  &.less_border{
+    background: $less_color;
+  }
+  &.js_border{
+    background: $js_color;
+  }
 }
 
 //5. Code Toggle

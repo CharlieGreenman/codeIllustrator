@@ -47,6 +47,9 @@ import utils from "./_utils.js";
         elem.el.codeBox.classList.remove("sass_box", "less_box", "js_box");
         elem.el.codeBox.classList.add("css_box");
 
+        elem.el.codeBoxBorder.classList.remove("sass_border", "less_border", "js_border");
+        elem.el.codeBoxBorder.classList.add("css_border");
+
         /* reset value for elem.codeBox */
         elem.el.innerCodeBox.innerHTML = "box-shadow: ";
         /* instead of re-inserting value, need to think of how to do this */
