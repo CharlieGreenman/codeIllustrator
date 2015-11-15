@@ -103,6 +103,7 @@ var s, x, y, z,
 
     hideShow: () => {
       elem.s.chooseSizeContainer.style.display = "none";
+      elem.el.codeBoxContainer.style.display = "block";
       elem.el.colorPicker.style.display = "block";
       elem.el.headerContainer.style.display = "block";
       elem.s.canvas.style.display = "block";

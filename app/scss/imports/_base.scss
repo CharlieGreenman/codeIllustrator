@@ -6,7 +6,9 @@
 
 html, body{
   overflow: hidden;
-  background: $light-background-color;
+  //for some reason changing the background color is causing the grid lines not to show up
+  background: #191919;
+  //background: $light-background-color;
 }
 
 

@@ -190,6 +190,7 @@ textarea:focus, input:focus{
 
 //4. Code Box
 #code_box_container{
+  display: none;
   position: fixed;
   width: 230px;
   height: 100%;
