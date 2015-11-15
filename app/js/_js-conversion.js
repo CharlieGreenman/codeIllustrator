@@ -6,8 +6,8 @@ var arrMap = [], x, y, z;
 var convertJS = {
 
     addEmptyArrayMap: () => {
-        elem.el.codeBox.innerHTML = `var canvas, ctx, tileSize = ${elem.s.pixSize}, map = [<br> `;
-        elem.el.codeBox.innerHTML += "[";
+        elem.el.innerCodeBox.innerHTML = `var canvas, ctx, tileSize = ${elem.s.pixSize}, map = [<br> `;
+        elem.el.innerCodeBox.innerHTML += "[";
         arrMap = [];
         //initialize the array map
         for (x = 0; x < elem.s.rowCount; x++) {
@@ -37,13 +37,13 @@ var convertJS = {
         //test to see if I can change value of  arrMap[1][1] = 3;
         arrMap[elem.s.columnCount - 1] += "]";
         arrMap[elem.s.columnCount - 1] += "<br>],";
-        elem.el.codeBox.innerHTML += arrMap.join("],<br />[");
+        elem.el.innerCodeBox.innerHTML += arrMap.join("],<br />[");
     },
 
 // make to add a pre tag, so that it actually treats code as code
 // and it makes a line break
     addArrMapCode: () => {
-        elem.el.codeBox.innerHTML += `
+        elem.el.innerCodeBox.innerHTML += `
        <pre> arrMap = {
       Color: function(r, g, b, a) {
 
@@ -84,18 +84,18 @@ var convertJS = {
     },
 
     addColorMap: () => {
-        elem.el.codeBox.innerHTML += `var colors = [ " ",`
+        elem.el.innerCodeBox.innerHTML += `var colors = [ " ",`
         for (x = 0; x < elem.s.storeColors.length; x++) {
-            elem.el.codeBox.innerHTML += `new arrMap.Color(${utils.hexToRgb(elem.s.storeColors[x]).r},${utils.hexToRgb(elem.s.storeColors[x]).g},${utils.hexToRgb(elem.s.storeColors[x]).b}, 1)`;
+            elem.el.innerCodeBox.innerHTML += `new arrMap.Color(${utils.hexToRgb(elem.s.storeColors[x]).r},${utils.hexToRgb(elem.s.storeColors[x]).g},${utils.hexToRgb(elem.s.storeColors[x]).b}, 1)`;
             if (x === elem.s.storeColors.length - 1) {
-                elem.el.codeBox.innerHTML += '';
+                elem.el.innerCodeBox.innerHTML += '';
             }
             else {
-                elem.el.codeBox.innerHTML += ", ";
+                elem.el.innerCodeBox.innerHTML += ", ";
             }
         }
 
-        elem.el.codeBox.innerHTML += `];<pre>
+        elem.el.innerCodeBox.innerHTML += `];<pre>
      arrMap.init();</pre>
      `
     }
