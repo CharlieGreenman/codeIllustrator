@@ -48,14 +48,14 @@ import utils from "./_utils.js";
         elem.el.codeBox.classList.add("css_box");
 
         /* reset value for elem.codeBox */
-        elem.el.codeBox.innerHTML = "box-shadow: ";
+        elem.el.innerCodeBox.innerHTML = "box-shadow: ";
         /* instead of re-inserting value, need to think of how to do this */
         for(var abc = 0; abc < elem.s.storeValues.length; abc++){
             if(abc === elem.s.storeValues.length - 1){
-                elem.el.codeBox.innerHTML += `${elem.s.storeValues[abc].join(" ")};`;
+                elem.el.innerCodeBox.innerHTML += `${elem.s.storeValues[abc].join(" ")};`;
             }
             else {
-                elem.el.codeBox.innerHTML += elem.s.storeValues[abc].join(" ") + ", ";
+                elem.el.innerCodeBox.innerHTML += elem.s.storeValues[abc].join(" ") + ", ";
             }
         }
 

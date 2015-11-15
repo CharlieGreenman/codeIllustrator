@@ -6,18 +6,18 @@ var convert = {
         elem.el.codeBox.classList.add("sass_box");
 
         elem.el.innerCodeBox.innerHTML = `$num: ${elem.s.pixSize};<br>`;
-        for(var avi = 0; avi < elem.s.storeColors.length; avi++){
-            elem.el.innerCodeBox.innerHTML += ` $colors${avi}: ${elem.s.storeColors[avi]};`;
+        for(var x = 0; x < elem.s.storeColors.length; x++){
+            elem.el.innerCodeBox.innerHTML += `$colors${x}: ${elem.s.storeColors[x]};`;
         }
 
         elem.el.innerCodeBox.innerHTML += "<br>";
 
-        for(var x = 0; x < elem.s.colçumnCount; x++){
+        for(x = 0; x < elem.s.colçumnCount; x++){
             elem.el.innerCodeBox.innerHTML += `$X${x}: $num*${x}px; `;
         }
-        elem.el.codeBox.innerHTML += `$num: ${elem.s.pixSize};<br>`;
+        //elem.el.innerCodeBox.innerHTML += `$num: ${elem.s.pixSize};<br>`;
         for(var y = 0; y < elem.s.columnCount; y++){
-            elem.el.innerCodeBox.innerHTML += `$O${x}: $num*${x}px; `;
+            elem.el.innerCodeBox.innerHTML += `$O${y}: $num*${y}px; `;
         }
         elem.el.innerCodeBox.innerHTML += "<br><br>";
     },
@@ -45,8 +45,8 @@ var convert = {
     },
 
     addLessVariables: () =>{
-        elem.el.innerCodeBox.classList.remove("css_box", "sass_box", "js_box");
-        elem.el.innerCodeBox.classList.add("less_box");
+        elem.el.codeBox.classList.remove("css_box", "sass_box", "js_box");
+        elem.el.codeBox.classList.add("less_box");
 
         elem.el.innerCodeBox.innerHTML = "@num:" + elem.s.pixSize + ";<br>";
 

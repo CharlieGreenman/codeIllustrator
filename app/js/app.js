@@ -45,14 +45,14 @@ var s, x, y, z,
          hndClck.addColors();
          hndClck.convertToArray();
          //I would like the following code to be cleaner if possible
-         if(elem.s.codeBox.classList.contains("css_box")){
+         if(elem.el.codeBox.classList.contains("css_box")){
              hndClck.convertToCss();
          }
-         else if(elem.s.codeBox.classList.contains("sass_box")) {
+         else if(elem.el.codeBox.classList.contains("sass_box")) {
              convert.addSassVariables();
              convert.convertToSass();
          }
-         else if(elem.s.codeBox.classList.contains("less_box")) {
+         else if(elem.el.codeBox.classList.contains("less_box")) {
              convert.addLessVariables();
              convert.convertToLess();
          }
