@@ -7,6 +7,12 @@ var s, x, y, z,
     ctx = c.getContext("2d");
 
 var cntrlView = {
+    allowHandleClick: () => {
+        c.classList.add("allow-handle-click");
+    },
+    stopHandleClick: () =>{
+        c.classList.remove("allow-handle-click");
+    },
     removeTiles: () => {
         elem.s.canvas.style.background = "none";
         for(var x = 0; x < elem.s.columnCount; x++) {

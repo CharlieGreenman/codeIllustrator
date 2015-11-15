@@ -23,12 +23,8 @@
   height: 100%;
   right: 0;
   background: white;
-  $bord-var: 3px;
-  box-shadow: 0 0 0 $bord-var $css_color inset,
-          //left border
-          ($bord-var) ($bord-var) 0 $bord-var $sass_color inset, ($bord-var*2) ($bord-var*2) 0 $bord-var $less_color inset, ($bord-var*3) ($bord-var*3) 0 $bord-var $js_color inset,
-          //right border
-          (-$bord-var) (-$bord-var) 0 $bord-var $sass_color inset, (-$bord-var*2) (-$bord-var*2) 0 $bord-var $less_color inset, (-$bord-var*3) (-$bord-var*3) 0 $bord-var $js_color inset;
+  $bord-var: 10px;
+  box-shadow: 0 0 0 $bord-var black inset;
 }
 
 #reset-button, #view-button, #draw-button{

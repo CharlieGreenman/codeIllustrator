@@ -31,37 +31,41 @@ var s, x, y, z,
         grid.createGridIllustrator();
       });
       elem.el.viewButton.addEventListener("click", () =>{
+        cntrlView.stopHandleClick();
         cntrlView.removeTiles();
         cntrlView.addBackTiles();
       });
       elem.el.drawButton.addEventListener("click", function(){
+        cntrlView.allowHandleClick();
         cntrlView.removeTiles();
         grid.createGridIllustrator();
         cntrlView.redoGrid();
       });
       elem.s.resetButton.addEventListener("click", cntrlView.resetButton, false);
       c.addEventListener("click", function(){
-         grid.handleClick();
-         hndClck.addColors();
-         hndClck.convertToArray();
-         //I would like the following code to be cleaner if possible
-         if(elem.el.codeBox.classList.contains("css_box")){
-             hndClck.convertToCss();
-         }
-         else if(elem.el.codeBox.classList.contains("sass_box")) {
-             convert.addSassVariables();
-             convert.convertToSass();
-         }
-         else if(elem.el.codeBox.classList.contains("less_box")) {
-             convert.addLessVariables();
-             convert.convertToLess();
-         }
-         else{
-             convertJS.addEmptyArrayMap();
-             convertJS.addArrayMap();
-             convertJS.addArrMapCode();
-             convertJS.addColorMap();
-             bitIllustrator.convertToJs();
+         if(c.classList.contains("allow-handle-click")) {
+             grid.handleClick();
+             hndClck.addColors();
+             hndClck.convertToArray();
+             //I would like the following code to be cleaner if possible
+             if (elem.el.codeBox.classList.contains("css_box")) {
+                 hndClck.convertToCss();
+             }
+             else if (elem.el.codeBox.classList.contains("sass_box")) {
+                 convert.addSassVariables();
+                 convert.convertToSass();
+             }
+             else if (elem.el.codeBox.classList.contains("less_box")) {
+                 convert.addLessVariables();
+                 convert.convertToLess();
+             }
+             else {
+                 convertJS.addEmptyArrayMap();
+                 convertJS.addArrayMap();
+                 convertJS.addArrMapCode();
+                 convertJS.addColorMap();
+                 bitIllustrator.convertToJs();
+             }
          }
 
       });
@@ -92,9 +96,6 @@ var s, x, y, z,
       });
 
     },
-
-
-
     updatedSettings: () =>{
       elem.s.rowCount = document.getElementById("input-for-rows").value;
       elem.s.columnCount = document.getElementById("input-for-columns").value;
@@ -120,10 +121,12 @@ var s, x, y, z,
      var newHexValue = elem.el.hexColor.value;
 
      elem.el.colorBar.style.background = newHexValue;
+     elem.el.headerContainer.style.boxShadow = '0 0 0 10px ' + newHexValue +  ' inset';
 
      elem.el.red.value = utils.hexToRgb(newHexValue).r;
      elem.el.green.value = utils.hexToRgb(newHexValue).g;
      elem.el.blue.value = utils.hexToRgb(newHexValue).b;
+
    },
 
    pickRgbColor: () =>{
