@@ -16,13 +16,19 @@
 //1. header
 
 //header-container
-#header-container{
+#header-container {
   display: none;
   position: fixed;
   width: 200px;
   height: 100%;
   right: 0;
   background: white;
+  $bord-var: 3px;
+  box-shadow: 0 0 0 $bord-var $css_color inset,
+          //left border
+          ($bord-var) ($bord-var) 0 $bord-var $sass_color inset, ($bord-var*2) ($bord-var*2) 0 $bord-var $less_color inset, ($bord-var*3) ($bord-var*3) 0 $bord-var $js_color inset,
+          //right border
+          (-$bord-var) (-$bord-var) 0 $bord-var $sass_color inset, (-$bord-var*2) (-$bord-var*2) 0 $bord-var $less_color inset, (-$bord-var*3) (-$bord-var*3) 0 $bord-var $js_color inset;
 }
 
 #reset-button, #view-button, #draw-button{
@@ -60,7 +66,7 @@ textarea:focus, input:focus{
 #color-picker{
   display: none;
   color: black;
-  background: white;
+  margin-top: .5rem;
   label{
     color: #999999;
   }
@@ -71,6 +77,11 @@ textarea:focus, input:focus{
     box-shadow: none;
     background: white;
   }
+}
+
+.color-button-styling{
+  width: 88%;
+  margin-left: 6%;
 }
 
 #control_view{
@@ -256,6 +267,7 @@ pre{
   height: .1rem;
   background: $css_color;
   margin-top: 1rem;
+  transition: 1.5s;
   &.css_border{
     background: $css_color;
   }
