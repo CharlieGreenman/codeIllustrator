@@ -94,6 +94,9 @@ var s, x, y, z,
          convertJS.addColorMap();
          bitIllustrator.convertToJs();
       });
+      window.addEventListener("keydown", function(){
+         cntrlView.toggleView(event);
+      });
 
     },
     updatedSettings: () =>{

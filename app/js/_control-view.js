@@ -1,4 +1,5 @@
 import elem from "./_elem.js";
+import grid from "./_grid.js";
 
 var s, x, y, z,
     colorNum = 0,
@@ -43,7 +44,25 @@ var cntrlView = {
         else{
             elem.s.resetButton.classList.add("warning");
         }
+    },
+    toggleView: () => {
+        let x = event.keyCode;
+        if(x === 71){
+            if(c.classList.contains("allow-handle-click")){
+                cntrlView.stopHandleClick();
+                cntrlView.removeTiles();
+                cntrlView.addBackTiles();
+            }
+            else{
+                cntrlView.allowHandleClick();
+                cntrlView.removeTiles();
+                grid.createGridIllustrator();
+                cntrlView.redoGrid();
+            }
+
+        }
+
     }
-};
+    };
 
 export default cntrlView;
