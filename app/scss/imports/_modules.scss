@@ -30,7 +30,6 @@
 #reset-button, #view-button, #draw-button{
   background: #000;
   text-align: center;
-  cursor: pointer;
   color: white;
 }
 
@@ -59,7 +58,7 @@ textarea:focus, input:focus{
   outline: 0;
 }
 
-#color-picker{
+#color-picker, #background-color-picker{
   display: none;
   color: black;
   margin-top: .5rem;

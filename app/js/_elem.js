@@ -2,7 +2,6 @@
     el: {
         codeBoxContainer: document.getElementById("code_box_container"),
         headerContainer: document.getElementById("header-container"),
-        colorPicker: document.getElementById("color-picker"),
         codeBox: document.getElementById("code_box"),
         innerCodeBox: document.getElementById("inner_code_box"),
         cssToggle: document.getElementById("css_toggle"),
@@ -13,12 +12,20 @@
         drawButton: document.getElementById("draw-button"),
         codeBoxToggle: document.getElementById("code_box_toggle"),
         codeBoxBorder : document.getElementById("code_box_border"),
-        hexColor: document.getElementById("hex_color"),
         colorBar: document.getElementById("color_bar"),
-        rgb: document.querySelectorAll(".rgb"),
-        red: document.getElementById("red"),
-        green: document.getElementById("green"),
-        blue: document.getElementById("blue")
+        backgroundColorBar: document.getElementById("background_color_bar"),
+        rgb: document.getElementById("color-picker").getElementsByClassName("rgb"),
+        backgroundRgb: document.getElementById("background-color-picker").querySelectorAll(".backgroundRgb"),
+        colorPicker: document.getElementById("color-picker"),
+        backgroundColorPicker: document.getElementById("background-color-picker"),
+        hexColor: document.getElementById("pix-hex-color"),
+        backgroundHexColor: document.getElementById("background-hex-color"),
+        pixRed: document.getElementById("pix-red"),
+        pixGreen: document.getElementById("pix-green"),
+        pixBlue: document.getElementById("pix-blue"),
+        backgroundRed: document.getElementById("background-red"),
+        backgroundGreen: document.getElementById("background-green"),
+        backgroundBlue: document.getElementById("background-blue")
     },
     //settings
     s: {

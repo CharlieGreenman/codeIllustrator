@@ -10,8 +10,8 @@ import hndClck from "./_when-clicked.js";
 import convert from "./_conversion.js";
 import convertJS from "./_js-conversion.js";
 import cntrlView from "./_control-view.js";
+import clrPckr from "./_color-picker.js";
 import elem from "./_elem.js";
-
 
 var s, x, y, z,
  colorNum = 0,
@@ -31,7 +31,6 @@ var s, x, y, z,
         grid.createGridIllustrator();
       });
       elem.el.viewButton.addEventListener("click", () =>{
-        cntrlView.stopHandleClick();
         cntrlView.removeTiles();
         cntrlView.addBackTiles();
       });
@@ -80,13 +79,19 @@ var s, x, y, z,
          convert.addLessVariables();
          convert.convertToLess();
       });
+      elem.el.backgroundHexColor.addEventListener("input", function(){
+          clrPckr.pickBackgroundHexColor();
+      });
       elem.el.hexColor.addEventListener("input", function(){
-         bitIllustrator.pickHexColor();
+         clrPckr.pickHexColor();
       });
       //consider revision
       for(var i = 0; i < 3; i++){
-        elem.el.rgb[i].addEventListener("input", bitIllustrator.pickRgbColor, false);
+        elem.el.rgb[i].addEventListener("input", clrPckr.pickRgbColor, false);
       }
+        for(var i = 0; i < 3; i++){
+            elem.el.backgroundRgb[i].addEventListener("input", clrPckr.pickBackgroundRgbColor, false);
+        }
       elem.el.jsToggle.addEventListener("click", function(){
          convertJS.addEmptyArrayMap();
          convertJS.addArrayMap();
@@ -109,6 +114,7 @@ var s, x, y, z,
       elem.s.chooseSizeContainer.style.display = "none";
       elem.el.codeBoxContainer.style.display = "block";
       elem.el.colorPicker.style.display = "block";
+      elem.el.backgroundColorPicker.style.display = "block";
       elem.el.headerContainer.style.display = "block";
       elem.s.canvas.style.display = "block";
     },
@@ -118,23 +124,6 @@ var s, x, y, z,
      elem.s.canvas.height = elem.s.rowCount * elem.s.pixSize;
      elem.s.canvas.style.marginLeft = -(elem.s.columnCount * elem.s.pixSize) / 2 + "px";
 
-   },
-
-   pickHexColor: () =>{
-     var newHexValue = elem.el.hexColor.value;
-
-     elem.el.colorBar.style.background = newHexValue;
-     elem.el.headerContainer.style.boxShadow = '0 0 0 10px ' + newHexValue +  ' inset';
-
-     elem.el.red.value = utils.hexToRgb(newHexValue).r;
-     elem.el.green.value = utils.hexToRgb(newHexValue).g;
-     elem.el.blue.value = utils.hexToRgb(newHexValue).b;
-
-   },
-
-   pickRgbColor: () =>{
-     elem.el.hexColor.value = utils.rgbToHex(parseFloat(elem.el.red.value), parseFloat(elem.el.green.value), parseFloat(elem.el.blue.value));
-     elem.el.colorBar.style.background = elem.el.hexColor.value;
    },
 
 
