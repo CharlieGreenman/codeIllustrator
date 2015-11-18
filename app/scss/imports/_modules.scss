@@ -22,15 +22,27 @@
   width: 200px;
   height: 100%;
   right: 0;
-  background: white;
+  color: white;
+  background: black;
   $bord-var: 10px;
+  font-family: 'Reenie Beanie', cursive;
   box-shadow: 0 0 0 $bord-var black inset;
+  h3{
+    font-family: 'Reenie Beanie', cursive;
+    margin: 0;
+  }
+  label, input{
+    font-size: 1.5rem;
+    text-align: center;
+    background: black;
+  }
 }
 
 #reset-button, #view-button, #draw-button{
   background: #000;
   text-align: center;
   color: white;
+  cursor: pointer;
 }
 
 #view-button{
@@ -39,6 +51,7 @@
 }
 
 #view-button, #draw-button{
+  cursor: pointer;
   height: 35px;
   line-height: 35px;
 }
@@ -46,11 +59,11 @@
 #reset-button{
   height: 50px;
   line-height: 50px;
-  background: #FF4A00;
+  color: #FF4A00;
   text-transform: uppercase;
   transition: .8s;
   &.warning{
-    background: #B33A3A;
+    color: #B33A3A;
   }
 }
 
@@ -70,7 +83,8 @@ textarea:focus, input:focus{
     padding: 0;
     margin: 0;
     box-shadow: none;
-    background: white;
+    color: white;
+    text-align: left;
   }
 }
 
@@ -83,15 +97,16 @@ textarea:focus, input:focus{
   padding: 0;
 }
 
-#hex_label{
+label#hex_label{
   padding-top: 0.5rem;
+  color: #F0DB4F;
 }
 
 #hex_color{
   height: 30px;
 }
 
-#color_bar{
+#color_bar, #background_color_bar{
   height: 3px;
   background: black;
 }
@@ -311,5 +326,32 @@ pre{
 }
 
 
+//color picker
+#rgb, #rgb-background{
+  // letter r
+  .column {
+    &:nth-child(1) label{
+      color: red;
+    }
+    // letter g
+    &:nth-child(2) label{
+      color: green;
+    }
+    //letter b
+    &:nth-child(3) label{
+      color: blue;
+    }
+  }
+}
 
+//letters for the control panel
+.letter{
+  border-radius: 50%;
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.desc_text{
+
+}
 
