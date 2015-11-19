@@ -10,7 +10,7 @@ var convert = {
 
         elem.el.innerCodeBox.innerHTML = `$num: ${elem.s.pixSize};<br>`;
         for(let x = 0; x < elem.s.storeColors.length; x++){
-            elem.el.innerCodeBox.innerHTML += `$colors${x}: ${elem.s.storeColors[x]};`;
+            elem.el.innerCodeBox.innerHTML += `$colors ${x + 1}: ${elem.s.storeColors[x]}; `;
         }
 
         elem.el.innerCodeBox.innerHTML += "<br>";
@@ -32,10 +32,9 @@ var convert = {
             elem.el.innerCodeBox.innerHTML += ` $X${parseFloat(elem.s.storeValues[x][0]) / elem.s.pixSize}`;
             elem.el.innerCodeBox.innerHTML += ` $O${parseFloat(elem.s.storeValues[x][1]) / elem.s.pixSize}`;
             //need to add support with name that color
-
             for(var y = 0; y < elem.s.storeColors.length; y++){
                 if(elem.s.storeValues[x][2] === elem.s.storeColors[y]){
-                    elem.el.innerCodeBox.innerHTML += ` ${elem.s.sassColorVariables[y]}`;
+                    elem.el.innerCodeBox.innerHTML += ` $Colors ${elem.s.storeColors.indexOf(elem.s.storeValues[x][2]) + 1}`;
                 }
             }
             if(x === elem.s.storeValues.length - 1){
