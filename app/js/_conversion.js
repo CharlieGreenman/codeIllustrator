@@ -64,7 +64,6 @@ var convert = {
         for(let x = 0; x < elem.s.columnCount; x++){
             elem.el.innerCodeBox.innerHTML += `@X${x}: @num*${x}px; `;
         }
-        elem.el.innerCodeBox.innerHTML += `$num: ${elem.s.pixSize};<br>`;
         for(let y = 0; y < elem.s.columnCount; y++){
             elem.el.innerCodeBox.innerHTML += `@O${y}: @num*${y}px; `;
         }
@@ -73,17 +72,17 @@ var convert = {
 
     convertToLess: () => {
         elem.el.innerCodeBox.innerHTML += "box-shadow: ";
-        for (var xyz = 0; xyz < elem.s.storeValues.length; xyz++) {
-            elem.el.innerCodeBox.innerHTML += " @X" + parseFloat(elem.s.storeValues[xyz][0]) / elem.s.pixSize;
-            elem.el.innerCodeBox.innerHTML += " @O" + parseFloat(elem.s.storeValues[xyz][1]) / elem.s.pixSize;
+        for (var x = 0; x < elem.s.storeValues.length; x++) {
+            elem.el.innerCodeBox.innerHTML += " @X" + parseFloat(elem.s.storeValues[x][0]) / elem.s.pixSize;
+            elem.el.innerCodeBox.innerHTML += " @O" + parseFloat(elem.s.storeValues[x][1]) / elem.s.pixSize;
 
-            for(var x = 0; x < elem.s.storeColors.length; x++){
-                if(elem.s.storeValues[xyz][2] === elem.s.storeColors[x]){
-                    elem.el.innerCodeBox.innerHTML += ` @Colors-${elem.s.storeColors.indexOf(elem.s.storeValues[x][2]) + 1}`;
+            for(var y = 0; y < elem.s.storeColors.length; y++){
+                if(elem.s.storeValues[x][2] === elem.s.storeColors[y]){
+                    elem.el.innerCodeBox.innerHTML += ` @colors-${elem.s.storeColors.indexOf(elem.s.storeValues[x][2]) + 1}`;
                 }
             }
 
-            if (xyz === elem.s.storeValues.length - 1) {
+            if (x === elem.s.storeValues.length - 1) {
                 elem.el.innerCodeBox.innerHTML += ";";
             }
             else {
