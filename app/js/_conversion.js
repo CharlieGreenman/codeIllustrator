@@ -10,7 +10,7 @@ var convert = {
 
         elem.el.innerCodeBox.innerHTML = `$num: ${elem.s.pixSize};<br>`;
         for(let x = 0; x < elem.s.storeColors.length; x++){
-            elem.el.innerCodeBox.innerHTML += `$colors ${x + 1}: ${elem.s.storeColors[x]}; `;
+            elem.el.innerCodeBox.innerHTML += `$colors-${x + 1}: ${elem.s.storeColors[x]}; `;
         }
 
         elem.el.innerCodeBox.innerHTML += "<br>";
@@ -34,7 +34,7 @@ var convert = {
             //need to add support with name that color
             for(var y = 0; y < elem.s.storeColors.length; y++){
                 if(elem.s.storeValues[x][2] === elem.s.storeColors[y]){
-                    elem.el.innerCodeBox.innerHTML += ` $Colors ${elem.s.storeColors.indexOf(elem.s.storeValues[x][2]) + 1}`;
+                    elem.el.innerCodeBox.innerHTML += ` $Colors-${elem.s.storeColors.indexOf(elem.s.storeValues[x][2]) + 1}`;
                 }
             }
             if(x === elem.s.storeValues.length - 1){
@@ -56,7 +56,7 @@ var convert = {
         elem.el.innerCodeBox.innerHTML = "@num:" + elem.s.pixSize + ";<br>";
 
         for(let x = 0; x < elem.s.storeColors.length; x++){
-            elem.el.innerCodeBox.innerHTML += `@colors${x}: ${elem.s.storeColors[x]};`;
+            elem.el.innerCodeBox.innerHTML += `@colors-${x + 1}: ${elem.s.storeColors[x]};`;
         }
 
         elem.el.innerCodeBox.innerHTML += "<br>";
@@ -77,9 +77,9 @@ var convert = {
             elem.el.innerCodeBox.innerHTML += " @X" + parseFloat(elem.s.storeValues[xyz][0]) / elem.s.pixSize;
             elem.el.innerCodeBox.innerHTML += " @O" + parseFloat(elem.s.storeValues[xyz][1]) / elem.s.pixSize;
 
-            for(var avi = 0; avi < elem.s.storeColors.length; avi++){
-                if(elem.s.storeValues[xyz][2] === elem.s.storeColors[avi]){
-                    elem.el.innerCodeBox.innerHTML += " " + elem.s.lessColorVariables[avi];
+            for(var x = 0; x < elem.s.storeColors.length; x++){
+                if(elem.s.storeValues[xyz][2] === elem.s.storeColors[x]){
+                    elem.el.innerCodeBox.innerHTML += ` @Colors-${elem.s.storeColors.indexOf(elem.s.storeValues[x][2]) + 1}`;
                 }
             }
 
