@@ -84,7 +84,7 @@ textarea:focus, input:focus{
     margin: 0;
     box-shadow: none;
     color: white;
-    text-align: left;
+    text-align: center;
   }
 }
 
@@ -329,22 +329,33 @@ pre{
 //color picker
 #rgb, #rgb-background{
   // letter r
-  .column {
-    &:nth-child(1) label{
-      color: red;
+  .column, {
+    &:nth-child(1){
+      label, input{
+        color: red;
+      }
     }
     // letter g
-    &:nth-child(2) label{
-      color: green;
+    &:nth-child(2){
+      label, input{
+        color: green;
+      }
     }
     //letter b
-    &:nth-child(3) label{
-      color: blue;
+    &:nth-child(3) label, input{
+        color: blue;
     }
   }
 }
 
 
+#background-hex-color h3{
+  letter-spacing: 0.03rem;
+}
+
+#color-picker h3{
+  letter-spacing: 0.43rem;
+}
 
 //letters for the control panel
 .letter{
