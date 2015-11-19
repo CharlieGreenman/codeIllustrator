@@ -34,7 +34,7 @@ var convert = {
             //need to add support with name that color
             for(var y = 0; y < elem.s.storeColors.length; y++){
                 if(elem.s.storeValues[x][2] === elem.s.storeColors[y]){
-                    elem.el.innerCodeBox.innerHTML += ` $Colors-${elem.s.storeColors.indexOf(elem.s.storeValues[x][2]) + 1}`;
+                    elem.el.innerCodeBox.innerHTML += ` $colors-${elem.s.storeColors.indexOf(elem.s.storeValues[x][2]) + 1}`;
                 }
             }
             if(x === elem.s.storeValues.length - 1){
