@@ -15,7 +15,12 @@ var clrPckr = {
     },
     pickRgbColor: () =>{
         elem.el.hexColor.value = utils.rgbToHex(parseFloat(elem.el.pixRed.value), parseFloat(elem.el.pixGreen.value), parseFloat(elem.el.pixBlue.value));
+
         elem.el.colorBar.style.background = elem.el.hexColor.value;
+        elem.el.headerContainer.style.boxShadow = '0 0 0 10px ' + elem.el.hexColor.value +  ' inset';
+
+
+
     },
     pickBackgroundHexColor: () => {
         var newHexValue = elem.el.backgroundHexColor.value;

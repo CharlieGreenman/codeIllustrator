@@ -98,8 +98,8 @@ var s, x, y, z,
          convertJS.addColorMap();
          bitIllustrator.convertToJs();
       });
-      window.addEventListener("keydown", function(){
-         cntrlView.toggleView(event);
+      window.addEventListener("keydown", function(e){
+         cntrlView.toggleView(e);
       });
 
     },
