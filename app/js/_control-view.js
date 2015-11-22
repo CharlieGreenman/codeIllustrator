@@ -45,8 +45,8 @@ var cntrlView = {
             elem.s.resetButton.classList.add("warning");
         }
     },
-    toggleView: () => {
-        let x = event.keyCode;
+    toggleView: (e) => {
+        let x = e.keyCode;
         if(x === 71){
             if(c.classList.contains("allow-handle-click")){
                 cntrlView.stopHandleClick();
