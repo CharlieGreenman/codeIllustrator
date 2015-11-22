@@ -26,8 +26,8 @@ var grid = {
     // handleClick is still in prototyping phase
     handleClick: (e) => {
         e = e || window.event;
-        var xVal = Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize;
-        var yVal = Math.floor(e.offsetY / elem.s.pixSize) * elem.s.pixSize;
+        var xVal = Math.floor(e.offsetX === undefined ? e.layerX : e.offsetX / elem.s.pixSize) * elem.s.pixSize;
+        var yVal = Math.floor(e.offsetY === undefined ? e.layerY : e.offsetY / elem.s.pixSize) * elem.s.pixSize;
         ctx.fillStyle = elem.el.hexColor.value;
         //get the color for the box clicked on
         var imgData = ctx.getImageData(Math.floor(e.offsetX / elem.s.pixSize) * elem.s.pixSize + 1,

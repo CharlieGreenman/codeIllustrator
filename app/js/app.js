@@ -41,11 +41,11 @@ var s, x, y, z,
         cntrlView.redoGrid();
       });
       elem.s.resetButton.addEventListener("click", cntrlView.resetButton, false);
-      c.addEventListener("click", function(){
+      c.addEventListener("click", function(e){
          if(c.classList.contains("allow-handle-click")) {
-             grid.handleClick();
+             grid.handleClick(e);
              hndClck.addColors();
-             hndClck.convertToArray();
+             hndClck.convertToArray(e);
              //I would like the following code to be cleaner if possible
              if (elem.el.codeBox.classList.contains("css_box")) {
                  hndClck.convertToCss();
@@ -66,7 +66,6 @@ var s, x, y, z,
                  bitIllustrator.convertToJs();
              }
          }
-
       });
       elem.el.cssToggle.addEventListener("click", function(){
           hndClck.convertToCss();
