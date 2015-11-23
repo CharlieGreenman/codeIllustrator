@@ -80,6 +80,7 @@ var s, x, y, z,
       });
       elem.el.backgroundHexColor.addEventListener("input", function(){
           clrPckr.pickBackgroundHexColor();
+          grid.updateGridColor();
       });
       elem.el.hexColor.addEventListener("input", function(){
          clrPckr.pickHexColor();
@@ -89,7 +90,10 @@ var s, x, y, z,
         elem.el.rgb[i].addEventListener("input", clrPckr.pickRgbColor, false);
       }
         for(var i = 0; i < 3; i++){
-            elem.el.backgroundRgb[i].addEventListener("input", clrPckr.pickBackgroundRgbColor, false);
+            elem.el.backgroundRgb[i].addEventListener("input", function(){
+                clrPckr.pickBackgroundRgbColor();
+                grid.updateGridColor();
+            });
         }
       elem.el.jsToggle.addEventListener("click", function(){
          convertJS.addEmptyArrayMap();

@@ -1,5 +1,6 @@
 import elem from "./_elem.js";
 import utils from "./_utils.js";
+import grid from "./_grid.js";
 
 var clrPckr = {
     pickHexColor: () =>{
@@ -19,8 +20,6 @@ var clrPckr = {
         elem.el.colorBar.style.background = elem.el.hexColor.value;
         elem.el.headerContainer.style.boxShadow = '0 0 0 10px ' + elem.el.hexColor.value +  ' inset';
 
-
-
     },
     pickBackgroundHexColor: () => {
         var newHexValue = elem.el.backgroundHexColor.value;
@@ -31,11 +30,13 @@ var clrPckr = {
         elem.el.backgroundRed.value = utils.hexToRgb(newHexValue).r;
         elem.el.backgroundGreen.value = utils.hexToRgb(newHexValue).g;
         elem.el.backgroundBlue.value = utils.hexToRgb(newHexValue).b;
+        //grid.updateGridColor() needs to be at the end of pickBackgroundHexColor so that it picks up new value
     },
     pickBackgroundRgbColor: () =>{
         elem.el.backgroundHexColor.value = utils.rgbToHex(parseFloat(elem.el.backgroundRed.value), parseFloat(elem.el.backgroundGreen.value), parseFloat(elem.el.backgroundBlue.value));
         elem.el.backgroundColorBar.style.background = elem.el.backgroundHexColor.value;
         document.body.style.background = elem.el.backgroundHexColor.value;
+        //grid.updateGridColor() needs to be at the end of pickBackgroundRgbColor function so that it picks up new value
     }
 };
 
