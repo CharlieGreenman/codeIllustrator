@@ -64,16 +64,20 @@ var grid = {
     },
 
     updateGridColor: () => {
-
-
-        for(var r = 0; r < elem.s.columnCount; r++) {
-            for(var i = 0; i < elem.s.rowCount; i++) {
+        for(let x = 0; x < elem.s.columnCount; x++) {
+            for(let y = 0; y < elem.s.rowCount; y++) {
                 ctx.strokeStyle = "#3F3B3A";
-                ctx.strokeRect(r * elem.s.pixSize, i * elem.s.pixSize, elem.s.pixSize, elem.s.pixSize);
+                ctx.strokeRect(x * elem.s.pixSize, y * elem.s.pixSize, elem.s.pixSize, elem.s.pixSize);
                 ctx.fillStyle = elem.el.backgroundHexColor.value;
-                ctx.fillRect(r * elem.s.pixSize + 1, i * elem.s.pixSize + 1, elem.s.pixSize - 2, elem.s.pixSize - 2);
+                ctx.fillRect(x * elem.s.pixSize + 1, y * elem.s.pixSize + 1, elem.s.pixSize - 2, elem.s.pixSize - 2);
             }
         }
+
+        for(let x = 0; x < elem.s.storeValues.length; x++){
+            ctx.fillStyle = elem.s.storeValues[x][2];
+            ctx.fillRect(parseFloat(elem.s.storeValues[x][0]) + 1, parseFloat(elem.s.storeValues[x][1]) + 1, elem.s.pixSize - 2, elem.s.pixSize - 2);
+        }
+
     }
 };
 
