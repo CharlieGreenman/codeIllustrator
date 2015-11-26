@@ -1,4 +1,3 @@
-#Readme is a work in progress
 # Introduction
 
 I originally was really into css box-shadows. It was and it still is a relatively light weight way of illustrating on the web.
