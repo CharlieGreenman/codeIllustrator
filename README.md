@@ -1,5 +1,4 @@
 #Readme is a work in progress
-![Photo of Code Illustrator](/illustrator_screen_shot.png?raw=true "Code Illustrator Photo")
 # Introduction
 
 I originally was really into css box-shadows. It was and it still is a relatively light weight way of illustrating on the web.
@@ -19,6 +18,9 @@ My interest was only perked further by the [Goya](https://github.com/jackschaedl
 Especially the way it s built using React's diff state, built on Clojure Script. I will most definitely be starting a React
 implementation of this plugin next. Goya and Pixelator were my two inspirations for what I wanted, and they still are. Well enough about me,
 let's get down to this amazing Web App.
+
+Current version of Code Illustrator, can be seen [here](http://charliegreenman.github.io/codeILL/)
+![Photo of Code Illustrator](/illustrator_screen_shot.png?raw=true "Code Illustrator Photo")
 
 #Front End Stack
 ##JS##
@@ -65,6 +67,7 @@ read in the process of creating this Code Illustrator include:
 [Learning Javascript Data Structures and Algorithms by Loiane Groner](https://www.packtpub.com/application-development/learning-javascript-data-structures-and-algorithms)
 ---
 [Learning ECMAScript 6 by Narayan Prusty](https://www.packtpub.com/web-development/learning-ecmascript-6)
+---
 
-Current version of Code Illustrator, can be seen [here](http://charliegreenman.github.io/codeILL/)
+
 
