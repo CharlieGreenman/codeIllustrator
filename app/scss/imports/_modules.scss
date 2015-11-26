@@ -154,7 +154,7 @@ label#hex_label{
 
   input{
     width: 50%;
-    height: 20px;
+    height: 30px;
     border: none;
     font-size: 20px;
     margin: 0;
@@ -166,14 +166,14 @@ label#hex_label{
     }
     &:nth-child(7){
       background: #BF975F;
-      margin-top: -20px;
+      margin-top: -30px;
     }
   }
 }
 
 #create_grid{
   margin: 0;
-  height: 50px;
+  height: 60px;
   background: #F2A030;
   font-family: 'Reenie Beanie', cursive;
   font-size: 20px;
